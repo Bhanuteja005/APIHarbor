@@ -1,0 +1,24 @@
+# Reference-only design sources — not part of the deployed app
+linkify-main/
+dashboard-ui/
+
+# Dependencies & build output (reinstalled/rebuilt inside the image)
+**/node_modules/
+frontend/dist/
+backend/dist/
+backend/frontend-build/
+
+# Local env & secrets — NEVER ship these; set env vars in Railway instead
+**/.env
+**/.env.*
+!**/.env.example
+
+# Tooling / VCS / editor noise
+.git/
+.github/
+**/.turbo/
+**/coverage/
+**/*.log
+**/.DS_Store
+.claude/
+scratchpad/

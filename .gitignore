@@ -1,0 +1,50 @@
+# ---- Secrets & environment (NEVER commit) ----
+.env
+.env.*
+!.env.example
+!.env.railway.example
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.railway.example
+
+# ---- Dependencies ----
+node_modules/
+**/node_modules/
+.pnp
+.pnp.js
+
+# ---- Build output ----
+dist/
+**/dist/
+build/
+**/build/
+frontend/dist/
+backend/dist/
+backend/frontend-build/
+**/.cache/
+**/.turbo/
+*.tsbuildinfo
+
+# ---- Logs ----
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- Test / coverage ----
+coverage/
+**/coverage/
+
+# ---- Editor / OS ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# ---- Misc ----
+/wallet
+*.pem
+!nodejs.fips.cnf

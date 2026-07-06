@@ -1,0 +1,46 @@
+export enum ApprovalPolicyType {
+  PamAccess = "pam-access",
+  CertRequest = "cert-request",
+  CertCodeSigning = "cert-code-signing"
+}
+
+export enum ApprovalPolicyScope {
+  Project = "project",
+  PkiApplication = "pki-application",
+  Signer = "pki-signer"
+}
+
+export enum ApproverType {
+  Group = "group",
+  User = "user"
+}
+
+export enum ApprovalRequestStatus {
+  Pending = "pending",
+  Approved = "approved",
+  Rejected = "rejected",
+  Expired = "expired",
+  Cancelled = "cancelled"
+}
+
+export enum ApprovalRequestStepStatus {
+  Pending = "pending",
+  InProgress = "in-progress",
+  Completed = "completed"
+}
+
+export enum ApprovalRequestApprovalDecision {
+  Approved = "approved",
+  Rejected = "rejected"
+}
+
+export enum ApprovalRequestGrantStatus {
+  Active = "active",
+  Expired = "expired",
+  Revoked = "revoked"
+}
+
+export enum EnforcementLevel {
+  Hard = "hard",
+  Soft = "soft"
+}
