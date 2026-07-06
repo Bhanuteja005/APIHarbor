@@ -73,10 +73,24 @@ that URL into `SITE_URL` and redeploy so cookies/redirects use the right origin.
 
 ## 5. Deploy
 
-Trigger a deploy. On boot the container runs
-`npm run migration:latest && npm start`, so **database migrations apply
-automatically** (idempotent — safe on every restart). Railway's healthcheck
-polls `/api/status` until it returns `200`.
+Trigger a deploy. Database migrations run in Railway's **pre-deploy** phase
+(`preDeployCommand` in `railway.json`): `npm run migration:unlock || true; npm
+run migration:latest`. This runs migrations **once per deploy in a separate
+one-shot container** (not in the start path), then the app starts with just
+`npm start` and Railway's healthcheck polls `/api/status` until it returns
+`200`.
+
+> **Why pre-deploy instead of the start command?** If a migration is ever
+> interrupted, Knex leaves a lock row in `infisical_migrations_lock`. When
+> migrations run inside the start command, every restart re-hits the lock
+> ("Migration table is already locked"), the app never boots, and the
+> healthcheck fails until it times out. Running them once in pre-deploy — with
+> a defensive `migration:unlock` first — both clears any stale lock and keeps a
+> failed migration from crash-looping the service. If you set the **Start
+> Command** or **Pre-Deploy Command** in the Railway dashboard, those override
+> `railway.json`, so make the same change there (Start Command = `npm start`,
+> Pre-Deploy Command = `npm run migration:unlock || true; npm run
+> migration:latest`).
 
 ## 6. First run
 
@@ -87,13 +101,56 @@ keys live under **Project → API Keys**.
 
 ---
 
+## Alternative: two-service (split) deployment
+
+Instead of the single combined image you can run the **frontend and backend as
+two separate Railway services**. This is more moving parts — only do it if you
+need to (e.g. independent scaling or a CDN in front of the SPA).
+
+Services:
+
+- **APIHarbor-Backend** — root directory `/backend`, builds `backend/Dockerfile`
+  (API only). Uses `backend/railway.json` (pre-deploy migrations).
+- **APIHarbor-Frontend** — root directory `/frontend`, builds
+  `frontend/Dockerfile` (Vite build → nginx). Uses `frontend/railway.json`.
+
+Because the two services are on **different origins**, you must configure three
+things that the combined deploy doesn't need — CORS, the API URL, and the
+auth-cookie SameSite policy:
+
+**On the frontend service:**
+
+| Variable | Value |
+| --- | --- |
+| `VITE_API_URL` | the backend's public URL, e.g. `https://apiharbor-backend-production.up.railway.app` (baked into the bundle + CSP at build time — redeploy the frontend after changing it) |
+
+**On the backend service (in addition to the variables in §3):**
+
+| Variable | Value |
+| --- | --- |
+| `CORS_ALLOWED_ORIGINS` | JSON array with the frontend origin, e.g. `["https://apiharbor-frontend-production.up.railway.app"]` |
+| `AUTH_COOKIE_SAME_SITE` | `none` — lets the session cookie be sent cross-site (default `strict` only works same-origin) |
+| `HTTPS_ENABLED` | `true` — required so the `SameSite=None` cookie is also marked `Secure` (browsers reject `None` without `Secure`) |
+| `SITE_URL` | the **frontend** URL (used for links in emails, redirects) |
+
+> **Cross-site cookie caveat.** Railway's generated `*.up.railway.app` domains
+> are treated as separate sites (public-suffix), so the login session cookie is
+> a genuine cross-site cookie — hence `AUTH_COOKIE_SAME_SITE=none` +
+> `HTTPS_ENABLED=true`. If you'd rather keep the stricter same-site cookies,
+> put both services on subdomains of one custom domain (e.g.
+> `app.example.com` + `api.example.com`) instead; then `strict`/`lax` still work.
+
+---
+
 ## Notes & troubleshooting
 
 - **Everything is one service.** The API and UI share an origin, so there are no
   CORS settings to manage.
-- **Migrations** run on start via `migration:latest`. If you prefer a dedicated
-  release phase, move that command to a Railway *pre-deploy* command and change
-  the container `CMD`/start command to just `npm start`.
+- **Migrations** run in the Railway **pre-deploy** phase (see §5), not the start
+  command, so a stale Knex lock can't crash-loop startup. If you ever see
+  "Migration table is already locked", clear it with `npm run migration:unlock`
+  (or SQL: `UPDATE infisical_migrations_lock SET is_locked = 0;`) — the
+  pre-deploy step already runs `migration:unlock` defensively before migrating.
 - **Build memory:** the SPA build sets `NODE_OPTIONS=--max-old-space-size=4096`.
   If the frontend build OOMs on a small build plan, raise it in the `Dockerfile`
   frontend stage.

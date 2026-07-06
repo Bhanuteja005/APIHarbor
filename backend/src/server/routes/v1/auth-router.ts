@@ -37,7 +37,7 @@ export const registerAuthRoutes = async (server: FastifyZodProvider) => {
       void res.cookie("jid", "", {
         httpOnly: true,
         path: "/api",
-        sameSite: "strict",
+        sameSite: getConfig().AUTH_COOKIE_SAME_SITE,
         secure: appCfg.HTTPS_ENABLED,
         maxAge: 0
       });
@@ -45,7 +45,7 @@ export const registerAuthRoutes = async (server: FastifyZodProvider) => {
       void res.cookie("infisical-project-assume-privileges", "", {
         httpOnly: true,
         path: "/api",
-        sameSite: "strict",
+        sameSite: getConfig().AUTH_COOKIE_SAME_SITE,
         secure: appCfg.HTTPS_ENABLED,
         maxAge: 0
       });
@@ -113,7 +113,7 @@ export const registerAuthRoutes = async (server: FastifyZodProvider) => {
         void res.cookie("jid", "", {
           httpOnly: true,
           path: "/api",
-          sameSite: "strict",
+          sameSite: getConfig().AUTH_COOKIE_SAME_SITE,
           secure: appCfg.HTTPS_ENABLED,
           maxAge: 0
         });
@@ -164,7 +164,7 @@ export const registerAuthRoutes = async (server: FastifyZodProvider) => {
         void res.setCookie("jid", newRefreshToken, {
           httpOnly: true,
           path: "/api",
-          sameSite: "strict",
+          sameSite: getConfig().AUTH_COOKIE_SAME_SITE,
           secure: appCfg.HTTPS_ENABLED
         });
       }

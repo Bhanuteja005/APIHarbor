@@ -487,7 +487,7 @@ export const registerOrgRouter = async (server: FastifyZodProvider) => {
       void res.setCookie("jid", tokens.refreshToken, {
         httpOnly: true,
         path: "/api",
-        sameSite: "strict",
+        sameSite: getConfig().AUTH_COOKIE_SAME_SITE,
         secure: cfg.HTTPS_ENABLED
       });
 

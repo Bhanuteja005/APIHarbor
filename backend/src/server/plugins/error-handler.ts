@@ -197,6 +197,32 @@ export const fastifyErrHandler = fastifyPlugin(async (server: FastifyZodProvider
         error: error.name
       });
     } else if (error instanceof DatabaseError) {
+      const dbErr = (
+        error as unknown as {
+          error?: {
+            message?: string;
+            detail?: string;
+            constraint?: string;
+            table?: string;
+            code?: string;
+            routine?: string;
+            stack?: string;
+          };
+        }
+      ).error;
+      req.log.error(
+        {
+          dbOp: error.name,
+          sqlMessage: dbErr?.message,
+          detail: dbErr?.detail,
+          constraint: dbErr?.constraint,
+          table: dbErr?.table,
+          code: dbErr?.code,
+          routine: dbErr?.routine,
+          dbStack: dbErr?.stack
+        },
+        `DatabaseError [op=${error.name}] [table=${dbErr?.table}] [constraint=${dbErr?.constraint}]: ${dbErr?.message}`
+      );
       void res.status(HttpStatusCodes.InternalServerError).send({
         reqId: req.id,
         statusCode: HttpStatusCodes.InternalServerError,

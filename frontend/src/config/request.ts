@@ -3,6 +3,7 @@ import { addSeconds, formatISO } from "date-fns";
 
 import { createNotification } from "@app/components/notifications";
 import SecurityClient from "@app/components/utilities/SecurityClient";
+import { envConfig } from "@app/config/env";
 import { SessionStorageKeys } from "@app/const";
 import { fetchAuthToken } from "@app/hooks/api/auth/refresh";
 import {
@@ -12,8 +13,15 @@ import {
   setAuthToken
 } from "@app/hooks/api/reactQuery";
 
+// Defaults to "/" so the SPA hits the API on its own origin (single-image
+// STANDALONE_MODE deploy + dev proxy). Set VITE_API_URL to point at a backend
+// on a different origin when the frontend is deployed as a standalone service.
 export const apiRequest = axios.create({
-  baseURL: "/",
+  baseURL: envConfig.API_URL || "/",
+  // Send the httpOnly auth cookie on cross-origin requests too, so login /
+  // session refresh work when the frontend is served from a different origin
+  // than the backend. Harmless in the same-origin (combined) deploy.
+  withCredentials: true,
   headers: {
     "Content-Type": "application/json"
   }

@@ -97,7 +97,7 @@ export const registerLoginRouter = async (server: FastifyZodProvider) => {
             void res.setCookie(INFISICAL_PROVIDER_GITHUB_ACCESS_TOKEN, "", {
               httpOnly: true,
               path: "/api",
-              sameSite: "strict",
+              sameSite: getConfig().AUTH_COOKIE_SAME_SITE,
               secure: cfg.HTTPS_ENABLED,
               maxAge: 0
             });
@@ -107,7 +107,7 @@ export const registerLoginRouter = async (server: FastifyZodProvider) => {
       void res.setCookie("jid", tokens.refresh, {
         httpOnly: true,
         path: "/api",
-        sameSite: "strict",
+        sameSite: getConfig().AUTH_COOKIE_SAME_SITE,
         secure: cfg.HTTPS_ENABLED
       });
 
@@ -116,7 +116,7 @@ export const registerLoginRouter = async (server: FastifyZodProvider) => {
       void res.cookie("infisical-project-assume-privileges", "", {
         httpOnly: true,
         path: "/api",
-        sameSite: "strict",
+        sameSite: getConfig().AUTH_COOKIE_SAME_SITE,
         secure: cfg.HTTPS_ENABLED,
         maxAge: 0
       });
@@ -192,7 +192,7 @@ export const registerLoginRouter = async (server: FastifyZodProvider) => {
       void res.setCookie("jid", tokens.refreshToken, {
         httpOnly: true,
         path: "/api",
-        sameSite: "strict",
+        sameSite: getConfig().AUTH_COOKIE_SAME_SITE,
         secure: appCfg.HTTPS_ENABLED
       });
 
@@ -200,7 +200,7 @@ export const registerLoginRouter = async (server: FastifyZodProvider) => {
       void res.cookie("infisical-project-assume-privileges", "", {
         httpOnly: true,
         path: "/api",
-        sameSite: "strict",
+        sameSite: getConfig().AUTH_COOKIE_SAME_SITE,
         secure: appCfg.HTTPS_ENABLED,
         maxAge: 0
       });
@@ -258,7 +258,7 @@ export const registerLoginRouter = async (server: FastifyZodProvider) => {
       void res.setCookie("jid", tokens.refreshToken, {
         httpOnly: true,
         path: "/api",
-        sameSite: "strict",
+        sameSite: getConfig().AUTH_COOKIE_SAME_SITE,
         secure: appCfg.HTTPS_ENABLED
       });
 
@@ -267,7 +267,7 @@ export const registerLoginRouter = async (server: FastifyZodProvider) => {
       void res.cookie("infisical-project-assume-privileges", "", {
         httpOnly: true,
         path: "/api",
-        sameSite: "strict",
+        sameSite: getConfig().AUTH_COOKIE_SAME_SITE,
         secure: appCfg.HTTPS_ENABLED,
         maxAge: 0
       });

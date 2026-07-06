@@ -1,6 +1,8 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
+import { envConfig } from "@app/config/env";
+
 import { getAuthToken, setAuthToken } from "../reactQuery";
 import { GetAuthTokenAPI } from "./types";
 
@@ -53,7 +55,7 @@ export const fetchAuthToken = async (): Promise<GetAuthTokenAPI> => {
   }
 
   activeRefreshPromise = axios
-    .post<GetAuthTokenAPI>("/api/v1/auth/token", undefined, {
+    .post<GetAuthTokenAPI>(`${envConfig.API_URL}/api/v1/auth/token`, undefined, {
       withCredentials: true
     })
     .then(({ data }) => {

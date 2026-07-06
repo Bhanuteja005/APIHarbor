@@ -700,7 +700,7 @@ export const registerAdminRouter = async (server: FastifyZodProvider) => {
       void res.setCookie("jid", token.refresh, {
         httpOnly: true,
         path: "/api",
-        sameSite: "strict",
+        sameSite: getConfig().AUTH_COOKIE_SAME_SITE,
         secure: appCfg.HTTPS_ENABLED
       });
 

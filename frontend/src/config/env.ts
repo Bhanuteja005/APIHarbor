@@ -4,6 +4,13 @@
 /* eslint-disable no-underscore-dangle */
 export const envConfig = {
   ENV: import.meta.env.MODE,
+  // Base URL of the backend API. Empty by default → the SPA calls the API on
+  // its own origin (the single-image STANDALONE_MODE deploy, and the dev proxy).
+  // Set VITE_API_URL when the frontend is served from a different origin than
+  // the backend (e.g. a standalone frontend service), pointing at the API host.
+  get API_URL() {
+    return window?.__INFISICAL_RUNTIME_ENV__?.API_URL || import.meta.env.VITE_API_URL || "";
+  },
   get CAPTCHA_SITE_KEY() {
     return (
       window?.__INFISICAL_RUNTIME_ENV__?.CAPTCHA_SITE_KEY || import.meta.env.VITE_CAPTCHA_SITE_KEY

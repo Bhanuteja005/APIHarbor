@@ -168,6 +168,12 @@ const envSchema = z
     QUEUE_WORKERS_ENABLED: zodStrBool.default("true"),
     QUEUE_WORKER_PROFILE: z.nativeEnum(QueueWorkerProfile).default(QueueWorkerProfile.All),
     HTTPS_ENABLED: zodStrBool,
+    // SameSite policy for the auth/session cookies. Default "strict" (same-origin
+    // / combined deploy). Set to "none" when the frontend and backend are served
+    // from different origins (split deploy) so the session cookie is sent
+    // cross-site. "none" also requires HTTPS_ENABLED=true so the browser accepts
+    // the Secure cookie.
+    AUTH_COOKIE_SAME_SITE: z.enum(["strict", "lax", "none"]).default("strict"),
     ROTATION_DEVELOPMENT_MODE: zodStrBool.default("false").optional(),
     DAILY_RESOURCE_CLEAN_UP_DEVELOPMENT_MODE: zodStrBool.default("false").optional(),
     BDD_NOCK_API_ENABLED: zodStrBool.default("false").optional(),
