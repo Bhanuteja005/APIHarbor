@@ -145,7 +145,7 @@ export const InsightsPage = withProjectPermission(
           onOpenChange={(isOpen) => {
             handlePopUpToggle("upgradePlan", isOpen);
           }}
-          text="Your current plan does not include access to secret insights. To unlock this feature, please upgrade your Infisical plan."
+          text="Your current plan does not include access to secret insights. To unlock this feature, please upgrade your APIHarbor plan."
         />
       </>
     );

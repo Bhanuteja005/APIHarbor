@@ -245,7 +245,7 @@ const ApiPanel = ({
               <code className="font-mono">attributes</code> object (commonName, ttl, etc.) in the
               body to issue a certificate.{" "}
               <a
-                href="https://infisical.com/docs/api-reference/endpoints/certificates/create-certificate"
+                href="https://apiharbor.com/docs/api-reference/endpoints/certificates/create-certificate"
                 target="_blank"
                 rel="noreferrer"
                 className="font-medium text-primary-400"

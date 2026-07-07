@@ -907,7 +907,7 @@ const OverviewPageContent = () => {
   const handleViewCommitHistory = async (envSlug: string, preloadedFolderId?: string) => {
     if (!subscription?.pitRecovery) {
       handlePopUpOpen("upgradePlan", {
-        text: "You can use point-in-time recovery if you upgrade your Infisical plan."
+        text: "You can use point-in-time recovery if you upgrade your APIHarbor plan."
       });
       return;
     }
@@ -2537,34 +2537,34 @@ const OverviewPageContent = () => {
                 Inject your secrets using
                 <a
                   className="ml-1 text-mineshaft-200 underline decoration-mineshaft-400/65 underline-offset-3 duration-200 hover:text-mineshaft-100 hover:decoration-primary-600"
-                  href="https://infisical.com/docs/cli/overview"
+                  href="https://apiharbor.com/docs/cli/overview"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Infisical CLI
+                  APIHarbor CLI
                 </a>
                 ,
                 <a
                   className="ml-1 text-mineshaft-200 underline decoration-mineshaft-400/65 underline-offset-3 duration-200 hover:text-mineshaft-100 hover:decoration-primary-600"
-                  href="https://infisical.com/docs/api-reference/overview/introduction"
+                  href="https://apiharbor.com/docs/api-reference/overview/introduction"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Infisical API
+                  APIHarbor API
                 </a>
                 ,
                 <a
                   className="ml-1 text-mineshaft-200 underline decoration-mineshaft-400/65 underline-offset-3 duration-200 hover:text-mineshaft-100 hover:decoration-primary-600"
-                  href="https://infisical.com/docs/sdks/overview"
+                  href="https://apiharbor.com/docs/sdks/overview"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Infisical SDKs
+                  APIHarbor SDKs
                 </a>
                 , and
                 <a
                   className="ml-1 text-mineshaft-200 underline decoration-mineshaft-400/65 underline-offset-3 duration-200 hover:text-mineshaft-100 hover:decoration-primary-600"
-                  href="https://infisical.com/docs/documentation/getting-started/introduction"
+                  href="https://apiharbor.com/docs/documentation/getting-started/introduction"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -2640,7 +2640,7 @@ const OverviewPageContent = () => {
                       }
                       handlePopUpOpen("upgradePlan", {
                         isEnterpriseFeature: true,
-                        text: "Adding dynamic secrets can be unlocked if you upgrade to Infisical Enterprise plan."
+                        text: "Adding dynamic secrets can be unlocked if you upgrade to APIHarbor Enterprise plan."
                       });
                     }}
                     onAddSecretRotation={() => {
@@ -2649,7 +2649,7 @@ const OverviewPageContent = () => {
                         return;
                       }
                       handlePopUpOpen("upgradePlan", {
-                        text: "Adding secret rotations can be unlocked if you upgrade to Infisical Pro plan."
+                        text: "Adding secret rotations can be unlocked if you upgrade to APIHarbor Pro plan."
                       });
                     }}
                     onAddHoneyToken={async () => {
@@ -2680,7 +2680,7 @@ const OverviewPageContent = () => {
                         return;
                       }
                       handlePopUpOpen("upgradePlan", {
-                        text: "Adding honey tokens can be unlocked if you upgrade to Infisical Pro plan."
+                        text: "Adding honey tokens can be unlocked if you upgrade to APIHarbor Pro plan."
                       });
                     }}
                     onReplicateSecrets={() => handlePopUpOpen("replicateFolder")}
@@ -2787,7 +2787,7 @@ const OverviewPageContent = () => {
                     handlePopUpOpen("createEnvironment");
                   } else {
                     handlePopUpOpen("upgradePlan", {
-                      text: "Your current plan does not include access to adding custom environments. To unlock this feature, please upgrade to Infisical Pro plan."
+                      text: "Your current plan does not include access to adding custom environments. To unlock this feature, please upgrade to APIHarbor Pro plan."
                     });
                   }
                 }}

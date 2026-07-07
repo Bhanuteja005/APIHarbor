@@ -1,0 +1,38 @@
+[
+    {
+        "title": "How to Maximize Your Productivity with API Key Management Tools",
+        "image": "/assets/blog1.jpg",
+        "author_image": "https://example.com/images/author1.jpg",
+        "author_name": "John Doe",
+        "date_published": "2024-10-05",
+        "description": "Learn how to maximize your productivity with API key management tools.",
+        "slug": "maximize-productivity-api-key-management-tools"
+    },
+    {
+        "title": "The Ultimate Guide to Organizing API Keys for Teams",
+        "image": "/assets/blog2.jpg",
+        "author_image": "https://example.com/images/author2.jpg",
+        "author_name": "Jane Smith",
+        "date_published": "2024-09-28",
+        "description": "How to organize API keys for teams.",
+        "slug": "ultimate-guide-organizing-api-keys-teams"
+    },
+    {
+        "title": "Why API Key Health Monitoring is Essential for Modern Teams",
+        "image": "/assets/blog3.jpg",
+        "author_image": "https://example.com/images/author3.jpg",
+        "author_name": "Chris Martin",
+        "date_published": "2024-09-20",
+        "description": "API key health monitoring is essential for modern teams.",
+        "slug": "why-api-key-health-monitoring-essential"
+    },
+    {
+        "title": "Top 5 Features Every API Key Management Tool Should Have",
+        "image": "/assets/blog4.jpg",
+        "author_image": "https://example.com/images/author4.jpg",
+        "author_name": "Emily Clark",
+        "date_published": "2024-09-15",
+        "description": "The features that every API key management tool should have.",
+        "slug": "top-5-features-api-key-management-tools"
+    }
+]

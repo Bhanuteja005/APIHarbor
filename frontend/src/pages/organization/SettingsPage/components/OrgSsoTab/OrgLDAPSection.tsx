@@ -156,7 +156,7 @@ export const OrgLDAPSection = ({ onSwitchProvider }: Props): JSX.Element => {
                 <FieldContent>
                   <FieldTitle>Enable LDAP</FieldTitle>
                   <FieldDescription>
-                    Allow members to authenticate into Infisical with LDAP.
+                    Allow members to authenticate into APIHarbor with LDAP.
                   </FieldDescription>
                 </FieldContent>
                 <OrgPermissionCan
@@ -191,7 +191,7 @@ export const OrgLDAPSection = ({ onSwitchProvider }: Props): JSX.Element => {
               <FieldContent>
                 <FieldTitle>LDAP Group Mappings</FieldTitle>
                 <FieldDescription>
-                  Manage how LDAP groups are mapped to internal groups in Infisical.
+                  Manage how LDAP groups are mapped to internal groups in APIHarbor.
                 </FieldDescription>
               </FieldContent>
               <OrgPermissionCan I={OrgPermissionActions.Create} a={OrgPermissionSubjects.Ldap}>
@@ -218,7 +218,7 @@ export const OrgLDAPSection = ({ onSwitchProvider }: Props): JSX.Element => {
       <UpgradePlanModal
         isOpen={popUp.upgradePlan.isOpen}
         onOpenChange={(isOpen) => handlePopUpToggle("upgradePlan", isOpen)}
-        text="Your current plan does not include access to LDAP authentication. To unlock this feature, please upgrade to Infisical Enterprise plan."
+        text="Your current plan does not include access to LDAP authentication. To unlock this feature, please upgrade to APIHarbor Enterprise plan."
         isEnterpriseFeature={popUp.upgradePlan.data?.isEnterpriseFeature}
       />
     </>

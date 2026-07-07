@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 import { UpgradePlanModal } from "@app/components/license/UpgradePlanModal";
 import { createNotification } from "@app/components/notifications";
 import { OrgPermissionCan } from "@app/components/permissions";
+import { envConfig } from "@app/config/env";
 import {
   Alert,
   AlertDescription,
@@ -104,7 +105,7 @@ export const OrgGeneralAuthSection = ({
         setEnforcementTypeInModal(null);
 
         await logout.mutateAsync();
-        window.open(`/api/v1/sso/redirect/saml2/organizations/${currentOrg.slug}`);
+        window.open(`${envConfig.API_URL}/api/v1/sso/redirect/saml2/organizations/${currentOrg.slug}`);
         window.close();
       } else if (enforcementTypeInModal === EnforceAuthType.GOOGLE) {
         await mutateAsync({
@@ -122,7 +123,7 @@ export const OrgGeneralAuthSection = ({
         setEnforcementTypeInModal(null);
 
         await logout.mutateAsync();
-        window.open(`/api/v1/sso/redirect/google?org_slug=${currentOrg.slug}`);
+        window.open(`${envConfig.API_URL}/api/v1/sso/redirect/google?org_slug=${currentOrg.slug}`);
         window.close();
       }
     } catch (err) {
@@ -345,7 +346,7 @@ export const OrgGeneralAuthSection = ({
                           target="_blank"
                           rel="noreferrer"
                           className="underline underline-offset-2 hover:text-foreground"
-                          href="https://infisical.com/docs/documentation/platform/sso/overview#sso-break-glass"
+                          href="https://apiharbor.com/docs/documentation/platform/sso/overview#sso-break-glass"
                         >
                           Admin Login Portal
                         </a>{" "}
@@ -386,7 +387,7 @@ export const OrgGeneralAuthSection = ({
       <UpgradePlanModal
         isOpen={popUp.upgradePlan.isOpen}
         onOpenChange={(isOpen) => handlePopUpToggle("upgradePlan", isOpen)}
-        text={`Your current plan does not include access to ${popUp.upgradePlan.data?.featureName ?? "enforce SAML SSO"}. To unlock this feature, please upgrade to Infisical ${popUp.upgradePlan.data?.isEnterpriseFeature ? "Enterprise" : "Pro"} plan.`}
+        text={`Your current plan does not include access to ${popUp.upgradePlan.data?.featureName ?? "enforce SAML SSO"}. To unlock this feature, please upgrade to APIHarbor ${popUp.upgradePlan.data?.isEnterpriseFeature ? "Enterprise" : "Pro"} plan.`}
         isEnterpriseFeature={popUp.upgradePlan.data?.isEnterpriseFeature}
       />
 

@@ -95,7 +95,7 @@ export const OrgMembersSection = () => {
   const handleAddMemberModal = () => {
     if (!isMoreIdentitiesAllowed && !isEnterprise) {
       handlePopUpOpen("upgradePlan", {
-        text: "You have reached the maximum number of members allowed on your current plan. Upgrade to Infisical Pro plan to add more members."
+        text: "You have reached the maximum number of members allowed on your current plan. Upgrade to APIHarbor Pro plan to add more members."
       });
       return;
     }
@@ -200,7 +200,7 @@ export const OrgMembersSection = () => {
         <CardHeader>
           <CardTitle>
             {isSubOrganization ? "Sub-" : ""}Organization Users
-            <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/identities/user-identities" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/identities/user-identities" />
           </CardTitle>
           <CardDescription>
             Invite and manage {isSubOrganization ? "sub-" : ""}organization users

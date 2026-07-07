@@ -424,7 +424,7 @@ export const IdentityRoleModify = ({ identityProjectMembership }: Props) => {
       <UpgradePlanModal
         isOpen={upgradePlanPopUp.upgradePlan.isOpen}
         onOpenChange={(isOpen) => handleUpgradePlanPopUpToggle("upgradePlan", isOpen)}
-        text="Assigning custom roles to machine identities can be unlocked if you upgrade to Infisical Enterprise plan."
+        text="Assigning custom roles to machine identities can be unlocked if you upgrade to APIHarbor Enterprise plan."
         isEnterpriseFeature
       />
     </form>

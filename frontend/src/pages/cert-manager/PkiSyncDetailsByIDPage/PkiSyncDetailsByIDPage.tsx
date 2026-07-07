@@ -141,7 +141,7 @@ export const PkiSyncDetailsByIDPage = () => {
   return (
     <>
       <Helmet>
-        <title>PKI Sync | Infisical</title>
+        <title>PKI Sync | APIHarbor</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
       </Helmet>
       <PageContent />

@@ -84,12 +84,12 @@ export const NotFoundPage = () => {
       }`}
     >
       <Helmet>
-        <title>Infisical | Page Not Found</title>
+        <title>APIHarbor | Page Not Found</title>
       </Helmet>
       {isFullScreen && <AuthPageBackground />}
       <Card className="relative z-10 grid w-full max-w-5xl gap-0 overflow-hidden p-0 lg:grid-cols-[1fr_26rem]">
         <div className="flex flex-col p-8">
-          <img alt="Infisical" src="/images/logotransparent.png" className="h-5 self-start" />
+          <img alt="APIHarbor" src="/images/logotransparent.png" className="h-5 self-start" />
           <div className="mt-6 flex flex-col items-start gap-5">
             <Badge variant="warning" className="h-6 px-2">
               <CompassIcon />
@@ -120,18 +120,9 @@ export const NotFoundPage = () => {
               Still stuck? Email{" "}
               <a
                 className="underline underline-offset-4 hover:text-foreground"
-                href="mailto:support@infisical.com"
+                href="mailto:support@apiharbor.com"
               >
-                support@infisical.com
-              </a>{" "}
-              or{" "}
-              <a
-                className="underline underline-offset-4 hover:text-foreground"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://infisical.com/slack"
-              >
-                join us on Slack
+                support@apiharbor.com
               </a>
               .
             </p>

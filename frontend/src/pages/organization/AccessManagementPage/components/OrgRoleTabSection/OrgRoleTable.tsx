@@ -115,7 +115,7 @@ export const OrgRoleTable = () => {
 
     if (isCustomRole && subscription && !subscription?.rbac) {
       handlePopUpOpen("upgradePlan", {
-        text: "Your current plan does not include access to set a custom default organization role. To unlock this feature, please upgrade to Infisical Enterprise plan.",
+        text: "Your current plan does not include access to set a custom default organization role. To unlock this feature, please upgrade to APIHarbor Enterprise plan.",
         isEnterpriseFeature: true
       });
       return;
@@ -216,12 +216,12 @@ export const OrgRoleTable = () => {
           <AlertTitle>Custom roles are moving to Enterprise plans</AlertTitle>
           <AlertDescription>
             <div>
-              Custom roles are part of the Infisical Enterprise plan, but were temporarily available
+              Custom roles are part of the APIHarbor Enterprise plan, but were temporarily available
               to Pro users. Creation of new roles will be enforced starting June 1, 2026.
               <br />
               Please{" "}
               <a
-                href="https://infisical.com/scheduledemo"
+                href="https://apiharbor.com/scheduledemo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline underline-offset-2"
@@ -237,7 +237,7 @@ export const OrgRoleTable = () => {
         <CardHeader>
           <CardTitle>
             {isSubOrganization ? "Sub-" : ""}Organization Roles
-            <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/organization#roles-and-access-control" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/organization#roles-and-access-control" />
           </CardTitle>
           <CardDescription>
             Create and manage {isSubOrganization ? "sub-" : ""}organization roles

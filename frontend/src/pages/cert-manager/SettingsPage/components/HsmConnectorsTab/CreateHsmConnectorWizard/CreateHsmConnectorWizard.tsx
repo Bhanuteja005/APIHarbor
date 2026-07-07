@@ -179,7 +179,7 @@ export const CreateHsmConnectorWizard = ({ isOpen, onOpenChange }: Props) => {
                   Add HSM Connector
                 </div>
                 <p className="text-sm leading-4 text-mineshaft-400">
-                  Register a hardware security module so Infisical can route key operations through
+                  Register a hardware security module so APIHarbor can route key operations through
                   it.
                 </p>
               </div>
@@ -244,7 +244,7 @@ export const CreateHsmConnectorWizard = ({ isOpen, onOpenChange }: Props) => {
               <div className="mt-auto space-y-3">
                 {isLast && (
                   <p className="text-xs leading-relaxed text-muted">
-                    Infisical runs a Verify against your HSM before saving. A wrong PIN, slot, or
+                    APIHarbor runs a Verify against your HSM before saving. A wrong PIN, slot, or
                     unreachable Gateway will surface here.
                   </p>
                 )}

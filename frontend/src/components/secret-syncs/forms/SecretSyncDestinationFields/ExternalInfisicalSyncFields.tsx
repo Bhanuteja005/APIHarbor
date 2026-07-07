@@ -94,7 +94,7 @@ export const ExternalInfisicalSyncFields = () => {
                   <Info />
                 </TooltipTrigger>
                 <TooltipContent>
-                  The project on the remote Infisical instance to sync secrets to. Ensure the
+                  The project on the remote APIHarbor instance to sync secrets to. Ensure the
                   machine identity used by this connection has access to the project.
                 </TooltipContent>
               </Tooltip>
@@ -131,7 +131,7 @@ export const ExternalInfisicalSyncFields = () => {
                 <TooltipTrigger asChild>
                   <Info />
                 </TooltipTrigger>
-                <TooltipContent>The environment on the remote Infisical instance.</TooltipContent>
+                <TooltipContent>The environment on the remote APIHarbor instance.</TooltipContent>
               </Tooltip>
             </FieldLabel>
             <FieldContent>
@@ -167,7 +167,7 @@ export const ExternalInfisicalSyncFields = () => {
                   <Info />
                 </TooltipTrigger>
                 <TooltipContent>
-                  The folder path on the remote Infisical instance to sync secrets to.
+                  The folder path on the remote APIHarbor instance to sync secrets to.
                 </TooltipContent>
               </Tooltip>
             </FieldLabel>

@@ -56,7 +56,7 @@ const getFormSteps = (secretSync: TSecretSync, destinationName: string): FormSte
       name: "Source",
       description: "Pick env and path",
       title: "Source Secrets",
-      subtitle: "Pick the Infisical environment and path to sync from.",
+      subtitle: "Pick the APIHarbor environment and path to sync from.",
       rightLabel: "SOURCE",
       rightDescription:
         "Choose what gets synced. The environment + path together define the set of secrets this sync will push out."
@@ -68,7 +68,7 @@ const getFormSteps = (secretSync: TSecretSync, destinationName: string): FormSte
       title: `Connect to ${destinationName}`,
       subtitle: "Choose a connection and configure the target location.",
       rightLabel: "DESTINATION",
-      rightDescription: `Tell Infisical where to write. Pick a ${destinationName} connection and the exact destination, like a workspace, project, namespace, or whatever this provider expects.`
+      rightDescription: `Tell APIHarbor where to write. Pick a ${destinationName} connection and the exact destination, like a workspace, project, namespace, or whatever this provider expects.`
     }
   ];
 
@@ -78,10 +78,10 @@ const getFormSteps = (secretSync: TSecretSync, destinationName: string): FormSte
       name: "Initial Sync",
       description: "First-run behavior",
       title: "Initial Sync Behavior",
-      subtitle: `Choose how Infisical should reconcile existing secrets in ${destinationName} the first time this sync runs.`,
+      subtitle: `Choose how APIHarbor should reconcile existing secrets in ${destinationName} the first time this sync runs.`,
       rightLabel: "INITIAL SYNC",
       rightDescription:
-        "The first run is special. Infisical can either overwrite everything in the destination or import existing secrets back into Infisical. Subsequent runs follow your sync options."
+        "The first run is special. APIHarbor can either overwrite everything in the destination or import existing secrets back into APIHarbor. Subsequent runs follow your sync options."
     });
   }
 
@@ -93,7 +93,7 @@ const getFormSteps = (secretSync: TSecretSync, destinationName: string): FormSte
     subtitle: "Control how secrets are written and whether they sync automatically.",
     rightLabel: "SYNC OPTIONS",
     rightDescription:
-      "Decide how Infisical reconciles changes on every run, including auto-sync, key schema, and how conflicts are handled."
+      "Decide how APIHarbor reconciles changes on every run, including auto-sync, key schema, and how conflicts are handled."
   });
 
   steps.push({
@@ -325,7 +325,7 @@ export const EditSecretSyncForm = ({ secretSync, onComplete, onDirtyChange, onCa
                   Step {selectedStepIndex + 1} · {currentStep.rightLabel}
                 </p>
                 <DocumentationLinkBadge
-                  href={`https://infisical.com/docs/integrations/secret-syncs/${secretSync.destination}`}
+                  href={`https://apiharbor.com/docs/integrations/secret-syncs/${secretSync.destination}`}
                 />
               </div>
               <p className="mt-4 text-sm font-semibold text-foreground">What this step does</p>

@@ -28,15 +28,15 @@ export const PlatformManagedConfirmationModal = ({ isOpen, onOpenChange, onConfi
           </AlertDialogMedia>
           <AlertDialogTitle>Platform Managed Credentials</AlertDialogTitle>
           <AlertDialogDescription>
-            Once created, Infisical will update the password of this connection and you will no
-            longer be able to access it. Are you sure you want Infisical to manage the credentials
+            Once created, APIHarbor will update the password of this connection and you will no
+            longer be able to access it. Are you sure you want APIHarbor to manage the credentials
             of this connection?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction variant="warning" onClick={onConfirm}>
-            Grant Infisical Ownership
+            Grant APIHarbor Ownership
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

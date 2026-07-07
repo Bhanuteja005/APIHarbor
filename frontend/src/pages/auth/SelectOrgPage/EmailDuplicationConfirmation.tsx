@@ -54,7 +54,7 @@ export const EmailDuplicationConfirmation = ({ onRemoveDuplicateLater }: Props) 
                 height: "90px",
                 width: "120px"
               }}
-              alt="Infisical logo"
+              alt="APIHarbor logo"
             />
           </div>
         </Link>

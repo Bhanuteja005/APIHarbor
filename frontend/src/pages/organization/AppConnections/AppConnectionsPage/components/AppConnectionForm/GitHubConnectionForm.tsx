@@ -181,7 +181,7 @@ export const GitHubConnectionForm = ({ appConnection, projectId, onSubmit }: Pro
   const gatewayId = watch("gatewayId");
   const gatewayPoolId = watch("gatewayPoolId");
 
-  // Resolve the selected gateway/pool name so the create-app modal can tell the user how Infisical
+  // Resolve the selected gateway/pool name so the create-app modal can tell the user how APIHarbor
   // will reach GitHub. Both lists are already cached by the gateway picker above.
   const { data: gateways } = useQuery({
     ...gatewaysQueryKeys.list(),
@@ -416,12 +416,12 @@ export const GitHubConnectionForm = ({ appConnection, projectId, onSubmit }: Pro
   const getMethodErrorText = (fieldError?: { message?: string }) => {
     if (!isLoading && isMissingConfig) {
       const configHint = isInfisicalCloud()
-        ? "Please contact Infisical."
+        ? "Please contact APIHarbor."
         : `See Docs to configure ${methodDetails.name.startsWith("GitHub") ? methodDetails.name : `GitHub ${methodDetails.name}`} Connections.`;
       return `Credentials have not been configured. ${configHint}`;
     }
     if (isCloudCustomHostUnsupported) {
-      return "GitHub App/OAuth with a custom host is only supported on self-hosted Infisical.";
+      return "GitHub App/OAuth with a custom host is only supported on self-hosted APIHarbor.";
     }
     return fieldError?.message;
   };

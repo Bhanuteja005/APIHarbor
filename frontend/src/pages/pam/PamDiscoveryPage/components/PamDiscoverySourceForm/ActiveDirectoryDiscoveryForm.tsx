@@ -413,7 +413,7 @@ export const ActiveDirectoryDiscoveryForm = ({ source, onSubmit, closeSheet }: P
                         <InfoIcon className="mb-0.5 inline-block size-3 text-accent" />
                       </TooltipTrigger>
                       <TooltipContent>
-                        If enabled, Infisical will only connect to the Domain Controller if it has a
+                        If enabled, APIHarbor will only connect to the Domain Controller if it has a
                         valid, trusted TLS certificate
                       </TooltipContent>
                     </Tooltip>
@@ -534,7 +534,7 @@ export const ActiveDirectoryDiscoveryForm = ({ source, onSubmit, closeSheet }: P
                         <InfoIcon className="mb-0.5 inline-block size-3 text-accent" />
                       </TooltipTrigger>
                       <TooltipContent>
-                        If enabled, Infisical will only connect to target machines if they have a
+                        If enabled, APIHarbor will only connect to target machines if they have a
                         valid, trusted TLS certificate
                       </TooltipContent>
                     </Tooltip>

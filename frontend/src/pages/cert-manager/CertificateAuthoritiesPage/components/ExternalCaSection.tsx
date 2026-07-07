@@ -78,7 +78,7 @@ export const ExternalCaSection = () => {
           <DocumentationLinkBadge href={PkiDocsUrls.ca.external} />
         </CardTitle>
         <CardDescription>
-          Third-party CAs connected to Infisical. Use them to issue certificates from providers you
+          Third-party CAs connected to APIHarbor. Use them to issue certificates from providers you
           already have.
         </CardDescription>
         <CardAction>

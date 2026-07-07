@@ -187,7 +187,7 @@ export const MCPServerDetailPage = () => {
   return (
     <>
       <Helmet>
-        <title>MCP Server | Infisical</title>
+        <title>MCP Server | APIHarbor</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
       </Helmet>
       <PageContent />

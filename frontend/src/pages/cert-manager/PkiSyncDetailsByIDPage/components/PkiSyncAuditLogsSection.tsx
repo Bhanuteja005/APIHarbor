@@ -65,7 +65,7 @@ export const PkiSyncAuditLogsSection = ({ pkiSync }: Props) => {
                 </Link>
               ) : (
                 <a
-                  href="https://infisical.com/scheduledemo"
+                  href="https://apiharbor.com/scheduledemo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cursor-pointer underline transition-all hover:text-white"

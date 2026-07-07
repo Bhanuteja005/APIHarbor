@@ -2,7 +2,7 @@
  * Centralized PKI documentation URLs.
  */
 
-const PKI_DOCS_BASE_URL = "https://infisical.com/docs/documentation/platform/pki";
+const PKI_DOCS_BASE_URL = "https://apiharbor.com/docs/documentation/platform/pki";
 
 export const PkiDocsUrls = {
   // Overview

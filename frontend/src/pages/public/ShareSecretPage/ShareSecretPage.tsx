@@ -12,7 +12,7 @@ export const ShareSecretPage = () => {
     <div className="relative flex max-h-screen min-h-screen flex-col overflow-y-auto bg-linear-to-tr from-card via-bunker-900 to-card px-4">
       <AuthPageBackground />
       <Helmet>
-        <title>Securely Share Secrets | Infisical</title>
+        <title>Securely Share Secrets | APIHarbor</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
         <meta property="og:image" content="/images/message.png" />
         <meta property="og:title" content="" />

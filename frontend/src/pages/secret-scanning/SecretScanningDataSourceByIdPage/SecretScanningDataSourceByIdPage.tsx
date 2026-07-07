@@ -102,7 +102,7 @@ export const SecretScanningDataSourceByIdPage = () => {
   return (
     <>
       <Helmet>
-        <title>Secret Scanning Data Source | Infisical</title>
+        <title>Secret Scanning Data Source | APIHarbor</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
       </Helmet>
       <ProjectPermissionCan

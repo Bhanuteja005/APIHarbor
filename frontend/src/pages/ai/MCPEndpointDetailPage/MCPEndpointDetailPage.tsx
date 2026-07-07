@@ -204,7 +204,7 @@ export const MCPEndpointDetailPage = () => {
   return (
     <>
       <Helmet>
-        <title>MCP Endpoint | Infisical</title>
+        <title>MCP Endpoint | APIHarbor</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
       </Helmet>
       <PageContent />

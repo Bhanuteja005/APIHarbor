@@ -81,14 +81,14 @@ export const HostStep = ({ form, options, isLoading }: Props) => {
               <FieldDescription>
                 A{" "}
                 <a
-                  href="https://infisical.com/docs/documentation/platform/gateways/overview"
+                  href="https://apiharbor.com/docs/documentation/platform/gateways/overview"
                   target="_blank"
                   rel="noreferrer"
                   className="underline"
                 >
                   Gateway
                 </a>{" "}
-                is a lightweight agent that performs HSM operations on Infisical&apos;s behalf. It
+                is a lightweight agent that performs HSM operations on APIHarbor&apos;s behalf. It
                 runs inside your network and handles the communication with your HSM.
               </FieldDescription>
               <FieldError errors={[error]} />
@@ -107,7 +107,7 @@ export const HostStep = ({ form, options, isLoading }: Props) => {
                 A Gateway with PKCS#11 support must be running on a machine that can reach your HSM.
                 This is set up by someone with network and infrastructure access.{" "}
                 <a
-                  href="https://infisical.com/docs/documentation/platform/pki/settings/hsm-connectors"
+                  href="https://apiharbor.com/docs/documentation/platform/pki/settings/hsm-connectors"
                   target="_blank"
                   rel="noreferrer"
                   className="text-primary hover:underline"

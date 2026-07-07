@@ -12,7 +12,7 @@ type Props = {
   isConnected: boolean;
 };
 
-const docsBaseUrl = "https://infisical.com/docs/documentation/platform/sso";
+const docsBaseUrl = "https://apiharbor.com/docs/documentation/platform/sso";
 
 export const SSOModalHeader = ({ providerDetails, isConnected }: Props) => {
   return (

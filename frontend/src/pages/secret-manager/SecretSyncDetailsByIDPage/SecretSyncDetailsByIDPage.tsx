@@ -148,7 +148,7 @@ export const SecretSyncDetailsByIDPage = () => {
   return (
     <>
       <Helmet>
-        <title>Secret Sync | Infisical</title>
+        <title>Secret Sync | APIHarbor</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
       </Helmet>
       <ProjectPermissionCan

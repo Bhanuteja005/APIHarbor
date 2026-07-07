@@ -51,7 +51,7 @@ const DEFAULT_VALUES: CaWizardForm = {
   province: "",
   locality: "",
   commonName: "",
-  keySource: CertKeySource.Infisical,
+  keySource: CertKeySource.APIHarbor,
   hsmConnectorId: null,
   keyAlgorithm: CertKeyAlgorithm.RSA_2048,
   notAfter: getDateTenYearsFromToday(),
@@ -169,8 +169,8 @@ export const CreateCaWizard = ({ isOpen, onOpenChange }: Props) => {
                   <DocumentationLinkBadge href={PkiDocsUrls.ca.internal} />
                 </div>
                 <p className="text-sm leading-4 text-mineshaft-400">
-                  A private Certificate Authority hosted by Infisical, with its signing key managed
-                  by Infisical or kept in your HSM.
+                  A private Certificate Authority hosted by APIHarbor, with its signing key managed
+                  by APIHarbor or kept in your HSM.
                 </p>
               </div>
             </div>

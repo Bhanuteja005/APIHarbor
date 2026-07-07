@@ -276,7 +276,7 @@ export const AzureClientSecretsConnectionForm = ({ appConnection, onSubmit, proj
                 {!isLoading && isMissingConfig
                   ? `Environment variables have not been configured. ${
                       isInfisicalCloud()
-                        ? "Please contact Infisical."
+                        ? "Please contact APIHarbor."
                         : `See documentation to configure Azure ${methodDetails.name} Connections.`
                     }`
                   : error?.message}
@@ -370,7 +370,7 @@ export const AzureClientSecretsConnectionForm = ({ appConnection, onSubmit, proj
                         <TooltipContent className="max-w-sm">
                           The Key ID of the client secret provided above. Found in Azure Portal
                           under App Registrations &gt; Certificates &amp; Secrets. Required so
-                          Infisical can revoke the original secret after rotation.
+                          APIHarbor can revoke the original secret after rotation.
                         </TooltipContent>
                       </Tooltip>
                     </FieldLabel>

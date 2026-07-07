@@ -240,7 +240,7 @@ export const AppConnectionRow = ({
                 </div>
               </TooltipTrigger>
               <TooltipContent side="left">
-                This connection&apos;s credentials are managed by Infisical.
+                This connection&apos;s credentials are managed by APIHarbor.
               </TooltipContent>
             </Tooltip>
           )}

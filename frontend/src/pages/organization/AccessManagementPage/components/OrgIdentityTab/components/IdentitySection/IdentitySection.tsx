@@ -118,7 +118,7 @@ export const IdentitySection = withPermission(
             <CardHeader>
               <CardTitle>
                 {isSubOrganization ? "Sub-Organization " : ""}Machine Identities
-                <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/identities/machine-identities" />
+                <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/identities/machine-identities" />
               </CardTitle>
               <CardDescription>
                 All machine identities across your{" "}
@@ -137,7 +137,7 @@ export const IdentitySection = withPermission(
                         if (!isMoreIdentitiesAllowed && !isEnterprise) {
                           handlePopUpOpen("upgradePlan", {
                             description:
-                              "You can add more machine identities if you upgrade your Infisical Pro plan."
+                              "You can add more machine identities if you upgrade your APIHarbor plan."
                           });
                           return;
                         }
@@ -167,7 +167,7 @@ export const IdentitySection = withPermission(
             <CardHeader>
               <CardTitle>
                 Machine Identity Auth Templates
-                <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/identities/auth-templates" />
+                <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/identities/auth-templates" />
               </CardTitle>
               <CardDescription>
                 Create and manage machine identity authentication templates
@@ -184,7 +184,7 @@ export const IdentitySection = withPermission(
                         if (subscription && !subscription.machineIdentityAuthTemplates) {
                           handlePopUpOpen("upgradePlan", {
                             isEnterpriseFeature: true,
-                            text: "Your current plan does not include access to creating Machine Identity Auth Templates. To unlock this feature, please upgrade to Infisical Enterprise plan."
+                            text: "Your current plan does not include access to creating Machine Identity Auth Templates. To unlock this feature, please upgrade to APIHarbor Enterprise plan."
                           });
                           return;
                         }

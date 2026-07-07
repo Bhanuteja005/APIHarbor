@@ -134,7 +134,7 @@ export const apiKeyServiceFactory = ({ apiKeyDAL, permissionService, kmsService 
     // Free tier is capped at MAX_API_KEYS_PER_PROJECT keys per project. Enterprise
     // (private) deployments can raise this via the API_KEYS_PER_PROJECT_LIMIT env var.
     const keyLimit = Number(process.env.API_KEYS_PER_PROJECT_LIMIT) || MAX_API_KEYS_PER_PROJECT;
-    const existingCount = await apiKeyDAL.countDocuments({ projectId });
+    const existingCount = await apiKeyDAL.countByProjectId(projectId);
     if (existingCount >= keyLimit) {
       throw new BadRequestError({
         message: `This project has reached its limit of ${keyLimit} API keys. Contact the APIHarbor team for a private deployment to store more.`

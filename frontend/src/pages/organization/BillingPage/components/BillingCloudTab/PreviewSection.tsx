@@ -73,7 +73,7 @@ export const PreviewSection = () => {
       if (!subscription || !currentOrg) return;
 
       if (!isInfisicalCloud()) {
-        window.open("https://infisical.com/pricing", "_blank");
+        window.open("https://apiharbor.com/pricing", "_blank");
         return;
       }
 
@@ -119,7 +119,7 @@ export const PreviewSection = () => {
                 <h2 className="text-xl font-medium text-mineshaft-100">
                   Unleash the full power of{" "}
                   <span className="bg-linear-to-r from-primary-500 to-yellow bg-clip-text font-medium text-transparent">
-                    Infisical
+                    APIHarbor
                   </span>
                 </h2>
                 <p className="mt-4 text-gray-400">
@@ -147,7 +147,7 @@ export const PreviewSection = () => {
               </div>
               <div className="flex w-full justify-center">
                 <a
-                  href="https://infisical.com/talk-to-us"
+                  href="https://apiharbor.com/talk-to-us"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

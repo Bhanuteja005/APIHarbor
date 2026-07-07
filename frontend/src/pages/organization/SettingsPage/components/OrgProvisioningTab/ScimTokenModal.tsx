@@ -155,7 +155,7 @@ export const ScimTokenModal = ({ popUp, handlePopUpOpen, handlePopUpToggle }: Pr
           <DialogHeader>
             <DialogTitle className="flex items-center gap-x-2">
               Manage SCIM Credentials
-              <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/scim/overview" />
+              <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/scim/overview" />
             </DialogTitle>
             <DialogDescription>
               Generate and manage the tokens your SCIM provider uses to authenticate.

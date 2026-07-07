@@ -76,7 +76,7 @@ export const SecretSyncSelect = ({ onSelect }: Props) => {
     if (option.enterprise && !subscription.enterpriseSecretSyncs) {
       handlePopUpOpen("upgradePlan", {
         isEnterpriseFeature: true,
-        text: "All Secret Syncs can be unlocked if you switch to Infisical Enterprise plan."
+        text: "All Secret Syncs can be unlocked if you switch to APIHarbor Enterprise plan."
       });
       return;
     }

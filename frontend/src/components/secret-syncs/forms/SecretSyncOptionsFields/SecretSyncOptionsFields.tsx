@@ -163,7 +163,7 @@ export const SecretSyncOptionsFields = ({ hideInitialSync, children }: Props) =>
                       <TooltipContent className="max-w-lg">
                         <div className="flex flex-col gap-3">
                           <p>
-                            Specify how Infisical should resolve the initial sync to{" "}
+                            Specify how APIHarbor should resolve the initial sync to{" "}
                             {destinationName}. The following options are available:
                           </p>
                           <ul className="flex list-disc flex-col gap-3 pl-4">
@@ -219,9 +219,9 @@ export const SecretSyncOptionsFields = ({ hideInitialSync, children }: Props) =>
                 <FieldContent>
                   <Label htmlFor="disable-secret-deletion">Disable secret deletion</Label>
                   <FieldDescription>
-                    When enabled, Infisical will not remove secrets from {destinationName} during a
+                    When enabled, APIHarbor will not remove secrets from {destinationName} during a
                     sync. Use this if you intend to manage some secrets manually outside of
-                    Infisical.
+                    APIHarbor.
                   </FieldDescription>
                 </FieldContent>
                 <Switch

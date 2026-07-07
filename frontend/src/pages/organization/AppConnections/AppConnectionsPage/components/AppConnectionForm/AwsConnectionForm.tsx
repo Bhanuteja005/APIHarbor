@@ -144,7 +144,7 @@ export const AwsConnectionForm = ({ appConnection, onSubmit }: Props) => {
                         <Info />
                       </TooltipTrigger>
                       <TooltipContent className="max-w-md">
-                        Override the default AWS STS endpoint Infisical calls to assume the role.
+                        Override the default AWS STS endpoint APIHarbor calls to assume the role.
                         Useful for VPC (PrivateLink), GovCloud, China, FIPS, or region-pinned
                         endpoints. Leave blank to use the default AWS STS endpoint.
                       </TooltipContent>

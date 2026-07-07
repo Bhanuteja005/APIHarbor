@@ -44,7 +44,7 @@ export const CertManagerInstanceBanner = () => {
             </Link>
           ) : (
             <a
-              href="https://infisical.com/docs/documentation/platform/pki/migration"
+              href="https://apiharbor.com/docs/documentation/platform/pki/migration"
               target="_blank"
               rel="noopener noreferrer"
               className="underline underline-offset-2 hover:text-yellow"

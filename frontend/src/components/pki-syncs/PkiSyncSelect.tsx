@@ -71,7 +71,7 @@ export const PkiSyncSelect = ({ onSelect }: Props) => {
                 enterprise && !subscription.enterpriseCertificateSyncs
                   ? handlePopUpOpen("upgradePlan", {
                       isEnterpriseFeature: true,
-                      text: "All Certificate Syncs can be unlocked if you switch to Infisical Enterprise plan."
+                      text: "All Certificate Syncs can be unlocked if you switch to APIHarbor Enterprise plan."
                     })
                   : onSelect(destination)
               }
@@ -106,14 +106,14 @@ export const PkiSyncSelect = ({ onSelect }: Props) => {
               className="max-w-sm py-4"
               content={
                 <>
-                  <p className="mb-2">Infisical is constantly adding support for more services.</p>
+                  <p className="mb-2">APIHarbor is constantly adding support for more services.</p>
                   <p>
                     {`If you don't see the third-party
             service you're looking for,`}{" "}
                     <a
                       target="_blank"
                       className="underline hover:text-mineshaft-300"
-                      href="https://infisical.com/slack"
+                      href="https://apiharbor.com/slack"
                       rel="noopener noreferrer"
                     >
                       let us know on Slack
@@ -122,7 +122,7 @@ export const PkiSyncSelect = ({ onSelect }: Props) => {
                     <a
                       target="_blank"
                       className="underline hover:text-mineshaft-300"
-                      href="https://github.com/Infisical/infisical/discussions"
+                      href="https://github.com/Bhanuteja005/APIHarbor/discussions"
                       rel="noopener noreferrer"
                     >
                       make a request on GitHub

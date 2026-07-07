@@ -95,7 +95,7 @@ export const WinrmConfigSection = ({
               <InfoIcon className="mb-0.5 inline-block size-3 text-accent" />
             </TooltipTrigger>
             <TooltipContent>
-              If enabled, Infisical will only connect if the machine has a valid, trusted TLS
+              If enabled, APIHarbor will only connect if the machine has a valid, trusted TLS
               certificate
             </TooltipContent>
           </Tooltip>

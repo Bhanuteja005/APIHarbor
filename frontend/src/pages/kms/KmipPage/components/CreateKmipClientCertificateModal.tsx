@@ -133,7 +133,7 @@ const KmipClientCertificateForm = ({
                     content={
                       <div className="space-y-2">
                         <p>
-                          <strong>Managed:</strong> Infisical generates and manages the private key
+                          <strong>Managed:</strong> APIHarbor generates and manages the private key
                           for you.
                         </p>
                         <p>

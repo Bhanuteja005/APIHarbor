@@ -288,7 +288,7 @@ export const PamResourceByIDPage = () => {
   return (
     <>
       <Helmet>
-        <title>PAM Resource | Infisical</title>
+        <title>PAM Resource | APIHarbor</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
       </Helmet>
       <PageContent />

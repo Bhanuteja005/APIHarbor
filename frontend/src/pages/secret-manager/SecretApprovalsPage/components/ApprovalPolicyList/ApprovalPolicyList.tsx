@@ -247,7 +247,7 @@ export const ApprovalPolicyList = ({ projectId }: IProps) => {
         <CardHeader>
           <CardTitle>
             Policies
-            <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/pr-workflows" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/pr-workflows" />
           </CardTitle>
           <CardDescription>
             Implement granular policies for access requests and secrets management
@@ -477,7 +477,7 @@ export const ApprovalPolicyList = ({ projectId }: IProps) => {
       <UpgradePlanModal
         isOpen={popUp.upgradePlan.isOpen}
         onOpenChange={(isOpen) => handlePopUpToggle("upgradePlan", isOpen)}
-        text="Adding secret approval policies can be unlocked if you upgrade to Infisical Pro plan."
+        text="Adding secret approval policies can be unlocked if you upgrade to APIHarbor Pro plan."
       />
     </>
   );

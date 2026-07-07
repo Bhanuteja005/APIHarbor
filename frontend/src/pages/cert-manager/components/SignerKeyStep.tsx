@@ -77,7 +77,7 @@ export const SignerKeyStep = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isHsm, minRsaKeyBits, keyAlgorithmField.value]);
 
-  let keySourceHint: ReactNode = "Infisical manages the keypair.";
+  let keySourceHint: ReactNode = "APIHarbor manages the keypair.";
   if (requiresHsm) {
     keySourceHint = (
       <span className="inline-flex items-center gap-1.5">
@@ -112,8 +112,8 @@ export const SignerKeyStep = ({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent position="popper">
-                  <SelectItem value={CertKeySource.Infisical} disabled={requiresHsm}>
-                    Infisical
+                  <SelectItem value={CertKeySource.APIHarbor} disabled={requiresHsm}>
+                    APIHarbor
                   </SelectItem>
                   <SelectItem value={CertKeySource.Hsm} disabled={!isHsmLicensed || !canAttachHsm}>
                     <div className="flex items-center gap-2">

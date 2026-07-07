@@ -1315,7 +1315,7 @@ export const ExternalCaModal = ({ popUp, handlePopUpToggle }: Props) => {
                       errorText={error?.message}
                       isError={Boolean(error)}
                       isRequired
-                      tooltipText="Products available are account-specific entitlements fetched from CertCentral. Each Infisical CA issues under exactly one product."
+                      tooltipText="Products available are account-specific entitlements fetched from CertCentral. Each APIHarbor CA issues under exactly one product."
                     >
                       <FilterableSelect
                         isLoading={isDigiCertProductsPending && !!digicertConnectionId}

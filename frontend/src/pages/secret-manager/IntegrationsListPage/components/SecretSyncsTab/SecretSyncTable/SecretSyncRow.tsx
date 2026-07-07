@@ -302,7 +302,7 @@ export const SecretSyncRow = ({
                         </div>
                       </TooltipTrigger>
                       <TooltipContent side="left" sideOffset={20}>
-                        Import secrets from this {destinationName} destination into Infisical.
+                        Import secrets from this {destinationName} destination into APIHarbor.
                       </TooltipContent>
                     </Tooltip>
                   </DropdownMenuItem>
@@ -334,7 +334,7 @@ export const SecretSyncRow = ({
                         </div>
                       </TooltipTrigger>
                       <TooltipContent side="left" sideOffset={20}>
-                        Remove secrets synced by Infisical from this {destinationName} destination.
+                        Remove secrets synced by APIHarbor from this {destinationName} destination.
                       </TooltipContent>
                     </Tooltip>
                   </DropdownMenuItem>

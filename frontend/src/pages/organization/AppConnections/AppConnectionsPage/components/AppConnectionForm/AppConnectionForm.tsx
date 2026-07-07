@@ -124,8 +124,8 @@ const RotationConfirmation = ({
           Automatic Credential Rotation
         </div>
         <p className="bor mt-1 text-sm text-bunker-200">
-          Enabling automatic credential rotation will give Infisical full control over the lifecycle
-          of this credential. Infisical will automatically rotate the credential on the schedule you
+          Enabling automatic credential rotation will give APIHarbor full control over the lifecycle
+          of this credential. APIHarbor will automatically rotate the credential on the schedule you
           configured and you will no longer be able to manage it manually. The original credential
           provided will be revoked and replaced.
         </p>

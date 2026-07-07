@@ -136,7 +136,7 @@ export const OrgOauthClientsTab = () => {
             OAuth Applications
           </CardTitle>
           <CardDescription>
-            Register external platforms to request delegated access to Infisical on a user&apos;s
+            Register external platforms to request delegated access to APIHarbor on a user&apos;s
             behalf via OAuth 2.0, limited to that user&apos;s permissions.
           </CardDescription>
           <CardAction>
@@ -177,7 +177,7 @@ export const OrgOauthClientsTab = () => {
                   <EmptyHeader>
                     <EmptyTitle>No OAuth applications found</EmptyTitle>
                     <EmptyDescription>
-                      Add an application to let an external platform access Infisical on a
+                      Add an application to let an external platform access APIHarbor on a
                       user&apos;s behalf via OAuth 2.0.
                     </EmptyDescription>
                   </EmptyHeader>
@@ -317,7 +317,7 @@ export const OrgOauthClientsTab = () => {
               Delete &quot;{(popUp?.deleteClient?.data as TOauthClient | undefined)?.name}&quot;?
             </AlertDialogTitle>
             <AlertDialogDescription>
-              External platforms using this application will no longer be able to access Infisical
+              External platforms using this application will no longer be able to access APIHarbor
               on a user&apos;s behalf, and existing tokens will be revoked.
             </AlertDialogDescription>
           </AlertDialogHeader>

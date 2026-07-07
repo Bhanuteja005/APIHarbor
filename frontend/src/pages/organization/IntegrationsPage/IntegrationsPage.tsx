@@ -76,7 +76,7 @@ export const IntegrationsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Infisical | Integrations</title>
+        <title>APIHarbor | Integrations</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
         <meta property="og:image" content="/images/message.png" />
       </Helmet>
@@ -85,7 +85,7 @@ export const IntegrationsPage = () => {
           <PageHeader
             scope={isSubOrganization ? "namespace" : "org"}
             title="Integrations"
-            description="Connect Infisical to external services and manage organization-wide integrations."
+            description="Connect APIHarbor to external services and manage organization-wide integrations."
           />
           <Tabs value={activeTab} onValueChange={updateSelectedTab}>
             <TabList>

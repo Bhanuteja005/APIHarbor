@@ -39,9 +39,9 @@ export const UpgradePlanModal = ({
       return INFISICAL_SCHEDULE_DEMO_LINK;
     }
 
-    // Infisical cloud
+    // APIHarbor cloud
     if (isEnterpriseFeature) {
-      return "https://infisical.com/talk-to-us";
+      return "mailto:support@apiharbor.com";
     }
 
     return "/organization/billing" as const;
@@ -89,7 +89,7 @@ export const UpgradePlanModal = ({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2.5">
             <SparklesIcon className="size-5 text-muted" />
-            Unleash Infisical&apos;s Full Power
+            Unleash APIHarbor&apos;s Full Power
           </DialogTitle>
           <DialogDescription>
             Upgrade and get access to this, as well as to other powerful enhancements.

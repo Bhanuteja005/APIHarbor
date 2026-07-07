@@ -170,7 +170,7 @@ export const ShareSecretForm = ({
 
       createNotification({
         text: showAccountRequiredMessage
-          ? `If the provided ${processedEmails.length > 1 ? "emails are" : "email is"} associated with an Infisical account they will receive a link`
+          ? `If the provided ${processedEmails.length > 1 ? "emails are" : "email is"} associated with an APIHarbor account they will receive a link`
           : `Secret link has been sent to the provided ${processedEmails.length > 1 ? "emails" : "email"}`,
         type: "success"
       });
@@ -414,8 +414,8 @@ export const ShareSecretForm = ({
                                 </p>
                                 <p className="mt-2">
                                   {isAllowingExternalEmails
-                                    ? "External recipients (user without an Infisical account) will need the password to view the secret. Authorized recipients will also need a password if the secret is password-protected."
-                                    : "Recipients must have an Infisical account to verify their identity."}
+                                    ? "External recipients (user without an APIHarbor account) will need the password to view the secret. Authorized recipients will also need a password if the secret is password-protected."
+                                    : "Recipients must have an APIHarbor account to verify their identity."}
                                 </p>
                               </TooltipContent>
                             </Tooltip>
@@ -428,8 +428,8 @@ export const ShareSecretForm = ({
                           />
                           <FieldDescription>
                             {isAllowingExternalEmails
-                              ? "All recipients will receive a link and need the password to access the secret. They don't need an Infisical account, but a password is mandatory in this case."
-                              : "Recipients must have an Infisical account to verify identity"}
+                              ? "All recipients will receive a link and need the password to access the secret. They don't need an APIHarbor account, but a password is mandatory in this case."
+                              : "Recipients must have an APIHarbor account to verify identity"}
                           </FieldDescription>
                           {error && <FieldError>{error.message}</FieldError>}
                         </Field>
@@ -490,10 +490,10 @@ export const ShareSecretForm = ({
             <Badge variant="ghost" className="mt-auto mr-auto">
               <img
                 src="/images/logotransparent_trimmed.png"
-                alt="Infisical"
+                alt="APIHarbor"
                 className="mr-0.5 h-[8px]"
               />
-              Powered by Infisical
+              Powered by APIHarbor
             </Badge>
           )}
           <Button

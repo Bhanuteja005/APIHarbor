@@ -34,7 +34,7 @@ export const DistributionStep = ({ form }: Props) => {
             <FieldContent>
               <FieldLabel>Disable managed CRL URL</FieldLabel>
               <FieldDescription>
-                When enabled, the Infisical-managed CRL endpoint is not embedded in issued
+                When enabled, the APIHarbor-managed CRL endpoint is not embedded in issued
                 certificates. Only the custom URLs below are included.
               </FieldDescription>
             </FieldContent>

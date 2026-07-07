@@ -485,7 +485,7 @@ export const ORG_PERMISSION_OBJECT: Record<string, TOrgPermissionConfig> = {
   },
   [OrgPermissionSubjects.GithubOrgSync]: {
     title: "GitHub Organization Sync",
-    description: "Sync GitHub organization teams with Infisical groups",
+    description: "Sync GitHub organization teams with APIHarbor groups",
     actions: [
       {
         value: OrgPermissionActions.Read,
@@ -815,7 +815,7 @@ export const ORG_PERMISSION_OBJECT: Record<string, TOrgPermissionConfig> = {
   },
   [OrgPermissionSubjects.KmipServer]: {
     title: "KMIP Servers",
-    description: "Manage KMIP servers that proxy KMIP requests to Infisical KMS",
+    description: "Manage KMIP servers that proxy KMIP requests to APIHarbor KMS",
     actions: [
       {
         value: OrgKmipServerPermissionActions.ListKmipServers,

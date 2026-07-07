@@ -50,10 +50,10 @@ export const AccountRecoveryEmailPage = () => {
         <title>Account Recovery</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
         <meta property="og:image" content="/images/message.png" />
-        <meta property="og:title" content="Account Recovery in Infisical" />
+        <meta property="og:title" content="Account Recovery in APIHarbor" />
         <meta
           name="og:description"
-          content="Infisical a simple end-to-end encrypted platform that enables teams to sync and manage their .env files."
+          content="APIHarbor a simple end-to-end encrypted platform that enables teams to sync and manage their .env files."
         />
       </Helmet>
       <AuthPageHeader>

@@ -16,7 +16,7 @@ export const AppConnectionsPage = withProjectPermission(
     return (
       <div className="bg-bunker-800">
         <Helmet>
-          <title>Infisical | App Connections</title>
+          <title>APIHarbor | App Connections</title>
           <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
           <meta property="og:image" content="/images/message.png" />
         </Helmet>

@@ -145,7 +145,7 @@ export const OrgOIDCSection = ({ onSwitchProvider }: Props): JSX.Element => {
                 <FieldContent>
                   <FieldTitle>Enable OIDC</FieldTitle>
                   <FieldDescription>
-                    Allow members to authenticate into Infisical with OIDC.
+                    Allow members to authenticate into APIHarbor with OIDC.
                   </FieldDescription>
                 </FieldContent>
                 {!isPending && (
@@ -198,7 +198,7 @@ export const OrgOIDCSection = ({ onSwitchProvider }: Props): JSX.Element => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="underline underline-offset-2 hover:text-foreground"
-                          href="https://infisical.com/docs/documentation/platform/sso/overview"
+                          href="https://apiharbor.com/docs/documentation/platform/sso/overview"
                         >
                           See your OIDC provider docs for details.
                         </a>
@@ -216,7 +216,7 @@ export const OrgOIDCSection = ({ onSwitchProvider }: Props): JSX.Element => {
                   </HoverCard>
                 </FieldTitle>
                 <FieldDescription>
-                  Infisical will manage user group memberships based on the OIDC provider.
+                  APIHarbor will manage user group memberships based on the OIDC provider.
                 </FieldDescription>
               </FieldContent>
               <OrgPermissionCan I={OrgPermissionActions.Edit} a={OrgPermissionSubjects.Sso}>
@@ -242,7 +242,7 @@ export const OrgOIDCSection = ({ onSwitchProvider }: Props): JSX.Element => {
       <UpgradePlanModal
         isOpen={popUp.upgradePlan.isOpen}
         onOpenChange={(isOpen) => handlePopUpToggle("upgradePlan", isOpen)}
-        text="Your current plan does not include access to OIDC SSO. To unlock this feature, please upgrade to Infisical Enterprise plan."
+        text="Your current plan does not include access to OIDC SSO. To unlock this feature, please upgrade to APIHarbor Enterprise plan."
         isEnterpriseFeature
       />
     </>

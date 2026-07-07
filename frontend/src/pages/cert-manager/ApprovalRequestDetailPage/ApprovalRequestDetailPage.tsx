@@ -411,7 +411,7 @@ export const ApprovalRequestDetailPage = () => {
   return (
     <>
       <Helmet>
-        <title>Approval Request | Infisical</title>
+        <title>Approval Request | APIHarbor</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
       </Helmet>
       <PageContent />

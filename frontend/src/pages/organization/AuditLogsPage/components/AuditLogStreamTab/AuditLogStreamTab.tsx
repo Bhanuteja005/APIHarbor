@@ -35,10 +35,10 @@ export const AuditLogStreamsTab = withPermission(
           <CardHeader>
             <CardTitle>
               Audit Log Streams
-              <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/audit-log-streams/audit-log-streams" />
+              <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/audit-log-streams/audit-log-streams" />
             </CardTitle>
             <CardDescription>
-              Send audit logs from Infisical to external logging providers via HTTP
+              Send audit logs from APIHarbor to external logging providers via HTTP
             </CardDescription>
             <CardAction>
               <OrgPermissionCan I={OrgPermissionActions.Create} a={OrgPermissionSubjects.Settings}>
@@ -74,7 +74,7 @@ export const AuditLogStreamsTab = withPermission(
         <UpgradePlanModal
           isOpen={popUp.upgradePlan.isOpen}
           onOpenChange={(isOpen) => handlePopUpToggle("upgradePlan", isOpen)}
-          text="Your current plan does not include access to audit log streams. To unlock this feature, please upgrade to Infisical Enterprise plan."
+          text="Your current plan does not include access to audit log streams. To unlock this feature, please upgrade to APIHarbor Enterprise plan."
           isEnterpriseFeature={popUp.upgradePlan.data?.isEnterpriseFeature}
         />
       </>

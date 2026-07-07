@@ -116,7 +116,7 @@ export const PamRecordingConfigTab = () => {
               <span>
                 Session playback requires the bucket to allow GET requests from this origin.{" "}
                 <a
-                  href="https://infisical.com/docs/documentation/platform/pam/product-reference/external-storage#cors-configuration"
+                  href="https://apiharbor.com/docs/documentation/platform/pam/product-reference/external-storage#cors-configuration"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:opacity-80"

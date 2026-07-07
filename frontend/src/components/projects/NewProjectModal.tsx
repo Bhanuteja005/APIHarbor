@@ -295,11 +295,11 @@ const NewProjectForm = ({ onOpenChange, projectType: fixedProjectType }: NewProj
                       }}
                     >
                       <SelectTrigger id="new-project-kms" className="w-full">
-                        <SelectValue placeholder="Default Infisical KMS" />
+                        <SelectValue placeholder="Default APIHarbor KMS" />
                       </SelectTrigger>
                       <SelectContent position="popper">
                         <SelectItem value={INTERNAL_KMS_KEY_ID} key="kms-internal">
-                          Default Infisical KMS
+                          Default APIHarbor KMS
                         </SelectItem>
                         {externalKmsList?.map((kms) => (
                           <SelectItem value={kms.id} key={`kms-${kms.id}`}>
@@ -359,7 +359,7 @@ const NewProjectForm = ({ onOpenChange, projectType: fixedProjectType }: NewProj
       <UpgradePlanModal
         isOpen={popUp.upgradePlan.isOpen}
         onOpenChange={(isOpen) => handlePopUpToggle("upgradePlan", isOpen)}
-        text="Your current plan does not include access to external KMS. To unlock this feature, please upgrade to Infisical Enterprise plan."
+        text="Your current plan does not include access to external KMS. To unlock this feature, please upgrade to APIHarbor Enterprise plan."
         isEnterpriseFeature={popUp.upgradePlan.data?.isEnterpriseFeature}
       />
     </form>

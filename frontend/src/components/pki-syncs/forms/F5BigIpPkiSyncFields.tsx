@@ -96,7 +96,7 @@ export const F5BigIpPkiSyncFields = () => {
                     ? "Server SSL Profile Name"
                     : "Client SSL Profile Name"
                 }
-                tooltipText="The name of the SSL profile inside the partition. Infisical will add each synced certificate to it."
+                tooltipText="The name of the SSL profile inside the partition. APIHarbor will add each synced certificate to it."
               >
                 <Input
                   value={value ?? ""}

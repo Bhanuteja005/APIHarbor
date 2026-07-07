@@ -133,10 +133,10 @@ export const RelayTab = withPermission(
         <CardHeader>
           <CardTitle>
             Relays
-            <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/gateways/relay-deployment" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/gateways/relay-deployment" />
           </CardTitle>
           <CardDescription>
-            Create and configure relays to securely access private network resources from Infisical
+            Create and configure relays to securely access private network resources from APIHarbor
           </CardDescription>
           <CardAction>
             <Button variant="org" onClick={() => handlePopUpOpen("deployRelay")}>
@@ -197,7 +197,7 @@ export const RelayTab = withPermission(
                       <div className="flex items-center gap-2">
                         <span>{el.name}</span>
                         {!el.orgId && (
-                          <Tooltip content="This is a managed relay provided by Infisical">
+                          <Tooltip content="This is a managed relay provided by APIHarbor">
                             <span className="rounded-sm bg-mineshaft-700 px-1.5 py-0.5 text-xs text-mineshaft-400">
                               Managed
                             </span>

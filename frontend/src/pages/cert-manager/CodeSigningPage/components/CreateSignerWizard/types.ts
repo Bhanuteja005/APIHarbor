@@ -66,7 +66,7 @@ export const INITIAL_WIZARD_STATE: WizardState = {
   certificateTtlDays: 365,
   certificateRenewBeforeDays: null,
   keyAlgorithm: SignerKeyAlgorithm.RSA_2048,
-  keySource: CertKeySource.Infisical,
+  keySource: CertKeySource.APIHarbor,
   hsmConnectorId: null,
   reissueFromExternalOrderId: null,
   pendingMembers: [],

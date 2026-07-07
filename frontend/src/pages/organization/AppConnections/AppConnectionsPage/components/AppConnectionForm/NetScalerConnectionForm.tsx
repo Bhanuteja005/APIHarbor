@@ -296,7 +296,7 @@ export const NetScalerConnectionForm = ({ appConnection, onSubmit }: Props) => {
                     <FieldContent>
                       <Label htmlFor="ssl-reject-unauthorized">Reject Unauthorized</Label>
                       <FieldDescription>
-                        If enabled, Infisical will only connect to the NetScaler if it has a valid,
+                        If enabled, APIHarbor will only connect to the NetScaler if it has a valid,
                         trusted SSL certificate. Disable this for self-signed certificates or
                         provide a CA certificate above.
                       </FieldDescription>

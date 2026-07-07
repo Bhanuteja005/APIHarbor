@@ -10,7 +10,7 @@ export const OauthApplicationsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Infisical | OAuth Applications</title>
+        <title>APIHarbor | OAuth Applications</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
         <meta property="og:image" content="/images/message.png" />
       </Helmet>
@@ -19,7 +19,7 @@ export const OauthApplicationsPage = () => {
           <PageHeader
             scope={isSubOrganization ? "namespace" : "org"}
             title="OAuth Applications"
-            description="Control how external platforms access Infisical on behalf of your users via OAuth 2.0."
+            description="Control how external platforms access APIHarbor on behalf of your users via OAuth 2.0."
           />
           <OrgOauthClientsTab />
         </div>

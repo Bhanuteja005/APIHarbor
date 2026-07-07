@@ -3,16 +3,13 @@ import { Link } from "@tanstack/react-router";
 import {
   Activity,
   ArrowRight,
-  Building2,
   Check,
   CreditCard,
-  Fingerprint,
   Gauge,
   KeyRound,
   Lock,
   PlugZap,
   ScanLine,
-  ServerCog,
   ShieldCheck,
   Sparkles,
   Star
@@ -21,6 +18,8 @@ import {
 import { BrandLogo } from "@app/components/branding/BrandLogo";
 
 import {
+  BentoCard,
+  BentoGrid,
   BorderBeam,
   cn,
   LampHeader,
@@ -28,53 +27,117 @@ import {
   MagicBadge,
   MagicCard,
   MaxWidth,
-  Reveal
+  Reveal,
+  TextHoverEffect
 } from "./components/primitives";
 
-const FEATURES = [
+/* Companies / "trusted by" strip — APIHarbor validates keys for these providers */
+const TRUSTED = ["OpenAI", "Anthropic", "Stripe", "GitHub", "Any HTTP API"];
+
+/* Features — asymmetric bento grid (linkify layout: 1 · 2 / 2 · 1) */
+const BENTO_CARDS = [
   {
-    icon: KeyRound,
-    title: "Encrypted Key Vault",
-    body: "Store every provider key encrypted at rest with a per-project data key. Values never leave in plaintext."
+    Icon: KeyRound,
+    name: "Encrypted Key Vault",
+    description: "Every provider key sealed with AES-256-GCM under a per-project data key.",
+    className: "lg:col-span-1",
+    background: (
+      <div className="absolute inset-x-0 top-0 space-y-2 p-5 opacity-80 [mask-image:linear-gradient(to_top,transparent_15%,#000_90%)]">
+        {["sk-live-••••••7f3a", "sk-ant-••••••b21c", "whsec_••••••9e0d"].map((k) => (
+          <div
+            key={k}
+            className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2"
+          >
+            <Lock className="h-3.5 w-3.5 shrink-0 text-violet-300/70" />
+            <span className="truncate font-mono text-xs text-zinc-400">{k}</span>
+          </div>
+        ))}
+      </div>
+    )
   },
   {
-    icon: Activity,
-    title: "Real-time Health Monitoring",
-    body: "Scheduled re-validation flags dead, revoked, or rotated keys before they break your app."
+    Icon: Activity,
+    name: "Real-time Health Monitoring",
+    description:
+      "Scheduled re-validation flags dead, revoked, or rotated keys before they break your app.",
+    className: "lg:col-span-2",
+    background: (
+      <div className="absolute inset-x-0 top-0 grid grid-cols-1 gap-2 p-5 opacity-80 [mask-image:linear-gradient(to_top,transparent_15%,#000_90%)] sm:grid-cols-2">
+        {[
+          ["Production OpenAI", "Healthy", true],
+          ["Old GitHub PAT", "Invalid", false],
+          ["Claude Prod", "Healthy", true],
+          ["Billing Stripe", "Healthy", true]
+        ].map(([n, s, ok]) => (
+          <div
+            key={n as string}
+            className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2"
+          >
+            <span className="truncate text-xs text-zinc-300">{n}</span>
+            <span
+              className={cn(
+                "ml-2 inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-[11px] font-medium",
+                ok
+                  ? "border-green-400/20 bg-green-400/10 text-green-300"
+                  : "border-red-400/20 bg-red-400/10 text-red-300"
+              )}
+            >
+              <span className={cn("h-1.5 w-1.5 rounded-full", ok ? "bg-green-400" : "bg-red-400")} />
+              {s}
+            </span>
+          </div>
+        ))}
+      </div>
+    )
   },
   {
-    icon: Gauge,
-    title: "Quota & Usage Tracking",
-    body: "See remaining rate-limit quota, latency, and last-checked times for every key at a glance."
+    Icon: ShieldCheck,
+    name: "Provider Validation Adapters",
+    description:
+      "Native checks for OpenAI, Anthropic, Stripe, GitHub — and any custom HTTP API you point us at.",
+    className: "lg:col-span-2",
+    background: (
+      <div className="absolute inset-x-0 top-0 flex flex-wrap gap-2 p-5 opacity-80 [mask-image:linear-gradient(to_top,transparent_15%,#000_90%)]">
+        {["OpenAI", "Anthropic", "Stripe", "GitHub", "Cohere", "Any HTTP API"].map((p) => (
+          <span
+            key={p}
+            className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-zinc-300"
+          >
+            {p}
+          </span>
+        ))}
+      </div>
+    )
   },
   {
-    icon: ShieldCheck,
-    title: "Provider Validation Adapters",
-    body: "Native checks for OpenAI, Anthropic, Stripe, GitHub — and any custom HTTP API you point us at."
-  },
-  {
-    icon: Lock,
-    title: "AES-256-GCM Encryption",
-    body: "Authenticated encryption on every secret. Your keys are unreadable without your organization's data key."
-  },
-  {
-    icon: Building2,
-    title: "Organization Workspaces",
-    body: "Group keys by project and team with fine-grained, role-based access control."
-  },
-  {
-    icon: Fingerprint,
-    title: "MFA & Google Sign-In",
-    body: "Protect access with multi-factor authentication and one-click Google SSO."
-  },
-  {
-    icon: ServerCog,
-    title: "Private Server Hosting",
-    body: "Self-host on your own infrastructure — your keys never leave your network."
+    Icon: Gauge,
+    name: "Quota & Usage Tracking",
+    description: "See remaining rate-limit quota, latency, and last-checked times at a glance.",
+    className: "lg:col-span-1",
+    background: (
+      <div className="absolute inset-x-0 top-0 space-y-3 p-5 opacity-80 [mask-image:linear-gradient(to_top,transparent_15%,#000_90%)]">
+        {[
+          ["OpenAI", 82],
+          ["Stripe", 41],
+          ["Anthropic", 63]
+        ].map(([label, pct]) => (
+          <div key={label as string}>
+            <div className="mb-1 flex justify-between text-[11px] text-zinc-400">
+              <span>{label}</span>
+              <span>{pct}%</span>
+            </div>
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500"
+                style={{ width: `${pct}%` }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    )
   }
 ];
-
-const PROVIDERS = ["OpenAI", "Anthropic", "Stripe", "GitHub", "Any HTTP API"];
 
 const PROCESS = [
   {
@@ -154,13 +217,6 @@ const REVIEWS = [
   }
 ];
 
-const PREVIEW_ROWS = [
-  { n: "Production OpenAI", p: "OpenAI", s: "Healthy", q: "4,900 / 5,000", ok: true },
-  { n: "Billing Stripe", p: "Stripe", s: "Healthy", q: "—", ok: true },
-  { n: "Old GitHub PAT", p: "GitHub", s: "Invalid", q: "0 / 5,000", ok: false },
-  { n: "Claude Prod", p: "Anthropic", s: "Healthy", q: "990 / 1,000", ok: true }
-];
-
 const Logo = ({ className }: { className?: string }) => (
   <BrandLogo className={className} iconClassName="h-7 w-7" />
 );
@@ -182,7 +238,7 @@ export const LandingPage = () => {
         />
       </Helmet>
       <LandingKeyframes />
-      <div className="h-screen overflow-y-auto overflow-x-hidden scroll-smooth bg-[#0a0a0f] font-sans text-zinc-300 antialiased [color-scheme:dark]">
+      <div className="ah-landing h-screen overflow-y-auto overflow-x-hidden scroll-smooth bg-[#0a0a0f] font-sans text-zinc-300 antialiased [color-scheme:dark]">
         {/* Header */}
         <header className="sticky top-0 z-40 border-b border-white/5 bg-[#0a0a0f]/70 backdrop-blur-xl">
           <MaxWidth className="flex items-center justify-between py-4">
@@ -191,8 +247,8 @@ export const LandingPage = () => {
               <a href="#features" className="transition hover:text-white">
                 Features
               </a>
-              <a href="#providers" className="transition hover:text-white">
-                Providers
+              <a href="#process" className="transition hover:text-white">
+                How it works
               </a>
               <a href="#pricing" className="transition hover:text-white">
                 Pricing
@@ -240,7 +296,7 @@ export const LandingPage = () => {
                 APIHarbor keeps every provider key encrypted, continuously validated against its
                 provider, and monitored for health — so a dead or leaked key never breaks your app.
               </p>
-              <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
+              <div className="mt-9">
                 <Link
                   to="/signup"
                   className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40"
@@ -248,80 +304,48 @@ export const LandingPage = () => {
                   Get started for free
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </Link>
-                <Link
-                  to="/login"
-                  className="rounded-xl border border-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
-                >
-                  Sign in
-                </Link>
               </div>
-              <p className="mt-4 text-xs text-zinc-500">No credit card required · Free forever for up to 30 keys</p>
+              <p className="mt-4 text-xs text-zinc-500">
+                No credit card required · Free forever for up to 30 keys
+              </p>
             </Reveal>
 
-            {/* Product preview */}
-            <Reveal delay={0.15} className="relative mx-auto mt-16 max-w-4xl">
-              <div className="pointer-events-none absolute -inset-x-10 -top-6 h-full bg-[radial-gradient(50%_50%_at_50%_0%,rgba(232,121,249,0.15),transparent_70%)]" />
-              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0e0e14] text-left shadow-2xl">
-                <BorderBeam size={240} duration={10} />
-                <div className="flex items-center gap-1.5 border-b border-white/5 px-4 py-3">
-                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
-                  <span className="ml-3 text-xs text-zinc-500">APIHarbor · API Keys</span>
-                </div>
-                <div className="p-4 sm:p-5">
-                  <div className="grid grid-cols-12 gap-2 border-b border-white/5 pb-2 text-[11px] uppercase tracking-wide text-zinc-500">
-                    <div className="col-span-4">Name</div>
-                    <div className="col-span-2">Provider</div>
-                    <div className="col-span-3">Health</div>
-                    <div className="col-span-3">Quota</div>
-                  </div>
-                  {PREVIEW_ROWS.map((r) => (
-                    <div
-                      key={r.n}
-                      className="grid grid-cols-12 items-center gap-2 border-b border-white/5 py-3 text-sm last:border-0"
-                    >
-                      <div className="col-span-4 truncate font-medium text-zinc-200">{r.n}</div>
-                      <div className="col-span-2 text-zinc-400">{r.p}</div>
-                      <div className="col-span-3">
-                        <span
-                          className={cn(
-                            "inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-xs font-medium",
-                            r.ok
-                              ? "border-green-400/20 bg-green-400/10 text-green-300"
-                              : "border-red-400/20 bg-red-400/10 text-red-300"
-                          )}
-                        >
-                          <span
-                            className={cn(
-                              "h-1.5 w-1.5 rounded-full",
-                              r.ok ? "bg-green-400" : "bg-red-400"
-                            )}
-                          />
-                          {r.s}
-                        </span>
-                      </div>
-                      <div className="col-span-3 font-mono text-xs text-zinc-400">{r.q}</div>
-                    </div>
-                  ))}
-                </div>
+            {/* Product preview (dashboard image, like linkify) */}
+            <Reveal delay={0.15} className="relative mx-auto mt-16 max-w-5xl px-2">
+              <div className="pointer-events-none absolute left-1/2 top-[10%] h-1/3 w-3/4 -translate-x-1/2 bg-[radial-gradient(50%_50%_at_50%_50%,rgba(139,92,246,0.25),transparent_70%)] blur-[5rem]" />
+              <div className="relative -m-2 rounded-xl p-2 ring-1 ring-inset ring-white/10 backdrop-blur-3xl lg:-m-4 lg:rounded-2xl">
+                <BorderBeam size={250} duration={12} delay={9} />
+                <img
+                  src="/assets/dashboard-dark.svg"
+                  alt="APIHarbor dashboard"
+                  className="w-full rounded-md bg-white/5 ring-1 ring-white/10 lg:rounded-xl"
+                />
+                <div className="pointer-events-none absolute inset-x-0 -bottom-4 z-40 h-1/2 w-full bg-gradient-to-t from-[#0a0a0f]" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-50 h-1/4 w-full bg-gradient-to-t from-[#0a0a0f] md:-bottom-8" />
               </div>
             </Reveal>
           </MaxWidth>
         </section>
 
-        {/* Tagline band */}
+        {/* Companies / trusted-by strip */}
         <section className="border-y border-white/5 bg-[#0c0c13]">
-          <MaxWidth className="py-16 text-center">
+          <MaxWidth className="py-14">
             <Reveal>
-              <h2 className="mx-auto max-w-3xl text-balance text-3xl font-semibold text-white sm:text-4xl">
-                Every team has API keys. <GradientText>We keep them healthy, valid, and secure.</GradientText>
+              <h2 className="text-center text-sm font-medium uppercase tracking-wide text-zinc-500">
+                Validates keys for the providers you already ship with
               </h2>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+                {TRUSTED.map((name) => (
+                  <span key={name} className="text-lg font-semibold text-zinc-400/80">
+                    {name}
+                  </span>
+                ))}
+              </div>
             </Reveal>
           </MaxWidth>
         </section>
 
-        {/* Features */}
+        {/* Features — bento grid */}
         <section id="features" className="py-24">
           <MaxWidth>
             <Reveal className="mb-14 flex flex-col items-center text-center">
@@ -334,44 +358,18 @@ export const LandingPage = () => {
                 depends on.
               </p>
             </Reveal>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {FEATURES.map(({ icon: Icon, title, body }, i) => (
-                <Reveal key={title} delay={(i % 4) * 0.06}>
-                  <div className="group h-full rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent p-6 transition duration-300 hover:border-violet-400/30 hover:from-violet-500/[0.06]">
-                    <div className="mb-4 inline-flex rounded-xl bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 p-2.5 ring-1 ring-inset ring-white/10">
-                      <Icon className="h-5 w-5 text-violet-300" />
-                    </div>
-                    <h3 className="mb-2 font-semibold text-white">{title}</h3>
-                    <p className="text-sm leading-relaxed text-zinc-400">{body}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </MaxWidth>
-        </section>
-
-        {/* Providers */}
-        <section id="providers" className="border-y border-white/5 bg-[#0c0c13]">
-          <MaxWidth className="py-16 text-center">
-            <Reveal className="flex flex-col items-center">
-              <MagicBadge>Providers</MagicBadge>
-              <h2 className="mt-6 text-2xl font-bold text-white sm:text-3xl">We validate your stack</h2>
-              <div className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                {PROVIDERS.map((p) => (
-                  <span
-                    key={p}
-                    className="rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-medium text-zinc-200 transition hover:border-violet-400/30 hover:text-white"
-                  >
-                    {p}
-                  </span>
+            <Reveal delay={0.1}>
+              <BentoGrid>
+                {BENTO_CARDS.map((card) => (
+                  <BentoCard key={card.name} {...card} />
                 ))}
-              </div>
+              </BentoGrid>
             </Reveal>
           </MaxWidth>
         </section>
 
         {/* Process */}
-        <section className="py-24">
+        <section id="process" className="py-24">
           <MaxWidth>
             <Reveal className="mb-14 flex flex-col items-center text-center">
               <MagicBadge>How it works</MagicBadge>
@@ -463,7 +461,7 @@ export const LandingPage = () => {
                     <span className="text-5xl font-bold text-white">Custom</span>
                   </div>
                   <a
-                    href="mailto:founders@apiharbor.dev?subject=APIHarbor%20Enterprise"
+                    href="mailto:support@apiharbor.com?subject=APIHarbor%20Enterprise"
                     className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
                   >
                     Contact the Team
@@ -533,7 +531,7 @@ export const LandingPage = () => {
                 Getting started with APIHarbor is simple, fast, and free. Your keys stay encrypted,
                 validated, and healthy.
               </p>
-              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
+              <div className="mt-8">
                 <Link
                   to="/signup"
                   className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40"
@@ -541,23 +539,163 @@ export const LandingPage = () => {
                   Get started for free
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </Link>
-                <Link
-                  to="/login"
-                  className="rounded-xl border border-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
-                >
-                  Sign in
-                </Link>
               </div>
             </Reveal>
           </LampHeader>
         </section>
 
-        {/* Footer */}
-        <footer className="border-t border-white/5 bg-[#0c0c13]">
-          <MaxWidth className="flex flex-col items-center justify-between gap-4 py-10 text-sm text-zinc-500 sm:flex-row">
-            <Logo className="text-base" />
-            <p>© {new Date().getFullYear()} APIHarbor. Encrypted, validated, monitored API keys.</p>
-          </MaxWidth>
+        {/* Footer (linkify structure) */}
+        <footer className="relative mx-auto flex w-full max-w-6xl flex-col items-center justify-center border-t border-white/10 bg-[radial-gradient(35%_128px_at_50%_0%,rgba(255,255,255,0.06),transparent)] px-6 pt-16 pb-8 md:pb-0 lg:px-8 lg:pt-32">
+          <div className="absolute left-1/2 right-1/2 top-0 h-1.5 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
+
+          <div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
+            <Reveal delay={0.1}>
+              <div className="flex flex-col items-start justify-start md:max-w-[200px]">
+                <Logo />
+                <p className="mt-4 text-start text-sm text-zinc-400">
+                  Encrypted, validated, monitored API keys.
+                </p>
+                <span className="mt-4 flex items-center text-sm text-zinc-200">
+                  Self-hosted &amp; secure by design.
+                </span>
+              </div>
+            </Reveal>
+
+            <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+              <div className="md:grid md:grid-cols-2 md:gap-8">
+                <Reveal delay={0.2}>
+                  <div>
+                    <h3 className="text-base font-medium text-white">Product</h3>
+                    <ul className="mt-4 text-sm text-zinc-400">
+                      <li className="mt-2">
+                        <a href="#features" className="transition-all duration-300 hover:text-white">
+                          Features
+                        </a>
+                      </li>
+                      <li className="mt-2">
+                        <a href="#process" className="transition-all duration-300 hover:text-white">
+                          How it works
+                        </a>
+                      </li>
+                      <li className="mt-2">
+                        <a href="#pricing" className="transition-all duration-300 hover:text-white">
+                          Pricing
+                        </a>
+                      </li>
+                      <li className="mt-2">
+                        <Link to="/signup" className="transition-all duration-300 hover:text-white">
+                          Get started
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </Reveal>
+                <Reveal delay={0.3}>
+                  <div className="mt-10 flex flex-col md:mt-0">
+                    <h3 className="text-base font-medium text-white">Providers</h3>
+                    <ul className="mt-4 text-sm text-zinc-400">
+                      <li>
+                        <a href="#features" className="transition-all duration-300 hover:text-white">
+                          OpenAI
+                        </a>
+                      </li>
+                      <li className="mt-2">
+                        <a href="#features" className="transition-all duration-300 hover:text-white">
+                          Anthropic
+                        </a>
+                      </li>
+                      <li className="mt-2">
+                        <a href="#features" className="transition-all duration-300 hover:text-white">
+                          Stripe
+                        </a>
+                      </li>
+                      <li className="mt-2">
+                        <a href="#features" className="transition-all duration-300 hover:text-white">
+                          GitHub
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </Reveal>
+              </div>
+              <div className="md:grid md:grid-cols-2 md:gap-8">
+                <Reveal delay={0.4}>
+                  <div>
+                    <h3 className="text-base font-medium text-white">Resources</h3>
+                    <ul className="mt-4 text-sm text-zinc-400">
+                      <li className="mt-2">
+                        <a
+                          href="https://apiharbor.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="transition-all duration-300 hover:text-white"
+                        >
+                          Docs
+                        </a>
+                      </li>
+                      <li className="mt-2">
+                        <a
+                          href="mailto:support@apiharbor.com"
+                          className="transition-all duration-300 hover:text-white"
+                        >
+                          Support
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </Reveal>
+                <Reveal delay={0.5}>
+                  <div className="mt-10 flex flex-col md:mt-0">
+                    <h3 className="text-base font-medium text-white">Company</h3>
+                    <ul className="mt-4 text-sm text-zinc-400">
+                      <li>
+                        <a
+                          href="https://apiharbor.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="transition-all duration-300 hover:text-white"
+                        >
+                          About Us
+                        </a>
+                      </li>
+                      <li className="mt-2">
+                        <a
+                          href="https://apiharbor.com/privacy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="transition-all duration-300 hover:text-white"
+                        >
+                          Privacy Policy
+                        </a>
+                      </li>
+                      <li className="mt-2">
+                        <a
+                          href="https://apiharbor.com/terms"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="transition-all duration-300 hover:text-white"
+                        >
+                          Terms &amp; Conditions
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </Reveal>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 w-full border-t border-white/10 pt-4 md:flex md:items-center md:justify-between md:pt-8">
+            <Reveal delay={0.6}>
+              <p className="mt-8 text-sm text-zinc-400 md:mt-0">
+                &copy; {new Date().getFullYear()} APIHarbor. All rights reserved.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="hidden h-[20rem] items-center justify-center md:flex lg:h-[20rem]">
+            <TextHoverEffect text="APIHARBOR" />
+          </div>
         </footer>
       </div>
     </>

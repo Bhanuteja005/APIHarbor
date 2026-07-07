@@ -26,7 +26,7 @@ import { ProductSheet } from "./components/ProductSheet";
 import { RemoveProductModal } from "./components/RemoveProductModal";
 import { catalogById, intervalToCadence } from "./billing-v2-data";
 
-const CONTACT_SALES_URL = "https://infisical.com/talk-to-us";
+const CONTACT_SALES_URL = "https://apiharbor.com/talk-to-us";
 
 type BillingV2Flow = { type: "sheet"; prodId: string };
 

@@ -168,7 +168,7 @@ export const OauthClientModal = ({
             {isEditing ? "Edit OAuth application" : "Add OAuth application"}
           </DialogTitle>
           <DialogDescription>
-            External platforms use this application to request delegated access to Infisical on a
+            External platforms use this application to request delegated access to APIHarbor on a
             user&apos;s behalf via OAuth 2.0, limited to that user&apos;s permissions.
           </DialogDescription>
         </DialogHeader>

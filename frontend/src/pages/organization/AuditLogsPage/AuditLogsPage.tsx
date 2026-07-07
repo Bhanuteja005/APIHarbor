@@ -44,7 +44,7 @@ export const AuditLogsPage = () => {
   return (
     <div className="h-full bg-bunker-800">
       <Helmet>
-        <title>Infisical | Audit Logs</title>
+        <title>APIHarbor | Audit Logs</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
         <meta property="og:image" content="/images/message.png" />
       </Helmet>

@@ -158,7 +158,7 @@ export const DopplerSecretImportModal = ({
         <DialogHeader>
           <DialogTitle>Import from Doppler</DialogTitle>
           <DialogDescription>
-            Select a Doppler project and config to import secrets into the current Infisical folder.
+            Select a Doppler project and config to import secrets into the current APIHarbor folder.
           </DialogDescription>
         </DialogHeader>
 

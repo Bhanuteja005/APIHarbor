@@ -184,7 +184,7 @@ export const SqlConnectionFields = ({
                   <FieldContent>
                     <Label htmlFor="ssl-reject-unauthorized">Reject Unauthorized</Label>
                     <FieldDescription>
-                      If enabled, Infisical will only connect to the server if it has a valid,
+                      If enabled, APIHarbor will only connect to the server if it has a valid,
                       trusted SSL certificate.
                     </FieldDescription>
                   </FieldContent>
@@ -212,7 +212,7 @@ export const SqlConnectionFields = ({
                 <FieldContent>
                   <Label htmlFor="platform-managed">Platform Managed Credentials</Label>
                   <FieldDescription>
-                    If enabled, Infisical will manage the credentials of this App Connection by
+                    If enabled, APIHarbor will manage the credentials of this App Connection by
                     updating the password on creation.
                   </FieldDescription>
                 </FieldContent>

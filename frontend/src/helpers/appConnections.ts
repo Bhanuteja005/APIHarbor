@@ -444,10 +444,10 @@ export const APP_CONNECTION_MAP: Record<
     description: "Issue certificates via Venafi Trust Protection Platform."
   },
   [AppConnection.ExternalInfisical]: {
-    name: "Infisical",
-    image: "Infisical.png",
+    name: "APIHarbor",
+    image: "APIHarbor.png",
     category: "SECRET MANAGER",
-    description: "Connect to another Infisical instance."
+    description: "Connect to another APIHarbor instance."
   },
   [AppConnection.Doppler]: {
     name: "Doppler",

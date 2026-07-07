@@ -233,7 +233,7 @@ export const CreateDynamicSecretForm = ({
           <div className="flex items-center gap-x-2">
             <span>{modalTitle ? `${modalTitle} Dynamic Secret` : "Dynamic Secrets"} </span>
             <DocumentationLinkBadge
-              href={`https://infisical.com/docs/documentation/platform/dynamic-secrets/${selectedProvider ? (UniqueLinks[selectedProvider] ?? selectedProvider) : "overview"}`}
+              href={`https://apiharbor.com/docs/documentation/platform/dynamic-secrets/${selectedProvider ? (UniqueLinks[selectedProvider] ?? selectedProvider) : "overview"}`}
             />
           </div>
         }

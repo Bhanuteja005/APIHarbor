@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Button, Card, CardContent, CardHeader, CardTitle, Input } from "@app/components/v3";
+import { envConfig } from "@app/config/env";
 import { LoginMethod } from "@app/hooks/api/admin/types";
 import { useLastLogin } from "@app/hooks/useLastLogin";
 
@@ -37,11 +38,11 @@ export const SSOStep = ({ setSection, type }: Props) => {
     saveLastLogin({ method: matchingMethod, orgSlug: ssoEmail });
 
     if (type === "SAML") {
-      window.location.href = `/api/v1/sso/redirect/saml2/organizations/domain/${identifier}${
+      window.location.href = `${envConfig.API_URL}/api/v1/sso/redirect/saml2/organizations/domain/${identifier}${
         callbackPort ? `?callback_port=${encodeURIComponent(callbackPort)}` : ""
       }`;
     } else {
-      window.location.href = `/api/v1/sso/oidc/login?domain=${identifier}${
+      window.location.href = `${envConfig.API_URL}/api/v1/sso/oidc/login?domain=${identifier}${
         callbackPort ? `&callbackPort=${encodeURIComponent(callbackPort)}` : ""
       }`;
     }

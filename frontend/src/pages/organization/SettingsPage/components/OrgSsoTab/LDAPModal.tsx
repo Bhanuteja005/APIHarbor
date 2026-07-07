@@ -281,7 +281,7 @@ export const LDAPModal = ({ popUp, handlePopUpClose, handlePopUpToggle, hideDele
             <SheetHeader>
               <SheetTitle className="flex items-center gap-x-2">
                 Manage LDAP Configuration
-                <DocumentationLinkBadge href="https://infisical.com/docs/integrations/user-authentication" />
+                <DocumentationLinkBadge href="https://apiharbor.com/docs/integrations/user-authentication" />
               </SheetTitle>
             </SheetHeader>
             <div className="flex thin-scrollbar flex-1 flex-col overflow-y-auto px-4">

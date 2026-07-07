@@ -293,7 +293,7 @@ export const PkiSyncRow = ({
                 <Tooltip
                   position="left"
                   sideOffset={42}
-                  content={`Import certificates from this ${destinationName} destination into Infisical.`}
+                  content={`Import certificates from this ${destinationName} destination into APIHarbor.`}
                 >
                   <div className="flex h-full w-full items-center justify-between gap-1">
                     <span>Import Certificates</span>
@@ -313,7 +313,7 @@ export const PkiSyncRow = ({
               <Tooltip
                 position="left"
                 sideOffset={42}
-                content={`Remove certificates synced by Infisical from this ${destinationName} destination.`}
+                content={`Remove certificates synced by APIHarbor from this ${destinationName} destination.`}
               >
                 <div className="flex h-full w-full items-center justify-between gap-1">
                   <span>Remove Certificates</span>

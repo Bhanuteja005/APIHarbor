@@ -96,7 +96,7 @@ export const SecretSyncsTab = () => {
         <CardHeader>
           <CardTitle>
             Secret Syncs
-            <DocumentationLinkBadge href="https://infisical.com/docs/integrations/secret-syncs/overview" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/integrations/secret-syncs/overview" />
           </CardTitle>
           <CardDescription>
             Use App Connections to sync secrets to third-party services.

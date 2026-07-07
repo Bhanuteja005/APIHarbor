@@ -111,7 +111,7 @@ export const HsmConnectorsTab = () => {
           <div className="mb-3 text-2xl">&#x1f6e1;&#xfe0f;</div>
           <h4 className="mb-2 text-lg font-medium text-mineshaft-100">Enterprise Feature</h4>
           <p className="mx-auto mb-4 max-w-md text-sm text-mineshaft-300">
-            HSM Connectors let Infisical use keys backed by a Hardware Security Module. Every
+            HSM Connectors let APIHarbor use keys backed by a Hardware Security Module. Every
             cryptographic operation is routed through your HSM.
           </p>
           <Button onClick={() => setUpgradeOpen(true)}>Upgrade to Enterprise</Button>
@@ -119,7 +119,7 @@ export const HsmConnectorsTab = () => {
         <UpgradePlanModal
           isOpen={upgradeOpen}
           onOpenChange={setUpgradeOpen}
-          text="To use HSM Connectors, upgrade to Infisical's Enterprise plan."
+          text="To use HSM Connectors, upgrade to APIHarbor's Enterprise plan."
         />
       </div>
     );
@@ -173,7 +173,7 @@ export const HsmConnectorsTab = () => {
           HSM Connectors
           <DocumentationLinkBadge href={PkiDocsUrls.settings.hsmConnectors} />
         </CardTitle>
-        <CardDescription>Connect hardware security modules to Infisical.</CardDescription>
+        <CardDescription>Connect hardware security modules to APIHarbor.</CardDescription>
         <CardAction>
           <ProjectPermissionCan
             I={ProjectPermissionHsmConnectorActions.Create}

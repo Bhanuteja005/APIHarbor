@@ -99,7 +99,7 @@ export const CreateSecretSyncModal = ({
             </SheetTitle>
             {!selectedSync && (
               <SheetDescription>
-                Where should Infisical write these secrets? You can change this later only by
+                Where should APIHarbor write these secrets? You can change this later only by
                 creating a new sync.
               </SheetDescription>
             )}

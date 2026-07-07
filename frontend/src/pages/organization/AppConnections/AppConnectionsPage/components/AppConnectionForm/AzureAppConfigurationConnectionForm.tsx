@@ -239,7 +239,7 @@ export const AzureAppConfigurationConnectionForm = ({
                 {!isLoading && isMissingConfig
                   ? `Environment variables have not been configured. ${
                       isInfisicalCloud()
-                        ? "Please contact Infisical."
+                        ? "Please contact APIHarbor."
                         : `See documentation to configure Azure ${methodDetails.name} Connections.`
                     }`
                   : error?.message}

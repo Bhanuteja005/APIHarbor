@@ -17,6 +17,7 @@ import {
   FieldError,
   Input
 } from "@app/components/v3";
+import { envConfig } from "@app/config/env";
 import { useServerConfig } from "@app/context";
 import { preserveHubSpotUtk } from "@app/helpers/utmTracking";
 import { useSendVerificationEmail } from "@app/hooks/api";
@@ -63,7 +64,7 @@ export default function InitialSignupStep({
 
   const handleSocialSignup = (method: LoginMethod) => {
     preserveHubSpotUtk();
-    const popup = window.open(`/api/v1/sso/redirect/${method}`);
+    const popup = window.open(`${envConfig.API_URL}/api/v1/sso/redirect/${method}`);
     if (popup) {
       window.close();
     }
@@ -159,7 +160,7 @@ export default function InitialSignupStep({
           <p className="mt-4 text-center text-xs text-pretty text-label">
             By signing up, you agree to our{" "}
             <a
-              href="https://infisical.com/terms/cloud"
+              href="https://apiharbor.com/terms/cloud"
               target="_blank"
               rel="noopener noreferrer"
               className="cursor-pointer underline underline-offset-2 duration-200 hover:text-foreground hover:decoration-project/45"
@@ -168,7 +169,7 @@ export default function InitialSignupStep({
             </a>{" "}
             and{" "}
             <a
-              href="https://infisical.com/privacy"
+              href="https://apiharbor.com/privacy"
               target="_blank"
               rel="noopener noreferrer"
               className="cursor-pointer underline underline-offset-2 duration-200 hover:text-foreground hover:decoration-project/45"
@@ -181,7 +182,7 @@ export default function InitialSignupStep({
       </Card>
       <div className="mt-6 w-full max-w-sm rounded-lg bg-background">
         <a
-          href="https://infisical.com/talk-to-us?utm_source=signup&utm_medium=referral"
+          href="https://apiharbor.com/talk-to-us?utm_source=signup&utm_medium=referral"
           target="_blank"
           rel="noopener noreferrer"
           className="flex w-full cursor-pointer items-center justify-between gap-3 rounded-lg border border-project/35 bg-project/10 px-4 py-3 text-foreground transition-colors hover:border-project/40 hover:bg-project/15"

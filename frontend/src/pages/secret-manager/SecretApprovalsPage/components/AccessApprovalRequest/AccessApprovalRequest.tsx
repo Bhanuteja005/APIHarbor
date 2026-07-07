@@ -472,7 +472,7 @@ export const AccessApprovalRequest = ({
         <CardHeader>
           <CardTitle>
             Access Requests
-            <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/access-controls/access-requests" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/access-controls/access-requests" />
           </CardTitle>
           <CardDescription>
             Request and review access to secrets in sensitive environments and folders
@@ -484,7 +484,7 @@ export const AccessApprovalRequest = ({
                   onClick={() => {
                     if (subscription && !subscription?.secretApproval) {
                       handlePopUpOpen("upgradePlan", {
-                        text: "Access requests feature can be unlocked if you upgrade to Infisical Pro plan."
+                        text: "Access requests feature can be unlocked if you upgrade to APIHarbor Pro plan."
                       });
                       return;
                     }

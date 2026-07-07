@@ -867,7 +867,7 @@ export const CreatePkiAlertV2FormSteps = ({
                             render={({ field: secretField }) => (
                               <FormControl
                                 label="Signing Secret"
-                                tooltipText="Adding a signing secret enables webhook signature verification, helping ensure requests are genuinely from Infisical. The signature is sent via the x-infisical-signature header."
+                                tooltipText="Adding a signing secret enables webhook signature verification, helping ensure requests are genuinely from APIHarbor. The signature is sent via the x-infisical-signature header."
                               >
                                 <Input
                                   type="password"

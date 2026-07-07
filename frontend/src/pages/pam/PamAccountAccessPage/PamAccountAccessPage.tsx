@@ -185,7 +185,7 @@ export const PamAccountAccessPage = () => {
   return (
     <>
       <Helmet>
-        <title>Web Access | Infisical</title>
+        <title>Web Access | APIHarbor</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
       </Helmet>
       <PageContent />

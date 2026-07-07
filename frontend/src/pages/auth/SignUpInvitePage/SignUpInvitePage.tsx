@@ -23,7 +23,7 @@ export const SignupInvitePage = () => {
             <img
               src="/images/gradientLogo.svg"
               style={{ height: "90px", width: "120px" }}
-              alt="Infisical logo"
+              alt="APIHarbor logo"
             />
           </div>
         </Link>

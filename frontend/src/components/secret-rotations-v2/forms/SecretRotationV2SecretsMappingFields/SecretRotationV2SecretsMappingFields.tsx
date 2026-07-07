@@ -58,7 +58,7 @@ export const SecretRotationV2SecretsMappingFields = () => {
   return (
     <>
       <p className="mb-4 text-sm text-bunker-300">
-        Map the rotated credentials to secrets in your Infisical project.
+        Map the rotated credentials to secrets in your APIHarbor project.
       </p>
       <Component />
     </>

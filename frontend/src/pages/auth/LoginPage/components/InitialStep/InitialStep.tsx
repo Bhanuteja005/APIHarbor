@@ -82,14 +82,14 @@ export const InitialStep = ({ setSection, isAdmin }: Props) => {
   });
 
   const redirectToSaml = (orgSlug: string) => {
-    const redirectUrl = `/api/v1/sso/redirect/saml2/organizations/${orgSlug}${
+    const redirectUrl = `${envConfig.API_URL}/api/v1/sso/redirect/saml2/organizations/${orgSlug}${
       callbackPort ? `?callback_port=${encodeURIComponent(callbackPort)}` : ""
     }`;
     window.location.assign(redirectUrl);
   };
 
   const redirectToOidc = (orgSlug: string) => {
-    const redirectUrl = `/api/v1/sso/oidc/login?orgSlug=${orgSlug}${
+    const redirectUrl = `${envConfig.API_URL}/api/v1/sso/oidc/login?orgSlug=${orgSlug}${
       callbackPort ? `&callbackPort=${encodeURIComponent(callbackPort)}` : ""
     }`;
     window.location.assign(redirectUrl);
@@ -131,7 +131,7 @@ export const InitialStep = ({ setSection, isAdmin }: Props) => {
     }
     const qs = searchParams.toString();
     saveLastLogin({ method });
-    window.location.replace(`/api/v1/sso/redirect/${method}${qs ? `?${qs}` : ""}`);
+    window.location.replace(`${envConfig.API_URL}/api/v1/sso/redirect/${method}${qs ? `?${qs}` : ""}`);
   };
 
   const isLastUsedMethod = (method: LoginMethod) => lastLogin?.method === method;

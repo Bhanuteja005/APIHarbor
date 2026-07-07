@@ -185,7 +185,7 @@ const Content = ({ onClose, environment, secretPath, appConnections, onImport }:
             <div className="space-y-1.5 text-xs leading-relaxed">
               <p>
                 Select a Vault namespace and one or more secret paths to import secrets into the
-                current Infisical environment (<code className="text-xs">{environment}</code>) at
+                current APIHarbor environment (<code className="text-xs">{environment}</code>) at
                 path <code className="text-xs">{secretPath}</code>.
               </p>
             </div>
@@ -256,7 +256,7 @@ const Content = ({ onClose, environment, secretPath, appConnections, onImport }:
             className="w-full"
           />
           <p className="mt-1 text-xs text-mineshaft-400">
-            Choose one or more secret paths from the selected mount to import into Infisical
+            Choose one or more secret paths from the selected mount to import into APIHarbor
           </p>
         </>
       </FormControl>

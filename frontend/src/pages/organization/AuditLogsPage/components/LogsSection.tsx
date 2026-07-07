@@ -117,7 +117,7 @@ const LogsSectionComponent = ({
                 Your audit log volume is growing. To keep searches fast and reduce database load, we
                 recommend streaming logs to an{" "}
                 <a
-                  href="https://infisical.com/docs/documentation/platform/audit-log-streams/audit-log-streams"
+                  href="https://apiharbor.com/docs/documentation/platform/audit-log-streams/audit-log-streams"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline underline-offset-2 hover:opacity-80"
@@ -126,7 +126,7 @@ const LogsSectionComponent = ({
                 </a>{" "}
                 like Splunk or using the built-in{" "}
                 <a
-                  href="https://infisical.com/docs/documentation/platform/audit-logs-clickhouse-setup"
+                  href="https://apiharbor.com/docs/documentation/platform/audit-logs-clickhouse-setup"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline underline-offset-2 hover:opacity-80"
@@ -141,7 +141,7 @@ const LogsSectionComponent = ({
         <CardHeader>
           <CardTitle>
             Audit History
-            <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/audit-logs" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/audit-logs" />
           </CardTitle>
           <CardDescription>
             Search and review a detailed history of events{" "}
@@ -212,7 +212,7 @@ const LogsSectionComponent = ({
           onOpenChange={(isOpen) => {
             handlePopUpToggle("upgradePlan", isOpen);
           }}
-          text="Your current plan does not include access to audit logs. To unlock this feature, please upgrade to Infisical Pro plan."
+          text="Your current plan does not include access to audit logs. To unlock this feature, please upgrade to APIHarbor Pro plan."
         />
       </Card>
     );
@@ -226,7 +226,7 @@ const LogsSectionComponent = ({
               Your audit log volume is growing. To keep searches fast and reduce database load, we
               recommend streaming logs to an{" "}
               <a
-                href="https://infisical.com/docs/documentation/platform/audit-log-streams/audit-log-streams"
+                href="https://apiharbor.com/docs/documentation/platform/audit-log-streams/audit-log-streams"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline underline-offset-2 hover:opacity-80"
@@ -235,7 +235,7 @@ const LogsSectionComponent = ({
               </a>{" "}
               like Splunk or using the built-in{" "}
               <a
-                href="https://infisical.com/docs/documentation/platform/audit-logs-clickhouse-setup"
+                href="https://apiharbor.com/docs/documentation/platform/audit-logs-clickhouse-setup"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline underline-offset-2 hover:opacity-80"
@@ -296,7 +296,7 @@ const LogsSectionComponent = ({
         onOpenChange={(isOpen) => {
           handlePopUpToggle("upgradePlan", isOpen);
         }}
-        text="Your current plan does not include access to audit logs. To unlock this feature, please upgrade to Infisical Pro plan."
+        text="Your current plan does not include access to audit logs. To unlock this feature, please upgrade to APIHarbor Pro plan."
       />
     </div>
   );

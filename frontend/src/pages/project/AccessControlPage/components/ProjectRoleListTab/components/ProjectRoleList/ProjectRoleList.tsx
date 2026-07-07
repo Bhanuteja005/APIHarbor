@@ -198,12 +198,12 @@ export const ProjectRoleList = () => {
           <AlertTitle>Custom roles are moving to Enterprise plans</AlertTitle>
           <AlertDescription>
             <div>
-              Custom roles are part of the Infisical Enterprise plan, but were temporarily available
+              Custom roles are part of the APIHarbor Enterprise plan, but were temporarily available
               to Pro users. Creation of new roles will be enforced starting June 1, 2026.
               <br />
               You can use{" "}
               <a
-                href="https://infisical.com/docs/documentation/platform/access-controls/additional-privileges"
+                href="https://apiharbor.com/docs/documentation/platform/access-controls/additional-privileges"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline underline-offset-2"
@@ -212,7 +212,7 @@ export const ProjectRoleList = () => {
               </a>{" "}
               as an alternative, or{" "}
               <a
-                href="https://infisical.com/scheduledemo"
+                href="https://apiharbor.com/scheduledemo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline underline-offset-2"
@@ -229,7 +229,7 @@ export const ProjectRoleList = () => {
         <CardHeader>
           <CardTitle>
             {isCertManager ? "Roles" : "Project Roles"}
-            <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/access-controls/role-based-access-controls#project-level-access-controls" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/access-controls/role-based-access-controls#project-level-access-controls" />
           </CardTitle>
           <CardDescription>
             {isCertManager

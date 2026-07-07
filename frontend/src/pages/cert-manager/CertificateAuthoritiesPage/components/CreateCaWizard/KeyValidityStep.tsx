@@ -78,7 +78,7 @@ export const KeyValidityStep = ({ form, hsmConnectorOptions, isHsmConnectorsLoad
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent position="popper">
-                  <SelectItem value={CertKeySource.Infisical}>Infisical</SelectItem>
+                  <SelectItem value={CertKeySource.APIHarbor}>APIHarbor</SelectItem>
                   <SelectItem value={CertKeySource.Hsm} disabled={!isHsmLicensed || !canAttachHsm}>
                     <div className="flex items-center gap-2">
                       HSM
@@ -93,7 +93,7 @@ export const KeyValidityStep = ({ form, hsmConnectorOptions, isHsmConnectorsLoad
               <FieldDescription>
                 {isHsm
                   ? "The CA keypair is generated on a Hardware Security Module and every signature is performed there."
-                  : "Infisical generates and manages the CA keypair for you."}
+                  : "APIHarbor generates and manages the CA keypair for you."}
               </FieldDescription>
             </FieldContent>
           </Field>
@@ -129,7 +129,7 @@ export const KeyValidityStep = ({ form, hsmConnectorOptions, isHsmConnectorsLoad
                   isError={Boolean(error)}
                 />
                 <FieldDescription>
-                  The HSM on which Infisical will generate the CA signing key.
+                  The HSM on which APIHarbor will generate the CA signing key.
                 </FieldDescription>
                 <FieldError errors={[error]} />
               </FieldContent>

@@ -477,7 +477,7 @@ export const OrgSsoTab = withPermission(
                 <DialogHeader>
                   <DialogTitle className="flex items-center gap-x-2">
                     {chooserExclude ? "Switch Identity Provider" : "Add Identity Provider"}
-                    <DocumentationLinkBadge href="https://infisical.com/docs/integrations/user-authentication" />
+                    <DocumentationLinkBadge href="https://apiharbor.com/docs/integrations/user-authentication" />
                   </DialogTitle>
                   <DialogDescription>Pick a protocol to configure.</DialogDescription>
                 </DialogHeader>
@@ -577,7 +577,7 @@ export const OrgSsoTab = withPermission(
         <UpgradePlanModal
           isOpen={popUp.upgradePlan.isOpen}
           onOpenChange={(isOpen) => handlePopUpToggle("upgradePlan", isOpen)}
-          text={`Your current plan does not include access to ${popUp.upgradePlan.data?.featureName}. To unlock this feature, please upgrade to Infisical ${popUp.upgradePlan.data?.isEnterpriseFeature ? "Enterprise" : "Pro"} plan.`}
+          text={`Your current plan does not include access to ${popUp.upgradePlan.data?.featureName}. To unlock this feature, please upgrade to APIHarbor ${popUp.upgradePlan.data?.isEnterpriseFeature ? "Enterprise" : "Pro"} plan.`}
           isEnterpriseFeature={popUp.upgradePlan.data?.isEnterpriseFeature}
         />
       </>

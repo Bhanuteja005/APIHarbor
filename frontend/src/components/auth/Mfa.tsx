@@ -380,7 +380,7 @@ export const Mfa = ({ successCallback, closeMfa, hideLogo, email, method }: Prop
       {!hideLogo && (
         <Link to="/">
           <div className="mb-4 flex justify-center">
-            <img src="/images/gradientLogo.svg" height={90} width={120} alt="Infisical logo" />
+            <img src="/images/gradientLogo.svg" height={90} width={120} alt="APIHarbor logo" />
           </div>
         </Link>
       )}
@@ -530,7 +530,7 @@ export const Mfa = ({ successCallback, closeMfa, hideLogo, email, method }: Prop
                       <div className="mb-2 text-gray-300">
                         Contact support with valid proof of account ownership to initiate recovery
                       </div>
-                      <div className="mt-1">support@infisical.com</div>
+                      <div className="mt-1">support@apiharbor.com</div>
                     </>
                   ) : (
                     <>

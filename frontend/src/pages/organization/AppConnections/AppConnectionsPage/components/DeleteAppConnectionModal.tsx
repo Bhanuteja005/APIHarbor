@@ -76,7 +76,7 @@ export const DeleteAppConnectionModal = ({ isOpen, onOpenChange, appConnection }
           <Alert variant="warning">
             <AlertTitle>Platform Managed Credentials</AlertTitle>
             <AlertDescription>
-              This App Connection&#39;s credentials are managed by Infisical. By deleting this
+              This App Connection&#39;s credentials are managed by APIHarbor. By deleting this
               connection you may lose permanent access to the associated resource.
             </AlertDescription>
           </Alert>

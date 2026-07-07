@@ -73,7 +73,7 @@ export const CredentialRotationForm = ({ children }: Props) => {
                         <Info />
                       </TooltipTrigger>
                       <TooltipContent className="max-w-sm">
-                        How often Infisical will rotate the credentials of this connection.
+                        How often APIHarbor will rotate the credentials of this connection.
                       </TooltipContent>
                     </Tooltip>
                   </FieldLabel>
@@ -102,7 +102,7 @@ export const CredentialRotationForm = ({ children }: Props) => {
                           <Info />
                         </TooltipTrigger>
                         <TooltipContent className="max-w-sm">
-                          The time of day at which Infisical will rotate the credentials of this
+                          The time of day at which APIHarbor will rotate the credentials of this
                           connection.
                         </TooltipContent>
                       </Tooltip>

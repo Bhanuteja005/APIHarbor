@@ -104,9 +104,9 @@ const getFormattedSupportEmailLink = (variables: {
   domain: string;
   root_org_id?: string;
 }) => {
-  const email = "support@infisical.com";
+  const email = "support@apiharbor.com";
 
-  const body = `Hello Infisical Support Team,
+  const body = `Hello APIHarbor Support Team,
 
 Issue Details:
 [What you did]
@@ -127,13 +127,13 @@ Thank you,
 };
 
 export const INFISICAL_SUPPORT_OPTIONS = [
-  [Slack, "Support Forum", () => "https://infisical.com/slack"],
+  [Slack, "Support Forum", () => "https://apiharbor.com/slack"],
   [
     Book,
     "Read Docs",
-    () => "https://infisical.com/docs/documentation/getting-started/introduction"
+    () => "https://apiharbor.com/docs/documentation/getting-started/introduction"
   ],
-  [Github, "GitHub Issues", () => "https://github.com/Infisical/infisical/issues"],
+  [Github, "GitHub Issues", () => "https://github.com/Bhanuteja005/APIHarbor/issues"],
   [Mail, "Email Support", getFormattedSupportEmailLink],
   [Users, "Instance Admins", () => "server-admins"]
 ] as const;
@@ -318,9 +318,9 @@ export const Navbar = () => {
 
       await logout.mutateAsync();
       if (org.orgAuthMethod === AuthMethod.OIDC) {
-        window.open(`/api/v1/sso/oidc/login?domain=${org.slug}`);
+        window.open(`${envConfig.API_URL}/api/v1/sso/oidc/login?domain=${org.slug}`);
       } else {
-        window.open(`/api/v1/sso/redirect/saml2/organizations/${org.slug}`);
+        window.open(`${envConfig.API_URL}/api/v1/sso/redirect/saml2/organizations/${org.slug}`);
       }
       window.close();
       return;
@@ -328,7 +328,7 @@ export const Navbar = () => {
 
     if (org.googleSsoAuthEnforced) {
       await logout.mutateAsync();
-      window.open(`/api/v1/sso/redirect/google?org_slug=${org.slug}`);
+      window.open(`${envConfig.API_URL}/api/v1/sso/redirect/google?org_slug=${org.slug}`);
       window.close();
       return;
     }
@@ -744,7 +744,7 @@ export const Navbar = () => {
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
               <a
-                href="https://infisical.com/docs/documentation/getting-started/introduction"
+                href="https://apiharbor.com/docs/documentation/getting-started/introduction"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -754,7 +754,7 @@ export const Navbar = () => {
               </a>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <a href="https://infisical.com/slack" target="_blank" rel="noopener noreferrer">
+              <a href="https://apiharbor.com/slack" target="_blank" rel="noopener noreferrer">
                 <Slack />
                 Join Slack Community
                 <ExternalLink className="ml-auto size-3.5 opacity-50" />

@@ -87,7 +87,7 @@ export const GatewayPoolsContent = ({ search }: Props) => {
         <UpgradePlanModal
           isOpen={popUp.upgradePlan.isOpen}
           onOpenChange={(isOpen) => handlePopUpToggle("upgradePlan", isOpen)}
-          text="To use gateway pools, upgrade to Infisical's Enterprise plan."
+          text="To use gateway pools, upgrade to APIHarbor's Enterprise plan."
         />
       </div>
     );

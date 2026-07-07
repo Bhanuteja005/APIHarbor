@@ -52,7 +52,7 @@ export const ProjectTemplatePage = ({ templateId, projectType, onBack }: Props) 
   return (
     <>
       <Helmet>
-        <title>Project Template | Infisical</title>
+        <title>Project Template | APIHarbor</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
       </Helmet>
       <div className="h-full">

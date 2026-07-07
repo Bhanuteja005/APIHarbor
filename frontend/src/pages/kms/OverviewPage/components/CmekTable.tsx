@@ -316,7 +316,7 @@ export const CmekTable = () => {
         <CardHeader>
           <CardTitle>
             Keys
-            <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/kms" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/kms" />
           </CardTitle>
           <CardDescription>Manage keys and perform cryptographic operations.</CardDescription>
           <CardAction>

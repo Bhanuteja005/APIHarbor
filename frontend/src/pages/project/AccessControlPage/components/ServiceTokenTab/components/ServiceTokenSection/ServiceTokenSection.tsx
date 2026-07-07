@@ -53,7 +53,7 @@ export const ServiceTokenSection = withProjectPermission(
           <CardHeader>
             <CardTitle>
               Service Tokens
-              <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/token" />
+              <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/token" />
             </CardTitle>
             <CardDescription>{t("section.token.service-tokens-description")}</CardDescription>
             <CardAction>

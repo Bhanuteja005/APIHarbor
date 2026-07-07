@@ -118,8 +118,20 @@ export const apiKeyDALFactory = (db: TDbClient) => {
     }
   };
 
+  const countByProjectId = async (projectId: string, tx?: Knex) => {
+    try {
+      const [res] = await (tx || db.replicaNode())(TableName.ApiHarborKey)
+        .where({ projectId })
+        .count({ count: "*" });
+      return Number((res as { count?: string | number }).count || 0);
+    } catch (error) {
+      throw new DatabaseError({ error, name: "Count api keys" });
+    }
+  };
+
   return {
     ...apiKeyOrm,
+    countByProjectId,
     createHealthCheck: healthCheckOrm.create,
     findHealthChecks,
     findMonitoredKeys,

@@ -172,7 +172,7 @@ export const SecretSyncActionTriggers = ({ secretSync, onEdit }: Props) => {
                       </div>
                     </TooltipTrigger>
                     <TooltipContent side="right" sideOffset={14}>
-                      Import secrets from this {destinationName} destination into Infisical.
+                      Import secrets from this {destinationName} destination into APIHarbor.
                     </TooltipContent>
                   </Tooltip>
                 </DropdownMenuItem>
@@ -198,7 +198,7 @@ export const SecretSyncActionTriggers = ({ secretSync, onEdit }: Props) => {
                       </div>
                     </TooltipTrigger>
                     <TooltipContent side="right" sideOffset={14}>
-                      Remove secrets synced by Infisical from this {destinationName} destination.
+                      Remove secrets synced by APIHarbor from this {destinationName} destination.
                     </TooltipContent>
                   </Tooltip>
                 </DropdownMenuItem>

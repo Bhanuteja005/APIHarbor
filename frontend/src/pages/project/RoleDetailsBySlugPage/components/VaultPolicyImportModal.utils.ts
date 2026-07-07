@@ -164,7 +164,7 @@ export const parseVaultPath = (vaultPath: string, mounts: VaultMount[]): ParsedV
 // ============================================================================
 
 /**
- * Maps Vault capabilities to Infisical secret actions.
+ * Maps Vault capabilities to APIHarbor secret actions.
  *
  * Mapping:
  * - create → Create
@@ -197,7 +197,7 @@ const mapVaultCapabilitiesToSecretActions = (capabilities: string[]): Record<str
 };
 
 /**
- * Maps Vault capabilities to Infisical folder actions.
+ * Maps Vault capabilities to APIHarbor folder actions.
  *
  * Mapping:
  * - create → Create
@@ -233,7 +233,7 @@ type PermissionCondition = {
 };
 
 /**
- * Converts Vault wildcard patterns to Infisical glob patterns.
+ * Converts Vault wildcard patterns to APIHarbor glob patterns.
  * - Vault '+' → picomatch '*' (matches single segment)
  * - Vault '*' → picomatch '**' (matches any depth)
  */
@@ -338,7 +338,7 @@ const addPermissionRuleIfUnique = <T extends SecretPermissionRule | FolderPermis
 // ============================================================================
 
 /**
- * Parses Vault HCL policy and converts it to Infisical permissions.
+ * Parses Vault HCL policy and converts it to APIHarbor permissions.
  *
  * Process:
  * 1. Clean HCL (remove comments, whitespace)
@@ -346,13 +346,13 @@ const addPermissionRuleIfUnique = <T extends SecretPermissionRule | FolderPermis
  * 3. For each path:
  *    - Parse to extract mount, environment, and secret path
  *    - Determine if it's a data path (secrets) or metadata path (folders)
- *    - Map Vault capabilities to Infisical actions
+ *    - Map Vault capabilities to APIHarbor actions
  *    - Build conditions for environment and path filtering
  *    - Create permission rule and add if unique
  *
  * @param hclPolicy - Raw Vault HCL policy string
  * @param mounts - List of Vault mounts to match paths against
- * @returns Parsed permissions object ready for Infisical role creation
+ * @returns Parsed permissions object ready for APIHarbor role creation
  */
 export const parseVaultPolicyToInfisical = (
   hclPolicy: string,

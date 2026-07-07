@@ -18,7 +18,7 @@ export const EncryptionPage = () => {
           <PageHeader
             scope="instance"
             title="Encryption"
-            description="Manage encryption settings for your Infisical instance."
+            description="Manage encryption settings for your APIHarbor instance."
           />
           <EncryptionPageForm />
         </div>

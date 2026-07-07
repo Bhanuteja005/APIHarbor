@@ -147,15 +147,15 @@ export const GatewayTab = withPermission(
             <DocumentationLinkBadge
               href={
                 activeSubTab === "gateway-pools"
-                  ? "https://infisical.com/docs/documentation/platform/gateways/gateway-pools"
-                  : "https://infisical.com/docs/documentation/platform/gateways/overview"
+                  ? "https://apiharbor.com/docs/documentation/platform/gateways/gateway-pools"
+                  : "https://apiharbor.com/docs/documentation/platform/gateways/overview"
               }
             />
           </CardTitle>
           <CardDescription>
             {activeSubTab === "gateway-pools"
               ? "Pool gateways for high availability and automatic failover"
-              : "Create and configure gateways to access private network resources from Infisical"}
+              : "Create and configure gateways to access private network resources from APIHarbor"}
           </CardDescription>
           <CardAction>
             {activeSubTab === "all-gateways" ? (

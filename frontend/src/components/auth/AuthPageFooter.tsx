@@ -33,7 +33,7 @@ export const AuthPageFooter = () => (
       </a>
     </div>
     <p className="text-xs text-mineshaft-400">
-      &copy; {new Date().getFullYear()} Infisical Inc. All rights reserved.
+      &copy; {new Date().getFullYear()} APIHarbor Inc. All rights reserved.
     </p>
   </footer>
 );

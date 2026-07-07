@@ -290,7 +290,7 @@ export const AppConnectionsTable = ({ projectId, projectType }: Props) => {
         <CardHeader>
           <CardTitle>
             App Connections
-            <DocumentationLinkBadge href="https://infisical.com/docs/integrations/app-connections/overview" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/integrations/app-connections/overview" />
           </CardTitle>
           <CardDescription>
             {isCertManagerView

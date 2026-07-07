@@ -234,7 +234,7 @@ export const AwsParameterStoreSyncOptionsFields = () => {
                     </Label>
                     <FieldDescription>
                       Metadata attached to secrets is added as resource tags on parameters synced by
-                      Infisical. Manually configured tags take precedence when keys conflict.
+                      APIHarbor. Manually configured tags take precedence when keys conflict.
                     </FieldDescription>
                   </FieldContent>
                   <Switch

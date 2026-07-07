@@ -202,7 +202,7 @@ export const ActiveDirectoryDomainForm = ({ domain, onSubmit, closeSheet }: Prop
                         <InfoIcon className="mb-0.5 inline-block size-3 text-accent" />
                       </TooltipTrigger>
                       <TooltipContent>
-                        If enabled, Infisical will only connect to the Domain Controller if it has a
+                        If enabled, APIHarbor will only connect to the Domain Controller if it has a
                         valid, trusted TLS certificate
                       </TooltipContent>
                     </Tooltip>

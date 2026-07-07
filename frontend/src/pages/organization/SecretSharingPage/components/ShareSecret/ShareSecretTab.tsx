@@ -53,7 +53,7 @@ export const ShareSecretTab = () => {
       <CardHeader>
         <CardTitle>
           Shared Secrets
-          <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/secret-sharing" />
+          <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/secret-sharing" />
         </CardTitle>
         <CardDescription>Manage and view your shared secrets</CardDescription>
         <CardAction>

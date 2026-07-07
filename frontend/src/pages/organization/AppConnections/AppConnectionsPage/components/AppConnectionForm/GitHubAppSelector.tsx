@@ -59,7 +59,7 @@ type Props = {
   host?: string;
   instanceType?: "cloud" | "server";
   // Name of the gateway/pool the parent form will route the app creation through, when one is
-  // selected. Surfaced in the create view so the user knows how Infisical reaches GitHub.
+  // selected. Surfaced in the create view so the user knows how APIHarbor reaches GitHub.
   gatewayLabel?: string | null;
   // Kicks off the GitHub App manifest creation flow on the parent form (redirects to GitHub).
   // Returns false when the parent form is invalid so we can return to the list view.
@@ -185,7 +185,7 @@ export const GitHubAppSelector = ({
             </span>
           </div>
           <p className="mt-1 text-xs leading-relaxed text-accent">
-            Removes it from Infisical and uninstalls it from GitHub. The app registration itself
+            Removes it from APIHarbor and uninstalls it from GitHub. The app registration itself
             remains on GitHub until you delete it there.
           </p>
           <div className="mt-3 flex items-center justify-end gap-2">

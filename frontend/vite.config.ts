@@ -35,7 +35,9 @@ export default defineConfig(({ mode }) => {
       host: true,
       port: 3000,
       proxy: {
-        "/api": {
+        // Regex key so only /api/* is proxied — a bare "/api" prefix also swallows
+        // static assets like /apiharbor.svg and proxies them to the backend.
+        "^/api/": {
           target: "http://localhost:4000",
           changeOrigin: true,
           secure: false,
@@ -48,7 +50,9 @@ export default defineConfig(({ mode }) => {
       port: 3000,
       allowedHosts,
       proxy: {
-        "/api": {
+        // Regex key so only /api/* is proxied — a bare "/api" prefix also swallows
+        // static assets like /apiharbor.svg and proxies them to the backend.
+        "^/api/": {
           target: "http://localhost:4000",
           changeOrigin: true,
           secure: false,

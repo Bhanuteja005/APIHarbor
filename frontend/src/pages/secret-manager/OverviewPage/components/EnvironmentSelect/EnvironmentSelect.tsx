@@ -107,7 +107,7 @@ export function EnvironmentSelect({ selectedEnvs, setSelectedEnvs, isDisabled }:
       <UpgradePlanModal
         isOpen={popUp.upgradePlan.isOpen}
         onOpenChange={(open) => handlePopUpToggle("upgradePlan", open)}
-        text="Your current plan does not include access to adding custom environments. To unlock this feature, please upgrade to Infisical Pro plan."
+        text="Your current plan does not include access to adding custom environments. To unlock this feature, please upgrade to APIHarbor Pro plan."
       />
       <Popover open={isOpen} onOpenChange={setIsOpen}>
         <Tooltip open={isDisabled ? undefined : false}>

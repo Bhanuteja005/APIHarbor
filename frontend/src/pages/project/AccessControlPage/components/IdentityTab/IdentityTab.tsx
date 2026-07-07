@@ -249,7 +249,7 @@ export const IdentityTab = withProjectPermission(
           <CardHeader>
             <CardTitle>
               {isCertManager ? "Machine Identities" : `${productLabel} Machine Identities`}
-              <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/identities/machine-identities" />
+              <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/identities/machine-identities" />
             </CardTitle>
             <CardDescription>
               {`Create and manage ${productLabel.toLowerCase()} machine identities`}

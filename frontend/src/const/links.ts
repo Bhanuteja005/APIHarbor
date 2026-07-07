@@ -1,3 +1,3 @@
-const INFISICAL_SCHEDULE_DEMO_LINK = "https://infisical.com/schedule-demo";
+const INFISICAL_SCHEDULE_DEMO_LINK = "mailto:support@apiharbor.com";
 
 export { INFISICAL_SCHEDULE_DEMO_LINK };

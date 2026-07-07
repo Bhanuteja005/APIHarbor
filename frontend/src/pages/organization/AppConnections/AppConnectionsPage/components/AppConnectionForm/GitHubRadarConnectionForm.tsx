@@ -127,7 +127,7 @@ export const GitHubRadarConnectionForm = ({ appConnection, projectId }: Props) =
     if (!isLoading && isMissingConfig) {
       return `Environment variables have not been configured. ${
         isInfisicalCloud()
-          ? "Please contact Infisical."
+          ? "Please contact APIHarbor."
           : `See Docs to configure GitHub Radar ${methodDetails.name} Connections.`
       }`;
     }

@@ -29,7 +29,7 @@ export const ResourceOverviewPage = () => {
           <PageHeader
             scope="instance"
             title="Resource Overview"
-            description="Manage resources within your Infisical instance."
+            description="Manage resources within your APIHarbor instance."
           />
           <div>
             {activeTab === "organizations" && <OrganizationsTable />}

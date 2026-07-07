@@ -268,7 +268,7 @@ export const SecretApprovalRequest = () => {
         <CardHeader>
           <CardTitle>
             Change Requests
-            <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/pr-workflows" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/pr-workflows" />
           </CardTitle>
           <CardDescription>Review pending and closed change requests</CardDescription>
         </CardHeader>

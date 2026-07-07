@@ -27,7 +27,7 @@ export enum SignerKeyAlgorithm {
 }
 
 export enum CertKeySource {
-  Infisical = "infisical",
+  APIHarbor = "infisical",
   Hsm = "hsm"
 }
 

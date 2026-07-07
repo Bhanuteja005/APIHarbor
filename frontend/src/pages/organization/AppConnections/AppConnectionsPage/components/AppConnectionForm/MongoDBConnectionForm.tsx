@@ -263,7 +263,7 @@ export const MongoDBConnectionForm = ({ appConnection, onSubmit }: Props) => {
                     <FieldContent>
                       <Label htmlFor="tls-reject-unauthorized">Reject Unauthorized</Label>
                       <FieldDescription>
-                        If enabled, Infisical will only connect to the server if it has a valid,
+                        If enabled, APIHarbor will only connect to the server if it has a valid,
                         trusted TLS certificate.
                       </FieldDescription>
                     </FieldContent>

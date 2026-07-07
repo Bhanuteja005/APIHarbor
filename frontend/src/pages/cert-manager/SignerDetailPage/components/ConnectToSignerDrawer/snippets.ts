@@ -23,8 +23,8 @@ $env:INFISICAL_UNIVERSAL_AUTH_CLIENT_SECRET = "<client-secret>"`;
 export INFISICAL_UNIVERSAL_AUTH_CLIENT_SECRET="<client-secret>"`;
 };
 
-const PKCS11_RELEASES = "https://github.com/Infisical/infisical-pkcs-11/releases/latest/download";
-const KSP_RELEASES = "https://github.com/Infisical/infisical-ksp/releases/latest/download";
+const PKCS11_RELEASES = "https://github.com/Bhanuteja005/APIHarbor-pkcs-11/releases/latest/download";
+const KSP_RELEASES = "https://github.com/Bhanuteja005/APIHarbor-ksp/releases/latest/download";
 
 const isEcdsa = (keyAlgorithm?: string | null) =>
   Boolean(keyAlgorithm && keyAlgorithm.toUpperCase().startsWith("EC"));
@@ -67,9 +67,9 @@ export const pkcs11ConfigureSnippet = (os: OS, serverUrl: string, auth: SignerAu
   if (os === "windows") {
     return {
       language: "powershell",
-      code: `New-Item -ItemType Directory -Force -Path "$env:ProgramData\\Infisical" | Out-Null
-'{ "server_url": "${serverUrl}" }' | Set-Content "$env:ProgramData\\Infisical\\pkcs11.conf"
-$env:INFISICAL_CONFIG = "$env:ProgramData\\Infisical\\pkcs11.conf"
+      code: `New-Item -ItemType Directory -Force -Path "$env:ProgramData\\APIHarbor" | Out-Null
+'{ "server_url": "${serverUrl}" }' | Set-Content "$env:ProgramData\\APIHarbor\\pkcs11.conf"
+$env:INFISICAL_CONFIG = "$env:ProgramData\\APIHarbor\\pkcs11.conf"
 ${credLines(auth, "powershell")}`
     };
   }
@@ -86,7 +86,7 @@ export const jarsignerConfigSnippet = (os: OS): Snippet => {
     return {
       language: "powershell",
       code: `@"
-name = Infisical
+name = APIHarbor
 library = C:/path/to/libinfisical-pkcs11.dll
 "@ | Set-Content infisical-pkcs11.cfg`
     };
@@ -95,7 +95,7 @@ library = C:/path/to/libinfisical-pkcs11.dll
   return {
     language: "bash",
     code: `cat > infisical-pkcs11.cfg <<EOF
-name = Infisical
+name = APIHarbor
 library = /path/to/libinfisical-pkcs11.${ext}
 EOF`
   };
@@ -145,7 +145,7 @@ export const kspDownloadSnippet = (): Snippet => ({
 // System32.
 export const kspRegisterSnippet = (): Snippet => ({
   language: "powershell",
-  code: `$prov = "Infisical Key Storage Provider"
+  code: `$prov = "APIHarbor Key Storage Provider"
 $base = "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Cryptography"
 Copy-Item .\\infisical-ksp.dll "$env:windir\\System32\\infisical-ksp.dll" -Force
 New-Item -Path "$base\\Providers\\$prov\\UM\\00010001" -Force | Out-Null
@@ -160,8 +160,8 @@ if ($cur -notcontains $prov) { Set-ItemProperty -Path $iface -Name Providers -Va
 
 export const kspConfigureSnippet = (serverUrl: string, auth: SignerAuth): Snippet => ({
   language: "powershell",
-  code: `New-Item -ItemType Directory -Force -Path "$env:ProgramData\\Infisical" | Out-Null
-'{ "server_url": "${serverUrl}" }' | Set-Content "$env:ProgramData\\Infisical\\config.json"
+  code: `New-Item -ItemType Directory -Force -Path "$env:ProgramData\\APIHarbor" | Out-Null
+'{ "server_url": "${serverUrl}" }' | Set-Content "$env:ProgramData\\APIHarbor\\config.json"
 ${credLines(auth, "powershell")}`
 });
 
@@ -176,14 +176,14 @@ export const kspCertSnippet = (signerName: string, certPem?: string): Snippet =>
     code: `$certPem = @"
 ${pem}
 "@
-Set-Content -Path "$env:ProgramData\\Infisical\\${signerName}.cer" -Value $certPem -Encoding ascii`
+Set-Content -Path "$env:ProgramData\\APIHarbor\\${signerName}.cer" -Value $certPem -Encoding ascii`
   };
 };
 
 export const kspSignSnippet = (signerName: string): Snippet => ({
   language: "powershell",
   code: `signtool sign /fd SHA256 \`
-  /f "$env:ProgramData\\Infisical\\${signerName}.cer" \`
-  /csp "Infisical Key Storage Provider" /kc "${signerName}" \`
+  /f "$env:ProgramData\\APIHarbor\\${signerName}.cer" \`
+  /csp "APIHarbor Key Storage Provider" /kc "${signerName}" \`
   MyApp.exe`
 });

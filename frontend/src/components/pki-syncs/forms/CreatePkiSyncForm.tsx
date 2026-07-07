@@ -184,9 +184,9 @@ export const CreatePkiSyncForm = ({
             Certificate Sync Behavior
           </div>
           <p className="mt-1 text-sm text-bunker-200">
-            Only certificates managed by Infisical will be affected during sync operations.
-            Certificates not created or managed by Infisical will remain untouched, and changes made
-            to Infisical-managed certificates directly in the destination service may be overwritten
+            Only certificates managed by APIHarbor will be affected during sync operations.
+            Certificates not created or managed by APIHarbor will remain untouched, and changes made
+            to APIHarbor-managed certificates directly in the destination service may be overwritten
             by future syncs.
           </p>
         </div>

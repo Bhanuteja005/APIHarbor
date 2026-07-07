@@ -228,7 +228,7 @@ export const AzureADCSConnectionForm = ({ appConnection, onSubmit }: Props) => {
                     <FieldContent>
                       <Label htmlFor="ssl-reject-unauthorized">Reject Unauthorized</Label>
                       <FieldDescription>
-                        If enabled, Infisical will only connect to the ADCS server if it has a
+                        If enabled, APIHarbor will only connect to the ADCS server if it has a
                         valid, trusted SSL certificate. Disable only in test environments with
                         self-signed certificates.
                       </FieldDescription>

@@ -34,7 +34,7 @@ export const SsoPage = () => {
   return (
     <>
       <Helmet>
-        <title>Infisical | SSO & Provisioning</title>
+        <title>APIHarbor | SSO & Provisioning</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
         <meta property="og:image" content="/images/message.png" />
       </Helmet>

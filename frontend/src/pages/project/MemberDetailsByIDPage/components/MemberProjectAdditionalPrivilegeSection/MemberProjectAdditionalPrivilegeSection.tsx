@@ -145,7 +145,7 @@ export const MemberProjectAdditionalPrivilegeSection = ({ membershipDetails }: P
             {isCertManager
               ? "Certificate Manager Additional Privileges"
               : "Project Additional Privileges"}
-            <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/access-controls/additional-privileges#api" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/access-controls/additional-privileges#api" />
           </CardTitle>
           <CardDescription>Assign one-off policies to this user</CardDescription>
           {!isOwnProjectMembershipDetails && hasAdditionalPrivileges && (

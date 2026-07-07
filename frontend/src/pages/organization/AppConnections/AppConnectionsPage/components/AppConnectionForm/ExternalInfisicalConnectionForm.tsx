@@ -131,7 +131,7 @@ export const ExternalInfisicalConnectionForm = ({ appConnection, onSubmit }: Pro
                     <Info />
                   </TooltipTrigger>
                   <TooltipContent className="max-w-sm">
-                    The base URL of the external Infisical instance (e.g.,
+                    The base URL of the external APIHarbor instance (e.g.,
                     https://app.infisical.com)
                   </TooltipContent>
                 </Tooltip>
@@ -161,7 +161,7 @@ export const ExternalInfisicalConnectionForm = ({ appConnection, onSubmit }: Pro
                   </TooltipTrigger>
                   <TooltipContent className="max-w-sm">
                     The Client ID of the Machine Identity with Universal Auth configured on the
-                    external Infisical instance
+                    external APIHarbor instance
                   </TooltipContent>
                 </Tooltip>
               </FieldLabel>
@@ -195,7 +195,7 @@ export const ExternalInfisicalConnectionForm = ({ appConnection, onSubmit }: Pro
           )}
         />
         <AppConnectionFormFooter
-          submitLabel={isUpdate ? "Update Credentials" : "Connect to Infisical"}
+          submitLabel={isUpdate ? "Update Credentials" : "Connect to APIHarbor"}
         />
       </form>
     </FormProvider>

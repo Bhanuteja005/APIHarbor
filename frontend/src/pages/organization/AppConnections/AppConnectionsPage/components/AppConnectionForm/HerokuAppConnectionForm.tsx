@@ -173,7 +173,7 @@ export const HerokuConnectionForm = ({ appConnection, onSubmit: formSubmit, proj
     if (!isLoading && isMissingConfig && selectedMethod === HerokuConnectionMethod.OAuth) {
       return `Environment variables have not been configured. ${
         isInfisicalCloud()
-          ? "Please contact Infisical."
+          ? "Please contact APIHarbor."
           : `See Docs to configure Heroku ${methodDetails.name} Connections.`
       }`;
     }

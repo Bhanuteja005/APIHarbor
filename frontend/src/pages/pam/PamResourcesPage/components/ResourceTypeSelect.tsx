@@ -51,7 +51,7 @@ export const ResourceTypeSelect = ({ onSelect }: Props) => {
   const handleResourceSelect = (resource: PamResourceType) => {
     if (COMING_SOON_SET.has(resource)) {
       handlePopUpOpen("upgradePlan", {
-        text: "Your current plan does not include access to this resource type. To unlock this feature, please upgrade to Infisical Enterprise plan.",
+        text: "Your current plan does not include access to this resource type. To unlock this feature, please upgrade to APIHarbor Enterprise plan.",
         isEnterpriseFeature: true
       });
       return;

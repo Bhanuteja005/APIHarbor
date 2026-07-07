@@ -53,7 +53,7 @@ export const caWizardSchema = z
     province: z.string().trim().default(""),
     locality: z.string().trim().default(""),
     commonName: z.string().trim().default(""),
-    keySource: z.nativeEnum(CertKeySource).default(CertKeySource.Infisical),
+    keySource: z.nativeEnum(CertKeySource).default(CertKeySource.APIHarbor),
     hsmConnectorId: z.string().uuid().optional().nullable(),
     keyAlgorithm: z.nativeEnum(CertKeyAlgorithm).default(CertKeyAlgorithm.RSA_2048),
     notAfter: z.string().trim().default(""),

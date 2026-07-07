@@ -414,7 +414,7 @@ export const PamAccountByIDPage = () => {
   return (
     <>
       <Helmet>
-        <title>PAM Account | Infisical</title>
+        <title>PAM Account | APIHarbor</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
       </Helmet>
       <PageContent />

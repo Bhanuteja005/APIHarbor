@@ -59,7 +59,7 @@ export const EditSignerModal = ({ isOpen, onOpenChange, signer }: Props) => {
   );
   const currentKeySource = getCaIssuanceCapabilities(signerCaType).requiresHsm
     ? CertKeySource.Hsm
-    : ((signer.certificateKeySource as CertKeySource | undefined) ?? CertKeySource.Infisical);
+    : ((signer.certificateKeySource as CertKeySource | undefined) ?? CertKeySource.APIHarbor);
   const currentHsmConnectorId = signer.certificateHsmConnectorId ?? null;
   const currentKeyAlgorithm =
     (signer.keyAlgorithm as SignerKeyAlgorithm | undefined) ?? SignerKeyAlgorithm.RSA_2048;

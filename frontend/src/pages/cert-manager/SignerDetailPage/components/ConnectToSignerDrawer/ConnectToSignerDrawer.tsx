@@ -279,7 +279,7 @@ export const ConnectToSignerDrawer = ({ signer, isOpen, onOpenChange }: Props) =
             <span className="font-medium">Standard signing tools</span> like jarsigner,
             osslsigncode, and cosign work on Linux, macOS, and Windows.{" "}
             <span className="font-medium">Windows signtool</span> is native Authenticode signing on
-            Windows. Either way, the private key stays in Infisical.
+            Windows. Either way, the private key stays in APIHarbor.
           </p>
         </>
       );
@@ -289,7 +289,7 @@ export const ConnectToSignerDrawer = ({ signer, isOpen, onOpenChange }: Props) =
         <>
           <p className="mt-4 text-sm font-semibold text-foreground">What this step does</p>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            Choose how the signing machine logs in to Infisical.{" "}
+            Choose how the signing machine logs in to APIHarbor.{" "}
             <span className="font-medium">Your own access token</span> is quickest, but it is
             temporary because tokens expire. A <span className="font-medium">machine identity</span>{" "}
             is best for unattended or CI/CD signing.
@@ -359,14 +359,14 @@ export const ConnectToSignerDrawer = ({ signer, isOpen, onOpenChange }: Props) =
               <>
                 <h2 className="text-lg font-semibold text-foreground">Choose your signing tool</h2>
                 <p className="mt-1 mb-6 text-sm text-muted">
-                  Pick the tool you already sign with. Infisical plugs into it, so your build keeps
+                  Pick the tool you already sign with. APIHarbor plugs into it, so your build keeps
                   working the same way.
                 </p>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <MethodCard
                     icon={<TerminalIcon className="size-5" />}
                     title="Standard signing tools"
-                    description="jarsigner, osslsigncode, cosign, and other common tools. Uses the Infisical PKCS#11 module."
+                    description="jarsigner, osslsigncode, cosign, and other common tools. Uses the APIHarbor PKCS#11 module."
                     platforms={["Linux", "macOS", "Windows"]}
                     isSelected={method === Method.Pkcs11}
                     onSelect={() => setMethod(Method.Pkcs11)}
@@ -374,7 +374,7 @@ export const ConnectToSignerDrawer = ({ signer, isOpen, onOpenChange }: Props) =
                   <MethodCard
                     icon={<MonitorIcon className="size-5" />}
                     title="Windows signtool"
-                    description="Native Windows Authenticode signing with Microsoft signtool. Uses the Infisical Key Storage Provider."
+                    description="Native Windows Authenticode signing with Microsoft signtool. Uses the APIHarbor Key Storage Provider."
                     platforms={["Windows"]}
                     isSelected={method === Method.Ksp}
                     onSelect={() => setMethod(Method.Ksp)}
@@ -388,13 +388,13 @@ export const ConnectToSignerDrawer = ({ signer, isOpen, onOpenChange }: Props) =
                   Choose how you authenticate
                 </h2>
                 <p className="mt-1 mb-6 text-sm text-muted">
-                  Pick how the signing tool proves who it is to Infisical during signing operations.
+                  Pick how the signing tool proves who it is to APIHarbor during signing operations.
                 </p>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <AuthOptionCard
                     icon={<KeyRoundIcon className="size-4" />}
                     title="Use my credentials"
-                    description="Sign as yourself with your own Infisical access token. Quickest to set up, but temporary because the token expires."
+                    description="Sign as yourself with your own APIHarbor access token. Quickest to set up, but temporary because the token expires."
                     isSelected={authMethod === AuthMethod.Token}
                     onSelect={() => setAuthMethod(AuthMethod.Token)}
                   />
@@ -413,8 +413,8 @@ export const ConnectToSignerDrawer = ({ signer, isOpen, onOpenChange }: Props) =
                 <h2 className="text-lg font-semibold text-foreground">Install &amp; sign</h2>
                 <p className="mt-1 mb-6 text-sm text-muted">
                   {method === Method.Ksp
-                    ? "Install the Infisical Key Storage Provider, then sign with Microsoft signtool."
-                    : "Install the Infisical PKCS#11 module, then sign with jarsigner, osslsigncode, or any PKCS#11 tool."}
+                    ? "Install the APIHarbor Key Storage Provider, then sign with Microsoft signtool."
+                    : "Install the APIHarbor PKCS#11 module, then sign with jarsigner, osslsigncode, or any PKCS#11 tool."}
                 </p>
 
                 {method === Method.Ksp ? (
@@ -438,8 +438,8 @@ export const ConnectToSignerDrawer = ({ signer, isOpen, onOpenChange }: Props) =
                       title="Configure"
                       description={
                         authMethod === AuthMethod.Token
-                          ? "Set your Infisical address and access token as environment variables."
-                          : "Set your Infisical address and Machine Identity credentials as environment variables."
+                          ? "Set your APIHarbor address and access token as environment variables."
+                          : "Set your APIHarbor address and Machine Identity credentials as environment variables."
                       }
                     >
                       <CommandBlock snippet={kspConfigureSnippet(serverUrl, auth)} />
@@ -488,8 +488,8 @@ export const ConnectToSignerDrawer = ({ signer, isOpen, onOpenChange }: Props) =
                       title="Configure"
                       description={
                         authMethod === AuthMethod.Token
-                          ? "Set your Infisical address and access token as environment variables."
-                          : "Set your Infisical address and Machine Identity credentials as environment variables."
+                          ? "Set your APIHarbor address and access token as environment variables."
+                          : "Set your APIHarbor address and Machine Identity credentials as environment variables."
                       }
                     >
                       <CommandBlock snippet={pkcs11ConfigureSnippet(os, serverUrl, auth)} />

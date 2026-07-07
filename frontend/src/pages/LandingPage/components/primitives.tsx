@@ -1,5 +1,6 @@
-import { forwardRef, ReactNode, useRef, useState } from "react";
+import { forwardRef, ReactNode, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
 export const cn = (...classes: (string | false | null | undefined)[]) =>
@@ -133,7 +134,7 @@ export const LampHeader = forwardRef<HTMLDivElement, { children: ReactNode; clas
       <div
         ref={ref}
         className={cn(
-          "relative isolate z-0 flex min-h-[26rem] w-full flex-col items-center justify-center overflow-hidden",
+          "relative isolate z-0 flex min-h-screen w-full flex-col items-center justify-center overflow-hidden rounded-md",
           className
         )}
       >
@@ -175,7 +176,7 @@ export const LampHeader = forwardRef<HTMLDivElement, { children: ReactNode; clas
           />
           <div className="absolute inset-auto z-40 h-44 w-full -translate-y-[12.5rem] bg-[#0a0a0f]" />
         </div>
-        <div className="relative z-50 flex -translate-y-[16rem] flex-col items-center px-5 text-center">
+        <div className="relative z-50 flex -translate-y-80 flex-col items-center px-5 text-center">
           {children}
         </div>
       </div>
@@ -184,9 +185,149 @@ export const LampHeader = forwardRef<HTMLDivElement, { children: ReactNode; clas
 );
 LampHeader.displayName = "LampHeader";
 
-/* Keyframes not present in the app's Tailwind build, scoped to the landing page. */
+/* ------------------------------------------------------------------ */
+/* Bento grid + card (linkify "BentoGrid" / "BentoCard")              */
+/* ------------------------------------------------------------------ */
+export const BentoGrid = ({ children, className }: { children: ReactNode; className?: string }) => (
+  <div className={cn("grid w-full auto-rows-[20rem] grid-cols-3 gap-4", className)}>{children}</div>
+);
+
+export const BentoCard = ({
+  Icon,
+  name,
+  description,
+  className,
+  background
+}: {
+  Icon: LucideIcon;
+  name: string;
+  description: string;
+  className?: string;
+  background?: ReactNode;
+}) => (
+  <div
+    className={cn(
+      "group relative col-span-3 flex flex-col justify-end overflow-hidden rounded-2xl border border-white/10 bg-[#0e0e14] [box-shadow:0_-20px_80px_-20px_rgba(139,92,246,0.18)_inset] transition-colors duration-300 hover:border-violet-400/30",
+      className
+    )}
+  >
+    <div className="pointer-events-none absolute inset-0">{background}</div>
+    <div className="relative z-10 flex flex-col gap-1 p-6 transition-transform duration-300 group-hover:-translate-y-1">
+      <Icon
+        className="h-10 w-10 origin-left text-violet-300 transition-transform duration-300 ease-out group-hover:scale-90"
+        strokeWidth={1.5}
+      />
+      <h3 className="mt-3 text-lg font-semibold text-white">{name}</h3>
+      <p className="max-w-md text-sm leading-relaxed text-zinc-400">{description}</p>
+    </div>
+  </div>
+);
+
+/* ------------------------------------------------------------------ */
+/* SVG text hover reveal effect (linkify "TextHoverEffect")           */
+/* ------------------------------------------------------------------ */
+export const TextHoverEffect = ({ text, duration }: { text: string; duration?: number }) => {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [cursor, setCursor] = useState({ x: 0, y: 0 });
+  const [hovered, setHovered] = useState(false);
+  const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
+
+  useEffect(() => {
+    if (svgRef.current) {
+      const rect = svgRef.current.getBoundingClientRect();
+      const cx = ((cursor.x - rect.left) / rect.width) * 100;
+      const cy = ((cursor.y - rect.top) / rect.height) * 100;
+      setMaskPosition({ cx: `${cx}%`, cy: `${cy}%` });
+    }
+  }, [cursor]);
+
+  return (
+    <svg
+      ref={svgRef}
+      width="100%"
+      height="100%"
+      viewBox="0 0 300 100"
+      xmlns="http://www.w3.org/2000/svg"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
+      className="select-none"
+    >
+      <defs>
+        <linearGradient id="ah-textGradient" gradientUnits="userSpaceOnUse" cx="50%" cy="50%" r="25%">
+          {hovered && (
+            <>
+              <stop offset="0%" stopColor="#6366f1" />
+              <stop offset="25%" stopColor="#8b5cf6" />
+              <stop offset="50%" stopColor="#a855f7" />
+              <stop offset="75%" stopColor="#d946ef" />
+              <stop offset="100%" stopColor="#f43f5e" />
+            </>
+          )}
+        </linearGradient>
+        <motion.radialGradient
+          id="ah-revealMask"
+          gradientUnits="userSpaceOnUse"
+          r="20%"
+          animate={maskPosition}
+          transition={{ duration: duration ?? 0, ease: "easeOut" }}
+        >
+          <stop offset="0%" stopColor="white" />
+          <stop offset="100%" stopColor="black" />
+        </motion.radialGradient>
+        <mask id="ah-textMask">
+          <rect x="0" y="0" width="100%" height="100%" fill="url(#ah-revealMask)" />
+        </mask>
+      </defs>
+      <text
+        x="50%"
+        y="50%"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        strokeWidth="0.3"
+        className="fill-transparent stroke-neutral-700 text-7xl font-bold"
+        style={{ opacity: hovered ? 0.7 : 0 }}
+      >
+        {text}
+      </text>
+      <motion.text
+        x="50%"
+        y="50%"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        strokeWidth="0.3"
+        className="fill-transparent stroke-neutral-700 text-7xl font-bold"
+        initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
+        animate={{ strokeDashoffset: 0, strokeDasharray: 1000 }}
+        transition={{ duration: 4, ease: "easeInOut" }}
+      >
+        {text}
+      </motion.text>
+      <text
+        x="50%"
+        y="50%"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        stroke="url(#ah-textGradient)"
+        strokeWidth="0.3"
+        mask="url(#ah-textMask)"
+        className="fill-transparent text-7xl font-bold"
+      >
+        {text}
+      </text>
+    </svg>
+  );
+};
+
+/* Keyframes + Aeonik Pro font (linkify's heading font), scoped to the landing page. */
 export const LandingKeyframes = () => (
   <style>{`
+    @font-face { font-family: 'Aeonik Pro'; src: url('/fonts/AeonikPro-Light.woff2') format('woff2'); font-weight: 300; font-display: swap; }
+    @font-face { font-family: 'Aeonik Pro'; src: url('/fonts/AeonikPro-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Aeonik Pro'; src: url('/fonts/AeonikPro-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Aeonik Pro'; src: url('/fonts/AeonikPro-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Aeonik Pro'; src: url('/fonts/AeonikPro-Black.woff2') format('woff2'); font-weight: 900; font-display: swap; }
+    .ah-landing h1, .ah-landing h2 { font-family: 'Aeonik Pro', ui-sans-serif, system-ui, sans-serif; }
     @keyframes ah-border-beam { 100% { offset-distance: 100%; } }
     @keyframes ah-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
   `}</style>

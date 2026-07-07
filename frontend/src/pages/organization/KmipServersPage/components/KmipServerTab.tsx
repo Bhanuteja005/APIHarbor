@@ -82,7 +82,7 @@ export const KmipServerTab = withPermission(
         <div className="mb-2 flex items-center justify-between">
           <div className="flex grow items-center gap-x-2">
             <h3 className="text-lg font-medium text-mineshaft-100">KMIP Servers</h3>
-            <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/kms/kmip" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/kms/kmip" />
             <div className="flex grow" />
             <OrgPermissionCan
               I={OrgKmipServerPermissionActions.CreateKmipServers}
@@ -102,7 +102,7 @@ export const KmipServerTab = withPermission(
           </div>
         </div>
         <p className="mb-4 text-sm text-mineshaft-400">
-          Create and configure KMIP servers that proxy KMIP requests to Infisical KMS
+          Create and configure KMIP servers that proxy KMIP requests to APIHarbor KMS
         </p>
         <div>
           <div className="flex gap-2">

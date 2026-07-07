@@ -66,7 +66,7 @@ export const KubernetesResourceFields = () => {
                   <InfoIcon className="mb-0.5 inline-block size-3 text-accent" />
                 </TooltipTrigger>
                 <TooltipContent>
-                  If enabled, Infisical will only connect to the server if it has a valid, trusted
+                  If enabled, APIHarbor will only connect to the server if it has a valid, trusted
                   SSL certificate.
                 </TooltipContent>
               </Tooltip>

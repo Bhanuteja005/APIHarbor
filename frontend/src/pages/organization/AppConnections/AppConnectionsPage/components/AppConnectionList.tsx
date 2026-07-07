@@ -197,7 +197,7 @@ export const AppConnectionsSelect = ({ onSelect, projectType }: Props) => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://infisical.com/slack"
+          href="https://apiharbor.com/slack"
           className="underline underline-offset-2 hover:text-foreground"
         >
           Let us know on Slack
@@ -206,7 +206,7 @@ export const AppConnectionsSelect = ({ onSelect, projectType }: Props) => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/Infisical/infisical/discussions"
+          href="https://github.com/Bhanuteja005/APIHarbor/discussions"
           className="underline underline-offset-2 hover:text-foreground"
         >
           request it on GitHub
@@ -217,7 +217,7 @@ export const AppConnectionsSelect = ({ onSelect, projectType }: Props) => {
       <UpgradePlanModal
         isOpen={popUp.upgradePlan.isOpen}
         onOpenChange={(isOpen) => handlePopUpToggle("upgradePlan", isOpen)}
-        text="All App Connections can be unlocked if you switch to Infisical Enterprise plan."
+        text="All App Connections can be unlocked if you switch to APIHarbor Enterprise plan."
         isEnterpriseFeature={popUp.upgradePlan.data?.isEnterpriseFeature}
       />
     </div>

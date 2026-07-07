@@ -44,7 +44,7 @@ export const GroupsSection = () => {
   const handleAddGroupModal = () => {
     if (!subscription?.groups) {
       handlePopUpOpen("upgradePlan", {
-        text: "Managing groups can be unlocked if you upgrade to Infisical Enterprise plan.",
+        text: "Managing groups can be unlocked if you upgrade to APIHarbor Enterprise plan.",
         isEnterpriseFeature: true
       });
     } else {
@@ -73,7 +73,7 @@ export const GroupsSection = () => {
         <CardHeader>
           <CardTitle>
             {isCertManager ? "Groups" : `${productLabel} Groups`}
-            <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/groups#user-groups" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/groups#user-groups" />
           </CardTitle>
           <CardDescription>{`Add and manage ${productLabel.toLowerCase()} groups`}</CardDescription>
           <CardAction>

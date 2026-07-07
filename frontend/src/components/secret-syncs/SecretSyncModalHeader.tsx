@@ -25,7 +25,7 @@ export const SecretSyncModalHeader = ({ destination, isConfigured, showDocLink =
           {destinationDetails.name} Sync
           {showDocLink && (
             <DocumentationLinkBadge
-              href={`https://infisical.com/docs/integrations/secret-syncs/${destination}`}
+              href={`https://apiharbor.com/docs/integrations/secret-syncs/${destination}`}
             />
           )}
         </div>

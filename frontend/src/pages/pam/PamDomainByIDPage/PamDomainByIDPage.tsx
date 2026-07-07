@@ -228,7 +228,7 @@ export const PamDomainByIDPage = () => {
   return (
     <>
       <Helmet>
-        <title>PAM Domain | Infisical</title>
+        <title>PAM Domain | APIHarbor</title>
         <link rel="icon" type="image/svg+xml" href="/apiharbor.svg" />
       </Helmet>
       <PageContent />

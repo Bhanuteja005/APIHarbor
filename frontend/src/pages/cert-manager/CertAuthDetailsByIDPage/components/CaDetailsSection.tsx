@@ -298,7 +298,7 @@ export const CaDetailsSection = ({ caId }: Props) => {
               <DetailLabel>Key Source</DetailLabel>
               <DetailValue>
                 <Badge variant={isHsmBacked ? "info" : "neutral"}>
-                  {isHsmBacked ? "HSM" : "Infisical"}
+                  {isHsmBacked ? "HSM" : "APIHarbor"}
                 </Badge>
               </DetailValue>
             </Detail>

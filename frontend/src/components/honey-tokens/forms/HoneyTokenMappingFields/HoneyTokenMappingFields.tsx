@@ -19,7 +19,7 @@ export const HoneyTokenMappingFields = () => {
   return (
     <>
       <p className="mb-4 text-sm text-bunker-300">
-        Map the decoy credential&apos;s fields to secrets in your Infisical project.
+        Map the decoy credential&apos;s fields to secrets in your APIHarbor project.
       </p>
       <Component />
     </>

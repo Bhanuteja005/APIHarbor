@@ -54,7 +54,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-// Infisical AWS account IDs for trust policy
+// APIHarbor AWS account IDs for trust policy
 const INFISICAL_AWS_ACCOUNT_US = "381492033652";
 const INFISICAL_AWS_ACCOUNT_EU = "345594589636";
 
@@ -141,7 +141,7 @@ export const AwsIamResourceForm = ({ resource, onSubmit, closeSheet }: Props) =>
                   />
                   <FieldError errors={[error]} />
                   <p className="mt-1 text-xs text-mineshaft-400">
-                    The ARN of the Infisical Resource Role that can assume target roles
+                    The ARN of the APIHarbor Resource Role that can assume target roles
                   </p>
                 </FieldContent>
               </Field>
@@ -163,7 +163,7 @@ export const AwsIamResourceForm = ({ resource, onSubmit, closeSheet }: Props) =>
               <AccordionContent className="px-4 pb-2.5">
                 <p className="mb-3 text-sm text-mineshaft-300">
                   Before creating this resource, you need to set up an IAM role in your AWS account
-                  that Infisical can assume. Follow these steps:
+                  that APIHarbor can assume. Follow these steps:
                 </p>
 
                 <p className="mb-2 text-sm font-medium text-mineshaft-200">
@@ -213,8 +213,8 @@ export const AwsIamResourceForm = ({ resource, onSubmit, closeSheet }: Props) =>
                   <code className="rounded bg-mineshaft-700 px-1 font-bold">
                     {INFISICAL_AWS_ACCOUNT_EU}
                   </code>{" "}
-                  for EU region. For dedicated instances, contact Infisical support. For self-hosted
-                  instances, use your Infisical deployment&apos;s AWS account ID. The External ID{" "}
+                  for EU region. For dedicated instances, contact APIHarbor support. For self-hosted
+                  instances, use your APIHarbor deployment&apos;s AWS account ID. The External ID{" "}
                   <code className="rounded bg-mineshaft-700 px-1 font-bold">{projectId}</code> is
                   your current project ID.
                 </p>

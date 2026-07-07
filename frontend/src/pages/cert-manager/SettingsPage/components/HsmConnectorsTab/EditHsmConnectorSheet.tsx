@@ -257,7 +257,7 @@ export const EditHsmConnectorSheet = ({ connector, onClose }: Props) => {
                           isError={Boolean(error)}
                         />
                         <FieldDescription>
-                          The Infisical Gateway (or pool) that will reach the HSM over PKCS#11.
+                          The APIHarbor Gateway (or pool) that will reach the HSM over PKCS#11.
                         </FieldDescription>
                         <FieldError errors={[error]} />
                       </FieldContent>
@@ -290,7 +290,7 @@ export const EditHsmConnectorSheet = ({ connector, onClose }: Props) => {
                       <FieldContent>
                         <Input {...field} value={field.value ?? ""} isError={Boolean(error)} />
                         <FieldDescription>
-                          Prepended to the label of every key Infisical creates on this HSM.
+                          Prepended to the label of every key APIHarbor creates on this HSM.
                         </FieldDescription>
                         <FieldError errors={[error]} />
                       </FieldContent>
@@ -317,7 +317,7 @@ export const EditHsmConnectorSheet = ({ connector, onClose }: Props) => {
                         />
                         <FieldDescription>
                           {routingChanged
-                            ? "Required because you are changing the Gateway. Re-enter the PIN so Infisical can verify it against the new route."
+                            ? "Required because you are changing the Gateway. Re-enter the PIN so APIHarbor can verify it against the new route."
                             : "Leave blank to keep the current PIN. Type a new value to rotate it."}
                         </FieldDescription>
                         <FieldError errors={[error]} />
@@ -349,7 +349,7 @@ export const EditHsmConnectorSheet = ({ connector, onClose }: Props) => {
                   </li>
                 </ul>
                 <div className="mt-6 rounded-md border border-border bg-mineshaft-800 p-3 text-xs text-muted">
-                  If you change the PIN, slot, or Gateway, Infisical re-runs a Verify against the
+                  If you change the PIN, slot, or Gateway, APIHarbor re-runs a Verify against the
                   HSM before saving. A bad PIN or unreachable Gateway will surface here.
                 </div>
               </div>

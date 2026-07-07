@@ -414,7 +414,7 @@ export const AddOrgMemberModal = ({
           <DialogTitle>Invite others to {currentOrg?.name}</DialogTitle>
           <DialogDescription>
             {completeInviteLinks
-              ? "This Infisical instance does not have a email provider setup. Please share this invite link with the invitee manually"
+              ? "This APIHarbor instance does not have a email provider setup. Please share this invite link with the invitee manually"
               : "An invite is specific to an email address and expires after 1 day."}
           </DialogDescription>
         </DialogHeader>

@@ -46,7 +46,7 @@ export const OrgGroupsSection = () => {
   const handleAddGroupModal = () => {
     if (!subscription?.groups) {
       handlePopUpOpen("upgradePlan", {
-        text: "Your current plan does not allow adding groups. To unlock this feature, please upgrade to Infisical Enterprise plan.",
+        text: "Your current plan does not allow adding groups. To unlock this feature, please upgrade to APIHarbor Enterprise plan.",
         isEnterpriseFeature: true
       });
     } else {
@@ -86,7 +86,7 @@ export const OrgGroupsSection = () => {
         <CardHeader>
           <CardTitle>
             {isSubOrganization ? "Sub-" : ""}Organization Groups
-            <DocumentationLinkBadge href="https://infisical.com/docs/documentation/platform/groups" />
+            <DocumentationLinkBadge href="https://apiharbor.com/docs/documentation/platform/groups" />
           </CardTitle>
           <CardDescription>
             Create and manage {isSubOrganization ? "sub-" : ""}organization groups

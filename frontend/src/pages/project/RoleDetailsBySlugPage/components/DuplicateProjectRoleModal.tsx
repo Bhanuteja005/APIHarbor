@@ -167,7 +167,7 @@ const Content = ({ role, onClose }: ContentProps) => {
       <UpgradePlanModal
         isOpen={upgradePlanPopUp.upgradePlan.isOpen}
         onOpenChange={(isOpen) => handleUpgradePlanPopUpToggle("upgradePlan", isOpen)}
-        text="Your current plan does not include custom roles. To unlock this feature, please upgrade to Infisical Enterprise plan."
+        text="Your current plan does not include custom roles. To unlock this feature, please upgrade to APIHarbor Enterprise plan."
         isEnterpriseFeature
       />
     </>

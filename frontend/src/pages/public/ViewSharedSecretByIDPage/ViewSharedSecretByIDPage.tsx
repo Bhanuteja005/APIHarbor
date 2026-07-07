@@ -235,7 +235,7 @@ export const ViewSharedSecretByIDPage = () => {
     </>
   );
 
-  // Custom branding: minimal layout with brand colors, no Infisical elements
+  // Custom branding: minimal layout with brand colors, no APIHarbor elements
   if (hasCustomBranding) {
     return (
       <>
@@ -268,12 +268,12 @@ export const ViewSharedSecretByIDPage = () => {
     );
   }
 
-  // Default: Infisical auth page layout
+  // Default: APIHarbor auth page layout
   return (
     <div className="relative flex max-h-screen min-h-screen flex-col overflow-y-auto bg-bunker-800 px-4 text-foreground scheme-dark">
       <AuthPageBackground />
       <Helmet>
-        <title>Securely Share Secrets | Infisical</title>
+        <title>Securely Share Secrets | APIHarbor</title>
         <meta property="og:image" content="/images/message.png" />
       </Helmet>
       <AuthPageHeader />

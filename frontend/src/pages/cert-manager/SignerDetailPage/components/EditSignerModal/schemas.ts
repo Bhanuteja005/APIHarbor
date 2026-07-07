@@ -35,7 +35,7 @@ export const certificateSchema = z
       .default(null),
     commonName: z.string().trim().min(1, "Common Name is required").max(256).optional(),
     certificateTtlDays: z.coerce.number().int().min(1).max(3650).optional(),
-    keySource: z.nativeEnum(CertKeySource).default(CertKeySource.Infisical),
+    keySource: z.nativeEnum(CertKeySource).default(CertKeySource.APIHarbor),
     keyAlgorithm: z.nativeEnum(SignerKeyAlgorithm).default(SignerKeyAlgorithm.RSA_2048),
     hsmConnectorId: z.string().uuid().optional().nullable(),
     // DigiCert code signing only: reissue into this existing order instead of placing a new one.

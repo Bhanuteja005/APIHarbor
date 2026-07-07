@@ -8,7 +8,7 @@ import { usePopUp } from "@app/hooks";
 import { SelectImportFromPlatformModal } from "./components/SelectImportFromPlatformModal";
 
 const EXTERNAL_MIGRATIONS_DOCS_HREF =
-  "https://infisical.com/docs/documentation/platform/external-migrations/overview";
+  "https://apiharbor.com/docs/documentation/platform/external-migrations/overview";
 
 export const ExternalMigrationsTab = () => {
   const { hasOrgRole } = useOrgPermission();
@@ -32,7 +32,7 @@ export const ExternalMigrationsTab = () => {
               <DocumentationLinkBadge href={EXTERNAL_MIGRATIONS_DOCS_HREF} />
             </div>
             <p className="mt-1 text-sm text-muted">
-              Import data from another platform to Infisical.
+              Import data from another platform to APIHarbor.
             </p>
           </div>
 

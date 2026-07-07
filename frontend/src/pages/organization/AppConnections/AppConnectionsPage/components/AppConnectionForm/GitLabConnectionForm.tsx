@@ -204,7 +204,7 @@ export const GitLabConnectionForm = ({ appConnection, onSubmit: formSubmit, proj
     if (!isLoading && isMissingConfig && selectedMethod === GitLabConnectionMethod.OAuth) {
       return `${
         isInfisicalCloud()
-          ? "GitLab Oauth is not supported in Infisical Cloud."
+          ? "GitLab Oauth is not supported in APIHarbor Cloud."
           : `Environment variables have not been configured. See Docs to configure GitLab ${methodDetails.name} Connections.`
       }`;
     }
