@@ -30,6 +30,7 @@ import {
     useUpdateMyName,
 } from "@/hooks/use-account";
 import {
+    useDeleteOrganization,
     useInviteMember,
     useOrganization,
     useRemoveMember,
@@ -131,6 +132,10 @@ const SettingsPage = () => {
     const [failingKeyAlerts, setFailingKeyAlerts] = useState(true);
     const [lowQuotaWarnings, setLowQuotaWarnings] = useState(true);
     const [weeklyDigest, setWeeklyDigest] = useState(false);
+
+    const deleteOrg = useDeleteOrganization();
+    const [deleteOrgOpen, setDeleteOrgOpen] = useState(false);
+    const [deleteOrgConfirm, setDeleteOrgConfirm] = useState("");
 
     useEffect(() => {
         if (org.data?.name) setWorkspaceName(org.data.name);
@@ -586,19 +591,69 @@ const SettingsPage = () => {
                         Danger zone
                     </h2>
                     <SettingRow
-                        title="Delete this workspace"
-                        hint="All tracked keys and history will be permanently removed."
+                        title="Delete this organization"
+                        hint="Permanently removes the organization, every project, and all tracked keys and history."
                     >
                         <Button
                             variant="destructive"
                             size="sm"
-                            onClick={() => toast.error("Contact support to delete your workspace.")}
+                            onClick={() => setDeleteOrgOpen(true)}
                         >
-                            Delete workspace
+                            Delete organization
                         </Button>
                     </SettingRow>
                 </div>
             </div>
+
+            <Dialog
+                open={deleteOrgOpen}
+                onOpenChange={(open) => {
+                    setDeleteOrgOpen(open);
+                    if (!open) setDeleteOrgConfirm("");
+                }}
+            >
+                <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                        <DialogTitle>Delete organization</DialogTitle>
+                        <DialogDescription>
+                            This permanently removes{" "}
+                            <span className="font-medium text-foreground">{org.data?.name ?? "your organization"}</span>{" "}
+                            and all of its data. This action cannot be undone. Type the organization name to confirm.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <Input
+                        value={deleteOrgConfirm}
+                        onChange={(e) => setDeleteOrgConfirm(e.target.value)}
+                        placeholder={org.data?.name ?? ""}
+                    />
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setDeleteOrgOpen(false)}>
+                            Cancel
+                        </Button>
+                        <Button
+                            variant="destructive"
+                            disabled={
+                                deleteOrg.isPending ||
+                                !org.data?.name ||
+                                deleteOrgConfirm !== org.data.name
+                            }
+                            onClick={async () => {
+                                try {
+                                    await deleteOrg.mutateAsync();
+                                    toast.success("Organization deleted.");
+                                    router.push("/");
+                                } catch (error) {
+                                    toast.error(
+                                        error instanceof Error ? error.message : "Couldn't delete the organization."
+                                    );
+                                }
+                            }}
+                        >
+                            {deleteOrg.isPending ? "Deleting..." : "Delete organization"}
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
 
             <Dialog open={inviteOpen} onOpenChange={setInviteOpen}>
                 <DialogContent className="sm:max-w-sm">

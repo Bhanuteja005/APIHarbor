@@ -1,7 +1,8 @@
 "use server";
 
 import { apiFetch } from "@/lib/api/client";
-import { TAuditLog, TOrganization } from "@/lib/api/types";
+import { clearSessionCookies } from "@/lib/api/session";
+import { TAuditLog, TOrganization, TProductStats } from "@/lib/api/types";
 import { withAuth } from "@/lib/api/with-auth";
 
 export const getOrganization = async () =>
@@ -54,6 +55,25 @@ export const removeMember = async ({ membershipId }: { membershipId: string }) =
         });
         return true;
     });
+
+// Org-wide counters behind the product overview cards (secrets, PKI, KMS,
+// scanning, PAM) — one call, all five buckets.
+export const getProductStats = async () =>
+    withAuth(async (token) => {
+        const res = await apiFetch<TProductStats>("/api/v1/organization/product-stats", { token });
+        return res.data;
+    });
+
+export const deleteOrganization = async () => {
+    const result = await withAuth(async (token, _projectId, orgId) => {
+        await apiFetch(`/api/v2/organizations/${orgId}`, { method: "DELETE", token });
+        return true;
+    });
+    // The org (and every membership token scoped to it) is gone; the local
+    // session is unusable either way.
+    if ("data" in result) clearSessionCookies();
+    return result;
+};
 
 export interface AuditLogsInput {
     limit?: number;

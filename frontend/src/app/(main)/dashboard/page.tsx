@@ -2,6 +2,7 @@
 
 import { CardSkeleton, ErrorCard } from "@/components/dashboard/data-states";
 import PerformanceCard from "@/components/dashboard/performance-card";
+import ProductsOverview from "@/components/dashboard/products-overview";
 import RecentActivities, { DashboardActivity } from "@/components/dashboard/recent-activities";
 import StatCards from "@/components/dashboard/stat-cards";
 import UsageChart from "@/components/dashboard/usage-chart";
@@ -115,6 +116,7 @@ const DashboardPage = () => {
                 <UsageChart series={series} />
             </div>
             <RecentActivities activities={activities} />
+            <ProductsOverview />
         </div>
     );
 };

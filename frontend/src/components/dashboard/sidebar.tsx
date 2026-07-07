@@ -2,18 +2,19 @@
 
 import { logout } from "@/actions";
 import { useSession } from "@/components/auth/use-session";
+import ProjectSwitcher from "@/components/dashboard/project-switcher";
 import { cn } from "@/utils";
 import {
-    ChevronsUpDown,
-    CircleUserRound,
-    Headphones,
+    Blocks,
+    FileBadge,
+    FolderKanban,
     KeyRound,
     LayoutGrid,
     LineChart,
     LogOut,
     ScrollText,
-    Search,
     Settings,
+    Users,
     Waypoints,
     Infinity as InfinityIcon,
 } from "lucide-react";
@@ -26,6 +27,10 @@ const NAV_ITEMS = [
     { label: "API Keys", href: "/dashboard/keys", icon: KeyRound },
     { label: "Analytics", href: "/dashboard/analytics", icon: LineChart },
     { label: "Providers", href: "/dashboard/providers", icon: Waypoints },
+    { label: "Projects", href: "/dashboard/projects", icon: FolderKanban },
+    { label: "Certificates", href: "/dashboard/certificates", icon: FileBadge },
+    { label: "Integrations", href: "/dashboard/integrations", icon: Blocks },
+    { label: "Access Control", href: "/dashboard/access", icon: Users },
     { label: "Audit Logs", href: "/dashboard/audit-logs", icon: ScrollText },
     { label: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
@@ -55,11 +60,7 @@ const Sidebar = () => {
             </div>
 
             <div className="px-5 pt-7">
-                <button className="flex h-11 w-full items-center gap-x-2.5 rounded-lg bg-muted px-3 text-sm font-medium transition-colors hover:bg-muted/80">
-                    <CircleUserRound className="h-5 w-5" />
-                    My Project
-                    <ChevronsUpDown className="ml-auto h-4 w-4 text-muted-foreground" />
-                </button>
+                <ProjectSwitcher />
             </div>
 
             <div className="px-5 pt-6">
@@ -69,18 +70,7 @@ const Sidebar = () => {
                 <div className="mt-3 border-b border-border" />
             </div>
 
-            <div className="px-5 pt-5">
-                <div className="relative">
-                    <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="h-11 w-full rounded-lg bg-muted pl-10 pr-3 text-sm outline-none placeholder:text-muted-foreground"
-                    />
-                </div>
-            </div>
-
-            <nav className="flex flex-col gap-y-1.5 px-5 pt-5">
+            <nav className="flex flex-col gap-y-1.5 overflow-y-auto px-5 pt-5">
                 {NAV_ITEMS.map((item) => {
                     const isActive = pathname === item.href;
                     return (
@@ -101,24 +91,7 @@ const Sidebar = () => {
                 })}
             </nav>
 
-            <div className="mt-auto px-5">
-                <div className="rounded-xl bg-muted p-4">
-                    <div className="flex items-center gap-x-2.5">
-                        <Headphones className="h-[18px] w-[18px]" />
-                        <span className="text-sm font-semibold">
-                            Need support?
-                        </span>
-                    </div>
-                    <p className="mt-1.5 text-xs text-muted-foreground">
-                        Get in touch with our agents
-                    </p>
-                    <button className="mt-3.5 h-9 w-full rounded-lg border border-border bg-white text-sm font-medium text-neutral-900 shadow-sm transition-colors hover:bg-neutral-100">
-                        Contact us
-                    </button>
-                </div>
-            </div>
-
-            <div className="mt-5 border-t border-border px-5 py-4">
+            <div className="mt-auto border-t border-border px-5 py-4">
                 <div className="flex items-center gap-x-3">
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
                         {displayUser.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}

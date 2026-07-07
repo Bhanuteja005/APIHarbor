@@ -124,6 +124,56 @@ export interface TSession {
     createdAt: string;
 }
 
+export interface TProductStats {
+    secretManager: { secretsCount: number; environmentsCount: number; projectsCount: number };
+    certificateManager: { certificatesCount: number; certificateAuthoritiesCount: number; signersCount: number };
+    kms: { keysCount: number; clientsCount: number; projectsCount: number };
+    secretScanning: { dataSourcesCount: number; resourcesCount: number; projectsCount: number };
+    pam: { accountsCount: number; resourcesCount: number; projectsCount: number };
+}
+
+export interface TAppConnection {
+    id: string;
+    name: string;
+    app: string;
+    method: string;
+    description?: string | null;
+    version?: number;
+    orgId?: string;
+    createdAt: string;
+    updatedAt?: string;
+}
+
+// Shape of GET /api/v1/projects/:projectId/cas — a flat record (the
+// internal-CA fields are joined in, not nested under `configuration`).
+export interface TCertificateAuthority {
+    id: string;
+    name: string;
+    // internal CA type: "root" | "intermediate"
+    type: string;
+    status: string;
+    enableDirectIssuance?: boolean;
+    friendlyName?: string | null;
+    commonName?: string | null;
+    organization?: string | null;
+    keyAlgorithm?: string | null;
+    serialNumber?: string | null;
+    notBefore?: string | null;
+    notAfter?: string | null;
+    createdAt?: string;
+}
+
+export interface TCertificate {
+    id: string;
+    friendlyName?: string | null;
+    commonName?: string | null;
+    serialNumber?: string | null;
+    status?: string | null;
+    notBefore?: string | null;
+    notAfter?: string | null;
+    altNames?: string | null;
+}
+
 export interface TAccount {
     id: string;
     email?: string | null;

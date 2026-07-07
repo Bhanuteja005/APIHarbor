@@ -7,8 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, Github, Gitlab, LoaderIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import { toast } from "sonner";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
 import { Label } from "../ui/label";
@@ -16,13 +16,23 @@ import { Label } from "../ui/label";
 const SignInForm = () => {
 
     const router = useRouter();
+    const searchParams = useSearchParams();
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [mfaMethod, setMfaMethod] = useState<string | null>(null);
+    // SSO logins that require MFA are redirected here with ?mfa=<method>
+    // (the challenge itself lives in the httpOnly ah_mfa cookie).
+    const [mfaMethod, setMfaMethod] = useState<string | null>(searchParams.get("mfa"));
     const [mfaCode, setMfaCode] = useState<string>("");
+
+    const ssoError = searchParams.get("error");
+    useEffect(() => {
+        if (ssoError === "sso") {
+            toast.error("Single sign-on failed. Please try again or use email and password.");
+        }
+    }, [ssoError]);
 
     const handleSignIn = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -81,6 +91,10 @@ const SignInForm = () => {
     };
 
     const handleSso = (provider: string) => {
+        if (provider === "Google") {
+            window.location.assign("/api/v1/sso/redirect/google");
+            return;
+        }
         toast.info(`${provider} sign-in isn't configured yet. Use email and password.`);
     };
 

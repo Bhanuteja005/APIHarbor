@@ -22,15 +22,39 @@ export interface SessionData {
     user: { name: string; email: string };
 }
 
-export const setSessionCookies = ({ token, refreshCookie, orgId, projectId, user }: SessionData) => {
-    const store = cookies();
+export interface SessionCookieEntry {
+    name: string;
+    value: string;
+    options: {
+        httpOnly: boolean;
+        sameSite: "lax";
+        path: string;
+        secure: boolean;
+        maxAge: number;
+    };
+}
+
+// Route handlers must set cookies on their own response object (cookies().set
+// from next/headers is only reliable in server actions), so expose the raw
+// entries for both call sites.
+export const buildSessionCookies = ({ token, refreshCookie, orgId, projectId, user }: SessionData): SessionCookieEntry[] => {
     const base = { httpOnly: true, sameSite: "lax" as const, path: "/", secure, maxAge: WEEK_IN_SECONDS };
 
-    store.set(SESSION_COOKIE, token, base);
-    if (refreshCookie) store.set(REFRESH_COOKIE, refreshCookie, base);
-    store.set(ORG_COOKIE, orgId, base);
-    store.set(PROJECT_COOKIE, projectId, base);
-    store.set(USER_COOKIE, JSON.stringify(user), { ...base, httpOnly: false });
+    const entries: SessionCookieEntry[] = [
+        { name: SESSION_COOKIE, value: token, options: base },
+        { name: ORG_COOKIE, value: orgId, options: base },
+        { name: PROJECT_COOKIE, value: projectId, options: base },
+        { name: USER_COOKIE, value: JSON.stringify(user), options: { ...base, httpOnly: false } },
+    ];
+    if (refreshCookie) entries.splice(1, 0, { name: REFRESH_COOKIE, value: refreshCookie, options: base });
+    return entries;
+};
+
+export const setSessionCookies = (data: SessionData) => {
+    const store = cookies();
+    for (const { name, value, options } of buildSessionCookies(data)) {
+        store.set(name, value, options);
+    }
 };
 
 export const getSession = () => {
@@ -52,6 +76,18 @@ export const getSession = () => {
         projectId: store.get(PROJECT_COOKIE)?.value ?? "",
         user,
     };
+};
+
+// The active project drives every project-scoped call; switching it is just a
+// cookie swap once the target project is validated against the backend.
+export const setProjectCookie = (projectId: string) => {
+    cookies().set(PROJECT_COOKIE, projectId, {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure,
+        maxAge: WEEK_IN_SECONDS,
+    });
 };
 
 export const clearSessionCookies = () => {

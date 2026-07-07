@@ -123,6 +123,11 @@ const SignUpForm = () => {
     };
 
     const handleSso = (provider: string) => {
+        if (provider === "Google") {
+            // Google-verified emails complete signup in one hop on the backend.
+            window.location.assign("/api/v1/sso/redirect/google");
+            return;
+        }
         toast.info(`${provider} sign-up isn't configured yet. Continue with your email.`);
     };
 

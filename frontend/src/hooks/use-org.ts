@@ -2,8 +2,10 @@
 
 import {
     AuditLogsInput,
+    deleteOrganization,
     getAuditLogs,
     getOrganization,
+    getProductStats,
     inviteTeamMember,
     removeMember,
     updateMemberRole,
@@ -11,6 +13,17 @@ import {
 } from "@/actions/org";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { unwrap } from "./query-utils";
+
+export const useProductStats = () =>
+    useQuery({
+        queryKey: ["product-stats"],
+        queryFn: async () => unwrap(await getProductStats()),
+    });
+
+export const useDeleteOrganization = () =>
+    useMutation({
+        mutationFn: async () => unwrap(await deleteOrganization()),
+    });
 
 export const useOrganization = () =>
     useQuery({
