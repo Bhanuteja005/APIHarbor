@@ -464,7 +464,7 @@ export const approvalPolicyServiceFactory = ({
       if (emailRecipients.length > 0 && cfg.SITE_URL && approvalPath) {
         await smtpService.sendMail({
           recipients: emailRecipients,
-          subjectLine: "Infisical PAM Access Policy Bypassed",
+          subjectLine: "APIHarbor PAM Access Policy Bypassed",
           substitutions: {
             projectName: project?.name ?? "Unknown project",
             requesterFullName,

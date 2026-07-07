@@ -15,6 +15,7 @@ import { useSession } from "@/components/auth/use-session";
 import { LucideIcon, ZapIcon } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from 'react';
+import { Icons } from "../global/icons";
 import MaxWidthWrapper from "../global/max-width-wrapper";
 import MobileNavbar from "./mobile-navbar";
 import AnimationContainer from "../global/animation-container";
@@ -48,7 +49,8 @@ const Navbar = () => {
             <AnimationContainer reverse delay={0.1} className="size-full">
                 <MaxWidthWrapper className="flex items-center justify-between">
                     <div className="flex items-center space-x-12">
-                        <Link href="/#home">
+                        <Link href="/#home" className="flex items-center gap-x-2">
+                            <Icons.logo className="w-6 h-6" />
                             <span className="text-lg font-bold font-heading !leading-none">
                                 APIHarbor
                             </span>

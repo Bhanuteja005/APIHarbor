@@ -117,7 +117,7 @@ export const authPaswordServiceFactory = ({
     await smtpService.sendMail({
       template: SmtpTemplates.SetupPassword,
       recipients: [email],
-      subjectLine: "Infisical Password Setup",
+      subjectLine: "APIHarbor Password Setup",
       substitutions: {
         email,
         token,

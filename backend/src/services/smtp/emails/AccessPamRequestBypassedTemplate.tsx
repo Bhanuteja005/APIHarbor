@@ -60,11 +60,11 @@ export default AccessPamRequestBypassedTemplate;
 
 AccessPamRequestBypassedTemplate.PreviewProps = {
   requesterFullName: "Dan Cooper",
-  requesterEmail: "dan@infisical.com",
+  requesterEmail: "dan@apiharbor.io",
   resourceName: "prod-db-1",
   accountName: "postgres",
   accessDuration: "1h",
-  siteUrl: "https://infisical.com",
+  siteUrl: "https://apiharbor.io",
   projectName: "Example Project",
   bypassReason: "Production database failover playbook needed."
 } as AccessPamRequestBypassedTemplateProps;

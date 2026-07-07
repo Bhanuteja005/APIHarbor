@@ -50,7 +50,7 @@ export default SecretRequestCompletedTemplate;
 
 SecretRequestCompletedTemplate.PreviewProps = {
   senderUsername: "Gracie",
-  siteUrl: "https://infisical.com",
-  secretRequestUrl: "https://infisical.com",
+  siteUrl: "https://apiharbor.io",
+  secretRequestUrl: "https://apiharbor.io",
   name: "API_TOKEN"
 } as SecretRequestCompletedTemplateProps;

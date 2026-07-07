@@ -111,7 +111,7 @@ export const externalMigrationQueueFactory = ({
 
       await smtpService.sendMail({
         recipients: [actorEmail],
-        subjectLine: "Infisical import started",
+        subjectLine: "APIHarbor import started",
         substitutions: {
           provider: importType
         },
@@ -168,7 +168,7 @@ export const externalMigrationQueueFactory = ({
 
       await smtpService.sendMail({
         recipients: [actorEmail],
-        subjectLine: "Infisical import successful",
+        subjectLine: "APIHarbor import successful",
         substitutions: {
           provider: importType
         },
@@ -188,7 +188,7 @@ export const externalMigrationQueueFactory = ({
 
       await smtpService.sendMail({
         recipients: [job.data.actorEmail],
-        subjectLine: "Infisical import failed",
+        subjectLine: "APIHarbor import failed",
         substitutions: {
           provider: importType,
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment

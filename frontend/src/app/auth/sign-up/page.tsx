@@ -1,41 +1,16 @@
-import { Icons, SignUpForm } from "@/components";
-import Link from "next/link";
+import { SignUpForm } from "@/components";
+import AuthShell from "@/components/auth/auth-shell";
+import { generateMetadata } from "@/utils";
+
+export const metadata = generateMetadata({
+    title: `Sign up - ${process.env.NEXT_PUBLIC_APP_NAME || "APIHarbor"}`,
+});
 
 const SignUpPage = () => {
     return (
-        <div className="flex flex-col items-start max-w-sm mx-auto h-dvh overflow-hidden pt-4 md:pt-20">
-            <div className="flex items-center w-full py-8 border-b border-border/80">
-                <Link href="/#home" className="flex items-center gap-x-2">
-                    <Icons.logo className="w-6 h-6" />
-                    <h1 className="text-lg font-medium">
-                        APIHarbor
-                    </h1>
-                </Link>
-            </div>
-
+        <AuthShell action={{ label: "Log In", href: "/auth/sign-in" }}>
             <SignUpForm />
-
-            <div className="flex flex-col items-start w-full">
-                <p className="text-sm text-muted-foreground">
-                    By signing in, you agree to our{" "}
-                    <Link href="/terms" className="text-primary">
-                        Terms of Service{" "}
-                    </Link>
-                    and{" "}
-                    <Link href="/privacy" className="text-primary">
-                        Privacy Policy
-                    </Link>
-                </p>
-            </div>
-            <div className="flex items-start mt-auto border-t border-border/80 py-6 w-full">
-                <p className="text-sm text-muted-foreground">
-                    Already have an account?{" "}
-                    <Link href="/auth/sign-in" className="text-primary">
-                        Sign in
-                    </Link>
-                </p>
-            </div>
-        </div>
+        </AuthShell>
     )
 };
 

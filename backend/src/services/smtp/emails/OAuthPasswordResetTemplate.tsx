@@ -50,7 +50,7 @@ export const OAuthPasswordResetTemplate = ({
           <strong>Password reset is not available for this account.</strong>
         </Text>
         <Text className="text-[14px]">
-          A password reset was requested for your Infisical account ({email}), but password login has not been enabled
+          A password reset was requested for your APIHarbor account ({email}), but password login has not been enabled
           for your account.
         </Text>
         <Text className="text-[14px]">{getAuthMethodMessage()}</Text>
@@ -58,7 +58,7 @@ export const OAuthPasswordResetTemplate = ({
           If you did not initiate this request, please contact{" "}
           {isCloud ? (
             <>
-              us immediately at <BaseLink href="mailto:support@infisical.com">support@infisical.com</BaseLink>
+              us immediately at <BaseLink href="mailto:support@apiharbor.io">support@apiharbor.io</BaseLink>
             </>
           ) : (
             "your administrator immediately"
@@ -76,5 +76,5 @@ OAuthPasswordResetTemplate.PreviewProps = {
   email: "user@example.com",
   lastLoginMethod: "github",
   isCloud: true,
-  siteUrl: "https://infisical.com"
+  siteUrl: "https://apiharbor.io"
 } as OAuthPasswordResetTemplateProps;

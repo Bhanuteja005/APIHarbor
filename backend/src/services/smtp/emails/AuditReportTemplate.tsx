@@ -40,5 +40,5 @@ AuditReportTemplate.PreviewProps = {
     { label: "Stale Secrets", rowCount: 42, truncated: false },
     { label: "Secret Access Log", rowCount: 100000, truncated: true }
   ],
-  siteUrl: "https://infisical.com"
+  siteUrl: "https://apiharbor.io"
 } as AuditReportTemplateProps;

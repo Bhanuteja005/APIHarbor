@@ -26,8 +26,8 @@ export const HealthAlertTemplate = ({ siteUrl, names, type }: HealthAlertTemplat
         <Text className="text-black text-[14px] leading-[24px]">
           {type === "instance-relay" && (
             <>
-              If the issue persists, you can contact the Infisical team at{" "}
-              <BaseLink href="mailto:support@infisical.com">support@infisical.com</BaseLink>.
+              If the issue persists, you can contact the APIHarbor team at{" "}
+              <BaseLink href="mailto:support@apiharbor.io">support@apiharbor.io</BaseLink>.
             </>
           )}
           {type === "relay" && <>Please contact your relay administrators.</>}
@@ -43,5 +43,5 @@ export default HealthAlertTemplate;
 HealthAlertTemplate.PreviewProps = {
   type: "gateway",
   names: '"gateway1", "gateway2"',
-  siteUrl: "https://infisical.com"
+  siteUrl: "https://apiharbor.io"
 } as HealthAlertTemplateProps;

@@ -991,7 +991,7 @@ export const orgServiceFactory = ({
 
       await smtpService.sendMail({
         template: SmtpTemplates.OrgInvite,
-        subjectLine: "Infisical organization invitation",
+        subjectLine: "APIHarbor organization invitation",
         recipients: [inviteeOrgMembership.email as string],
         substitutions: {
           inviterFirstName: invitingUser.firstName,
@@ -1025,7 +1025,7 @@ export const orgServiceFactory = ({
 
     await smtpService.sendMail({
       template: SmtpTemplates.OrgInvite,
-      subjectLine: "Infisical organization invitation",
+      subjectLine: "APIHarbor organization invitation",
       recipients: [inviteeOrgMembership.email as string],
       substitutions: {
         inviterFirstName: invitingUser.firstName,
@@ -1400,7 +1400,7 @@ export const orgServiceFactory = ({
         try {
           await smtpService.sendMail({
             template: SmtpTemplates.OrgInvite,
-            subjectLine: `Reminder: You have been invited to ${org.name} on Infisical`,
+            subjectLine: `Reminder: You have been invited to ${org.name} on APIHarbor`,
             recipients: [invitedUser.inviteEmail as string],
             substitutions: {
               organizationName: org.name,

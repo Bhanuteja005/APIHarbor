@@ -1,6 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -12,7 +20,26 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { useTeamMembers } from "@/hooks/use-api-keys";
-import { useState } from "react";
+import {
+    useChangePassword,
+    useMe,
+    useRevokeAllSessions,
+    useRevokeSession,
+    useSessions,
+    useUpdateMyMfa,
+    useUpdateMyName,
+} from "@/hooks/use-account";
+import {
+    useInviteMember,
+    useOrganization,
+    useRemoveMember,
+    useUpdateMemberRole,
+    useUpdateOrgName,
+} from "@/hooks/use-org";
+import { formatDistanceToNow } from "date-fns";
+import { Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 interface SettingRowProps {
@@ -53,18 +80,183 @@ const BASE_ROLES = ["admin", "member", "no-access"];
 const roleOptionsFor = (role: string) =>
     BASE_ROLES.includes(role) ? BASE_ROLES : [role, ...BASE_ROLES];
 
+const describeUserAgent = (ua?: string | null) => {
+    if (!ua) return "Unknown device";
+    if (ua.toLowerCase().includes("cli")) return "CLI";
+    const browser =
+        ua.includes("Edg/") ? "Edge"
+            : ua.includes("Chrome/") ? "Chrome"
+                : ua.includes("Firefox/") ? "Firefox"
+                    : ua.includes("Safari/") ? "Safari"
+                        : "Browser";
+    const os =
+        ua.includes("Windows") ? "Windows"
+            : ua.includes("Mac OS") ? "macOS"
+                : ua.includes("Linux") ? "Linux"
+                    : ua.includes("Android") ? "Android"
+                        : ua.includes("iPhone") || ua.includes("iOS") ? "iOS"
+                            : null;
+    return os ? `${browser} on ${os}` : browser;
+};
+
 const SettingsPage = () => {
 
-    const [workspaceName, setWorkspaceName] = useState("My Project");
-    const [autoHealthChecks, setAutoHealthChecks] = useState(true);
-    const [checkFrequency, setCheckFrequency] = useState("hourly");
-    const [recheckFailing, setRecheckFailing] = useState(true);
-    const [monthlyBudget, setMonthlyBudget] = useState("2000");
+    const router = useRouter();
+
+    const org = useOrganization();
+    const updateOrgName = useUpdateOrgName();
+    const team = useTeamMembers();
+    const inviteMember = useInviteMember();
+    const updateRole = useUpdateMemberRole();
+    const removeMember = useRemoveMember();
+
+    const me = useMe();
+    const updateName = useUpdateMyName();
+    const updateMfa = useUpdateMyMfa();
+    const sessions = useSessions();
+    const revokeSession = useRevokeSession();
+    const revokeAllSessions = useRevokeAllSessions();
+    const changePassword = useChangePassword();
+
+    const [workspaceName, setWorkspaceName] = useState("");
+    const [displayName, setDisplayName] = useState("");
+    const [inviteOpen, setInviteOpen] = useState(false);
+    const [inviteEmail, setInviteEmail] = useState("");
+    const [inviteRole, setInviteRole] = useState("member");
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
     const [expiryAlerts, setExpiryAlerts] = useState(true);
     const [failingKeyAlerts, setFailingKeyAlerts] = useState(true);
     const [lowQuotaWarnings, setLowQuotaWarnings] = useState(true);
     const [weeklyDigest, setWeeklyDigest] = useState(false);
-    const team = useTeamMembers();
+
+    useEffect(() => {
+        if (org.data?.name) setWorkspaceName(org.data.name);
+    }, [org.data?.name]);
+
+    useEffect(() => {
+        if (me.data) {
+            setDisplayName([me.data.firstName, me.data.lastName].filter(Boolean).join(" "));
+        }
+    }, [me.data]);
+
+    const handleSaveWorkspace = async () => {
+        const name = workspaceName.trim();
+        if (!name) {
+            toast.error("Workspace name can't be empty.");
+            return;
+        }
+        try {
+            await updateOrgName.mutateAsync(name);
+            toast.success("Workspace name updated.");
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Couldn't rename the workspace.");
+        }
+    };
+
+    const handleInvite = async () => {
+        const email = inviteEmail.trim().toLowerCase();
+        if (!email) {
+            toast.error("Enter the teammate's email.");
+            return;
+        }
+        try {
+            await inviteMember.mutateAsync({ email, role: inviteRole });
+            toast.success(`Invitation sent to ${email}.`);
+            setInviteOpen(false);
+            setInviteEmail("");
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Couldn't send the invitation.");
+        }
+    };
+
+    const handleRoleChange = async (membershipId: string, role: string, memberName: string) => {
+        try {
+            await updateRole.mutateAsync({ membershipId, role });
+            toast.success(`${memberName} is now ${role === "no-access" ? "suspended" : `a ${role}`}.`);
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Couldn't change the role.");
+        }
+    };
+
+    const handleRemoveMember = async (membershipId: string, memberName: string) => {
+        try {
+            await removeMember.mutateAsync(membershipId);
+            toast.success(`${memberName} was removed from the workspace.`);
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Couldn't remove this member.");
+        }
+    };
+
+    const handleSaveName = async () => {
+        const name = displayName.trim();
+        if (!name) {
+            toast.error("Name can't be empty.");
+            return;
+        }
+        try {
+            await updateName.mutateAsync(name);
+            toast.success("Your name was updated.");
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Couldn't update your name.");
+        }
+    };
+
+    const handleToggleMfa = async (enabled: boolean) => {
+        try {
+            await updateMfa.mutateAsync(enabled);
+            toast.success(
+                enabled
+                    ? "Two-factor authentication enabled. You'll receive a code by email at sign-in."
+                    : "Two-factor authentication disabled."
+            );
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Couldn't update MFA.");
+        }
+    };
+
+    const handleChangePassword = async () => {
+        if (!oldPassword || !newPassword) {
+            toast.error("Current and new password are required.");
+            return;
+        }
+        if (newPassword.length < 14) {
+            toast.error("New password must be at least 14 characters long.");
+            return;
+        }
+        if (newPassword !== confirmPassword) {
+            toast.error("New passwords don't match.");
+            return;
+        }
+        try {
+            await changePassword.mutateAsync({ oldPassword, newPassword });
+            toast.success("Password changed. Please sign in again.");
+            router.push("/auth/sign-in");
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Couldn't change your password.");
+        }
+    };
+
+    const handleRevokeSession = async (sessionId: string) => {
+        try {
+            await revokeSession.mutateAsync(sessionId);
+            toast.success("Session revoked.");
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Couldn't revoke this session.");
+        }
+    };
+
+    const handleRevokeAllSessions = async () => {
+        try {
+            await revokeAllSessions.mutateAsync();
+            toast.success("All sessions revoked. Please sign in again.");
+            router.push("/auth/sign-in");
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Couldn't revoke sessions.");
+        }
+    };
 
     return (
         <div className="flex flex-col gap-6">
@@ -73,7 +265,7 @@ const SettingsPage = () => {
                     Settings
                 </h1>
                 <p className="mt-1 text-sm text-muted-foreground">
-                    Manage your workspace, monitoring, and notification preferences.
+                    Manage your workspace, team, account security, and notification preferences.
                 </p>
             </div>
 
@@ -90,102 +282,18 @@ const SettingsPage = () => {
                             <Input
                                 id="workspace-name"
                                 value={workspaceName}
+                                disabled={org.isPending}
                                 onChange={(e) => setWorkspaceName(e.target.value)}
-                            />
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <Label htmlFor="workspace-url">
-                                Workspace URL
-                            </Label>
-                            <Input
-                                id="workspace-url"
-                                defaultValue="apiharbor.io/my-project"
-                                disabled
+                                placeholder={org.isPending ? "Loading..." : "My organization"}
                             />
                         </div>
                         <div className="flex justify-end">
                             <Button
                                 size="sm"
-                                onClick={() => toast.info("Workspace renaming is coming soon.")}
+                                disabled={updateOrgName.isPending || org.isPending}
+                                onClick={handleSaveWorkspace}
                             >
-                                Save changes
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="rounded-2xl bg-card p-6">
-                    <h2 className="mb-4 text-base font-semibold">
-                        Monitoring
-                    </h2>
-                    <div className="flex flex-col gap-5">
-                        <SettingRow
-                            title="Automatic health checks"
-                            hint="Ping every tracked key on a schedule to verify it still works."
-                        >
-                            <Switch
-                                checked={autoHealthChecks}
-                                onCheckedChange={setAutoHealthChecks}
-                            />
-                        </SettingRow>
-                        <SettingRow
-                            title="Check frequency"
-                            hint="How often keys are validated against their providers."
-                        >
-                            <Select value={checkFrequency} onValueChange={setCheckFrequency}>
-                                <SelectTrigger className="w-[140px]">
-                                    <SelectValue />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="realtime">
-                                        Real-time
-                                    </SelectItem>
-                                    <SelectItem value="hourly">
-                                        Hourly
-                                    </SelectItem>
-                                    <SelectItem value="daily">
-                                        Daily
-                                    </SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </SettingRow>
-                        <SettingRow
-                            title="Re-check failing keys"
-                            hint="Retry keys that failed their last check more aggressively."
-                        >
-                            <Switch
-                                checked={recheckFailing}
-                                onCheckedChange={setRecheckFailing}
-                            />
-                        </SettingRow>
-                    </div>
-                </div>
-
-                <div className="rounded-2xl bg-card p-6">
-                    <h2 className="mb-4 text-base font-semibold">
-                        Budget
-                    </h2>
-                    <div className="flex flex-col gap-4">
-                        <div className="flex flex-col gap-2">
-                            <Label htmlFor="monthly-budget">
-                                Monthly budget (USD)
-                            </Label>
-                            <Input
-                                id="monthly-budget"
-                                type="number"
-                                value={monthlyBudget}
-                                onChange={(e) => setMonthlyBudget(e.target.value)}
-                            />
-                            <p className="text-xs text-muted-foreground">
-                                You&apos;ll be alerted when spend crosses 80% of this budget.
-                            </p>
-                        </div>
-                        <div className="flex justify-end">
-                            <Button
-                                size="sm"
-                                onClick={() => toast.success("Budget updated.")}
-                            >
-                                Save changes
+                                {updateOrgName.isPending ? "Saving..." : "Save changes"}
                             </Button>
                         </div>
                     </div>
@@ -204,7 +312,7 @@ const SettingsPage = () => {
                         <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => toast.info("Member invites are coming soon.")}
+                            onClick={() => setInviteOpen(true)}
                         >
                             Invite member
                         </Button>
@@ -232,6 +340,9 @@ const SettingsPage = () => {
                                     <div className="min-w-0 flex-1">
                                         <p className="text-sm font-medium">
                                             {member.name}
+                                            {member.isCurrentUser && (
+                                                <span className="ml-2 text-xs text-muted-foreground">(you)</span>
+                                            )}
                                         </p>
                                         <p className="text-xs text-muted-foreground">
                                             {member.email}
@@ -239,10 +350,8 @@ const SettingsPage = () => {
                                     </div>
                                     <Select
                                         value={member.role}
-                                        onValueChange={() =>
-                                            toast.info("Role changes are managed by your organization admin.")
-                                        }
-                                        disabled={member.isCurrentUser}
+                                        onValueChange={(role) => handleRoleChange(member.id, role, member.name)}
+                                        disabled={member.isCurrentUser || updateRole.isPending}
                                     >
                                         <SelectTrigger className="w-[120px]">
                                             <SelectValue />
@@ -255,13 +364,177 @@ const SettingsPage = () => {
                                             ))}
                                         </SelectContent>
                                     </Select>
+                                    {!member.isCurrentUser && (
+                                        <button
+                                            aria-label={`Remove ${member.name}`}
+                                            onClick={() => handleRemoveMember(member.id, member.name)}
+                                            className="text-muted-foreground transition-colors hover:text-red-500"
+                                        >
+                                            <Trash2 className="h-4 w-4" />
+                                        </button>
+                                    )}
                                 </div>
                             ))}
                         </div>
                     )}
                     <p className="mt-4 text-xs text-muted-foreground">
-                        Owners and admins can add and reveal keys. Members can add keys. Viewers have read-only access.
+                        Admins manage the workspace and its members. Members can add and validate keys.
                     </p>
+                </div>
+
+                <div className="rounded-2xl bg-card p-6">
+                    <h2 className="mb-4 text-base font-semibold">
+                        Account
+                    </h2>
+                    <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-2">
+                            <Label htmlFor="display-name">
+                                Your name
+                            </Label>
+                            <Input
+                                id="display-name"
+                                value={displayName}
+                                disabled={me.isPending}
+                                onChange={(e) => setDisplayName(e.target.value)}
+                                placeholder={me.isPending ? "Loading..." : "Your name"}
+                            />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <Label htmlFor="account-email">
+                                Email
+                            </Label>
+                            <Input
+                                id="account-email"
+                                value={me.data?.email ?? me.data?.username ?? ""}
+                                disabled
+                            />
+                        </div>
+                        <div className="flex justify-end">
+                            <Button
+                                size="sm"
+                                disabled={updateName.isPending || me.isPending}
+                                onClick={handleSaveName}
+                            >
+                                {updateName.isPending ? "Saving..." : "Save changes"}
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="rounded-2xl bg-card p-6">
+                    <h2 className="mb-4 text-base font-semibold">
+                        Security
+                    </h2>
+                    <div className="flex flex-col gap-5">
+                        <SettingRow
+                            title="Two-factor authentication"
+                            hint="Require a 6-digit email code every time you sign in."
+                        >
+                            <Switch
+                                checked={!!me.data?.isMfaEnabled}
+                                disabled={me.isPending || updateMfa.isPending}
+                                onCheckedChange={handleToggleMfa}
+                            />
+                        </SettingRow>
+
+                        <div className="border-t border-border pt-5">
+                            <p className="text-sm font-medium">
+                                Change password
+                            </p>
+                            <p className="mt-0.5 text-xs text-muted-foreground">
+                                You&apos;ll be signed out everywhere after changing it.
+                            </p>
+                            <div className="mt-4 flex flex-col gap-3">
+                                <Input
+                                    type="password"
+                                    value={oldPassword}
+                                    autoComplete="current-password"
+                                    onChange={(e) => setOldPassword(e.target.value)}
+                                    placeholder="Current password"
+                                />
+                                <Input
+                                    type="password"
+                                    value={newPassword}
+                                    autoComplete="new-password"
+                                    onChange={(e) => setNewPassword(e.target.value)}
+                                    placeholder="New password (at least 14 characters)"
+                                />
+                                <Input
+                                    type="password"
+                                    value={confirmPassword}
+                                    autoComplete="new-password"
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    placeholder="Confirm new password"
+                                />
+                                <div className="flex justify-end">
+                                    <Button
+                                        size="sm"
+                                        disabled={changePassword.isPending}
+                                        onClick={handleChangePassword}
+                                    >
+                                        {changePassword.isPending ? "Updating..." : "Change password"}
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="rounded-2xl bg-card p-6">
+                    <div className="mb-4 flex items-center justify-between gap-4">
+                        <div>
+                            <h2 className="text-base font-semibold">
+                                Active sessions
+                            </h2>
+                            <p className="mt-0.5 text-xs text-muted-foreground">
+                                Devices currently signed in to your account.
+                            </p>
+                        </div>
+                        <Button
+                            size="sm"
+                            variant="outline"
+                            disabled={revokeAllSessions.isPending}
+                            onClick={handleRevokeAllSessions}
+                        >
+                            Sign out everywhere
+                        </Button>
+                    </div>
+                    {sessions.isPending ? (
+                        <div className="flex flex-col gap-2">
+                            <div className="h-12 animate-pulse rounded bg-muted" />
+                            <div className="h-12 animate-pulse rounded bg-muted" />
+                        </div>
+                    ) : sessions.isError ? (
+                        <p className="text-xs text-muted-foreground">
+                            Couldn&apos;t load sessions: {sessions.error.message}
+                        </p>
+                    ) : (
+                        <div className="flex flex-col">
+                            {sessions.data.map((session) => (
+                                <div
+                                    key={session.id}
+                                    className="flex items-center gap-3 border-b border-border py-3 last:border-0"
+                                >
+                                    <div className="min-w-0 flex-1">
+                                        <p className="text-sm font-medium">
+                                            {describeUserAgent(session.userAgent)}
+                                        </p>
+                                        <p className="text-xs text-muted-foreground">
+                                            {session.ip} · last active {formatDistanceToNow(new Date(session.lastUsed))} ago
+                                        </p>
+                                    </div>
+                                    <Button
+                                        size="sm"
+                                        variant="ghost"
+                                        disabled={revokeSession.isPending}
+                                        onClick={() => handleRevokeSession(session.id)}
+                                    >
+                                        Revoke
+                                    </Button>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 <div className="rounded-2xl bg-card p-6">
@@ -319,13 +592,53 @@ const SettingsPage = () => {
                         <Button
                             variant="destructive"
                             size="sm"
-                            onClick={() => toast.error("Workspace deletion is disabled in the demo.")}
+                            onClick={() => toast.error("Contact support to delete your workspace.")}
                         >
                             Delete workspace
                         </Button>
                     </SettingRow>
                 </div>
             </div>
+
+            <Dialog open={inviteOpen} onOpenChange={setInviteOpen}>
+                <DialogContent className="sm:max-w-sm">
+                    <DialogHeader>
+                        <DialogTitle>Invite a team member</DialogTitle>
+                        <DialogDescription>
+                            They&apos;ll receive an email invitation to join this workspace.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-2">
+                            <Label htmlFor="invite-email">Email</Label>
+                            <Input
+                                id="invite-email"
+                                type="email"
+                                value={inviteEmail}
+                                onChange={(e) => setInviteEmail(e.target.value)}
+                                placeholder="teammate@company.com"
+                            />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <Label>Role</Label>
+                            <Select value={inviteRole} onValueChange={setInviteRole}>
+                                <SelectTrigger>
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="admin">Admin</SelectItem>
+                                    <SelectItem value="member">Member</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button onClick={handleInvite} disabled={inviteMember.isPending}>
+                            {inviteMember.isPending ? "Sending..." : "Send invitation"}
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 };

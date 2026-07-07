@@ -235,7 +235,7 @@ export const newOrgMembershipUserFactory = ({
       if (emails.length) {
         await smtpService.sendMail({
           template: SmtpTemplates.SubOrgInvite,
-          subjectLine: "Infisical sub-organization invitation",
+          subjectLine: "APIHarbor sub-organization invitation",
           recipients: emails,
           substitutions: {
             subOrganizationName: orgDetails.slug,
@@ -261,7 +261,7 @@ export const newOrgMembershipUserFactory = ({
         emails.map((email) =>
           smtpService.sendMail({
             template: SmtpTemplates.OrgInvite,
-            subjectLine: "Infisical organization invitation",
+            subjectLine: "APIHarbor organization invitation",
             recipients: [email],
             substitutions: {
               inviterFirstName: actorDetails?.firstName,
@@ -291,7 +291,7 @@ export const newOrgMembershipUserFactory = ({
 
             await smtpService.sendMail({
               template: SmtpTemplates.OrgInvite,
-              subjectLine: "Infisical organization invitation",
+              subjectLine: "APIHarbor organization invitation",
               recipients: [el.email],
               substitutions: {
                 inviterFirstName: actorDetails?.firstName,

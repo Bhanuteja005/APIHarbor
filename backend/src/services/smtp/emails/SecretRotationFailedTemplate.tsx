@@ -49,7 +49,7 @@ export const SecretRotationFailedTemplate = ({
         <BaseButton
           href={`${rotationUrl}?search=${encodeURIComponent(rotationName)}&secretPath=${encodeURIComponent(secretPath)}&environments=${encodeURIComponent(environmentSlug)}&filterBy=rotation`}
         >
-          View in Infisical
+          View in APIHarbor
         </BaseButton>
       </Section>
     </BaseEmailWrapper>
@@ -60,12 +60,12 @@ export default SecretRotationFailedTemplate;
 
 SecretRotationFailedTemplate.PreviewProps = {
   rotationType: "Auth0 Client Secret",
-  rotationUrl: "https://infisical.com",
+  rotationUrl: "https://apiharbor.io",
   content: "See Rotation status for details",
   projectName: "Example Project",
   secretPath: "/api/secrets",
   environment: "Production",
   environmentSlug: "production",
   rotationName: "my-auth0-rotation",
-  siteUrl: "https://infisical.com"
+  siteUrl: "https://apiharbor.io"
 } as SecretRotationFailedTemplateProps;

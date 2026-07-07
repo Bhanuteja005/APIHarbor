@@ -2,29 +2,22 @@
 
 import {
     CreateApiKeyInput,
+    RecordUsageInput,
     UpdateApiKeyInput,
     createApiKey,
     deleteApiKey,
+    getKeyHealthChecks,
+    getKeyUsage,
     getSpendSummary,
     listApiKeys,
     listTeamMembers,
+    recordApiKeyUsage,
     revealApiKey,
     updateApiKey,
     validateApiKey,
 } from "@/actions/api-keys";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
-// Server actions return { data } | { error, unauthorized? }. Unwrap them into
-// React Query's throw-based error handling, bouncing to sign-in on expiry.
-const unwrap = <T>(result: { data: T } | { error: string; unauthorized?: boolean }): T => {
-    if ("error" in result) {
-        if (result.unauthorized && typeof window !== "undefined") {
-            window.location.href = "/auth/sign-in";
-        }
-        throw new Error(result.error);
-    }
-    return result.data;
-};
+import { unwrap } from "./query-utils";
 
 export const useApiKeys = () =>
     useQuery({
@@ -89,4 +82,30 @@ export const useValidateApiKey = () => {
 export const useRevealApiKey = () =>
     useMutation({
         mutationFn: async (apiKeyId: string) => unwrap(await revealApiKey({ apiKeyId })),
+    });
+
+export const useRecordUsage = () => {
+    const client = useQueryClient();
+    const invalidate = useInvalidateKeys();
+    return useMutation({
+        mutationFn: async (input: RecordUsageInput) => unwrap(await recordApiKeyUsage(input)),
+        onSuccess: (_data, input) => {
+            invalidate();
+            client.invalidateQueries({ queryKey: ["key-usage", input.apiKeyId] });
+        },
+    });
+};
+
+export const useKeyHealthChecks = (apiKeyId: string | null, limit = 20) =>
+    useQuery({
+        queryKey: ["key-health-checks", apiKeyId, limit],
+        queryFn: async () => unwrap(await getKeyHealthChecks({ apiKeyId: apiKeyId!, limit })),
+        enabled: !!apiKeyId,
+    });
+
+export const useKeyUsage = (apiKeyId: string | null, days = 30) =>
+    useQuery({
+        queryKey: ["key-usage", apiKeyId, days],
+        queryFn: async () => unwrap(await getKeyUsage({ apiKeyId: apiKeyId!, days })),
+        enabled: !!apiKeyId,
     });

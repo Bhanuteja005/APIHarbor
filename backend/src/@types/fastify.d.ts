@@ -79,6 +79,7 @@ import { TAuthMode } from "@app/server/plugins/auth/inject-identity";
 import { TAccountRecoveryServiceFactory } from "@app/services/account-recovery/account-recovery-service";
 import { TAdditionalPrivilegeServiceFactory } from "@app/services/additional-privilege/additional-privilege-service";
 import { TAnnouncementServiceFactory } from "@app/services/announcement/announcement-service";
+import { TApiKeyServiceFactory } from "@app/services/api-key/api-key-service";
 import { TAppConnectionServiceFactory } from "@app/services/app-connection/app-connection-service";
 import { TAppConnectionCredentialRotationServiceFactory } from "@app/services/app-connection/credential-rotation";
 import { TApprovalPolicyServiceFactory } from "@app/services/approval-policy/approval-policy-service";
@@ -284,6 +285,7 @@ declare module "fastify" {
   interface FastifyInstance {
     redis: Redis | Cluster;
     services: {
+      apiKey: TApiKeyServiceFactory;
       login: TAuthLoginFactory;
       password: TAuthPasswordFactory;
       accountRecovery: TAccountRecoveryServiceFactory;

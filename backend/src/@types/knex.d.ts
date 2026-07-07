@@ -3,6 +3,15 @@ import { Knex as KnexOriginal } from "knex";
 import {
   TableName,
   TAccessApprovalPolicies,
+  TApiharborKeyHealthChecks,
+  TApiharborKeyHealthChecksInsert,
+  TApiharborKeyHealthChecksUpdate,
+  TApiharborKeys,
+  TApiharborKeysInsert,
+  TApiharborKeysUpdate,
+  TApiharborKeyUsage,
+  TApiharborKeyUsageInsert,
+  TApiharborKeyUsageUpdate,
   TAccessApprovalPoliciesApprovers,
   TAccessApprovalPoliciesApproversInsert,
   TAccessApprovalPoliciesApproversUpdate,
@@ -841,6 +850,17 @@ declare module "knex" {
 
 declare module "knex/types/tables" {
   interface Tables {
+    [TableName.ApiHarborKey]: KnexOriginal.CompositeTableType<TApiharborKeys, TApiharborKeysInsert, TApiharborKeysUpdate>;
+    [TableName.ApiHarborKeyHealthCheck]: KnexOriginal.CompositeTableType<
+      TApiharborKeyHealthChecks,
+      TApiharborKeyHealthChecksInsert,
+      TApiharborKeyHealthChecksUpdate
+    >;
+    [TableName.ApiHarborKeyUsage]: KnexOriginal.CompositeTableType<
+      TApiharborKeyUsage,
+      TApiharborKeyUsageInsert,
+      TApiharborKeyUsageUpdate
+    >;
     [TableName.Users]: KnexOriginal.CompositeTableType<TUsers, TUsersInsert, TUsersUpdate>;
     [TableName.Groups]: KnexOriginal.CompositeTableType<TGroups, TGroupsInsert, TGroupsUpdate>;
     [TableName.SshHostGroup]: KnexOriginal.CompositeTableType<

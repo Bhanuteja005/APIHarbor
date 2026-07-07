@@ -87,7 +87,7 @@ export const userServiceFactory = ({
 
     await smtpService.sendMail({
       template: SmtpTemplates.EmailVerification,
-      subjectLine: `Infisical confirmation code: ${userToken}`,
+      subjectLine: `APIHarbor confirmation code: ${userToken}`,
       recipients: [user.email],
       substitutions: {
         code: userToken
@@ -203,7 +203,7 @@ export const userServiceFactory = ({
 
         await smtpService.sendMail({
           template: SmtpTemplates.EmailChangeRequestNotification,
-          subjectLine: "Confirm your Infisical email change",
+          subjectLine: "Confirm your APIHarbor email change",
           recipients: [user.email],
           substitutions: {
             currentEmail: user.email,
@@ -275,7 +275,7 @@ export const userServiceFactory = ({
 
       await smtpService.sendMail({
         template: SmtpTemplates.EmailVerification,
-        subjectLine: "Infisical email change verification",
+        subjectLine: "APIHarbor email change verification",
         recipients: [newEmail],
         substitutions: {
           code: newEmailOtpCode
@@ -415,7 +415,7 @@ export const userServiceFactory = ({
         // Send email to user to confirm account deletion
         await smtpService.sendMail({
           template: SmtpTemplates.AccountDeletionConfirmation,
-          subjectLine: "Your Infisical account has been deleted",
+          subjectLine: "Your APIHarbor account has been deleted",
           recipients: [user.email],
           substitutions: {
             email: user.email

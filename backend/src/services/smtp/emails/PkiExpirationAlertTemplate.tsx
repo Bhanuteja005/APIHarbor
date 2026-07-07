@@ -127,6 +127,6 @@ PkiExpirationAlertTemplate.PreviewProps = {
     }
   ],
   alertName: "Production SSL Certificate Expiration Alert",
-  viewUrl: "https://infisical.com/organizations/org-1/projects/cert-manager/proj-1/inventory",
-  siteUrl: "https://infisical.com"
+  viewUrl: "https://apiharbor.io/organizations/org-1/projects/cert-manager/proj-1/inventory",
+  siteUrl: "https://apiharbor.io"
 } as PkiExpirationAlertTemplateProps;

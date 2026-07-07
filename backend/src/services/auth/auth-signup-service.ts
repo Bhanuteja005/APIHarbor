@@ -84,7 +84,7 @@ export const authSignupServiceFactory = ({
       await smtpService
         .sendMail({
           template: SmtpTemplates.SignupExistingAccount,
-          subjectLine: "Sign-up Request for Your Infisical Account",
+          subjectLine: "Sign-up Request for Your APIHarbor Account",
           recipients: [sanitizedEmail],
           substitutions: {
             email: sanitizedEmail,
@@ -103,7 +103,7 @@ export const authSignupServiceFactory = ({
     await smtpService
       .sendMail({
         template: SmtpTemplates.SignupEmailVerification,
-        subjectLine: `Infisical confirmation code: ${token}`,
+        subjectLine: `APIHarbor confirmation code: ${token}`,
         recipients: [sanitizedEmail],
         substitutions: {
           code: token

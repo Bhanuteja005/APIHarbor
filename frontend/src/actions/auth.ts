@@ -152,6 +152,102 @@ export const completeSignup = async ({ name, organization, password, attribution
     }
 };
 
+interface AcceptInviteInput {
+    email: string;
+    organizationId: string;
+    code: string;
+    name: string;
+    password: string;
+}
+
+export const acceptInvite = async ({ email, organizationId, code, name, password }: AcceptInviteInput) => {
+    if (!email || !organizationId || !code) {
+        return { error: "This invite link is invalid or has expired." };
+    }
+    if (!name || !password) return { error: "Name and password are required" };
+
+    try {
+        const verify = await apiFetch<{ message: string; token?: string }>(
+            "/api/v1/invite-org/verify",
+            { method: "POST", body: { email: email.toLowerCase(), organizationId, code } }
+        );
+
+        if (!verify.data.token) {
+            return { error: "This invite link is invalid or has expired. Ask for a new invitation." };
+        }
+
+        const res = await apiFetch<{ token: string }>("/api/v3/signup/complete-account", {
+            method: "POST",
+            token: verify.data.token,
+            body: {
+                type: "email",
+                email: email.toLowerCase(),
+                firstName: name.split(" ")[0],
+                lastName: name.split(" ").slice(1).join(" ") || undefined,
+                password,
+            },
+        });
+
+        const session = await bootstrapSession(res.data.token);
+        if (session.mfaRequired) {
+            cookies().set(MFA_COOKIE, JSON.stringify(session), shortLived);
+            return { mfaRequired: true, mfaMethod: session.mfaMethod };
+        }
+
+        setSessionCookies(session);
+        return { success: true };
+    } catch (error) {
+        return { error: toErrorMessage(error) };
+    }
+};
+
+export const sendRecoveryEmail = async ({ email }: { email: string }) => {
+    if (!email) return { error: "Email is required" };
+
+    try {
+        await apiFetch<{ message: string }>("/api/v1/account-recovery/send-email", {
+            method: "POST",
+            body: { email },
+        });
+        return { success: true };
+    } catch (error) {
+        return { error: toErrorMessage(error) };
+    }
+};
+
+export const resetPasswordWithCode = async ({
+    email,
+    code,
+    newPassword,
+}: {
+    email: string;
+    code: string;
+    newPassword: string;
+}) => {
+    if (!email || !code) return { error: "This recovery link is invalid or has expired." };
+    if (!newPassword) return { error: "New password is required" };
+
+    try {
+        const verify = await apiFetch<{ token: string }>("/api/v1/account-recovery/verify-email", {
+            method: "POST",
+            body: { email, code },
+        });
+
+        await apiFetch("/api/v2/password/password-reset", {
+            method: "POST",
+            token: verify.data.token,
+            body: { newPassword },
+        });
+
+        return { success: true };
+    } catch (error) {
+        if (error instanceof ApiError && (error.status === 400 || error.status === 401)) {
+            return { error: "This recovery link is invalid or has expired. Request a new one." };
+        }
+        return { error: toErrorMessage(error) };
+    }
+};
+
 export const logout = async () => {
     const session = getSession();
 

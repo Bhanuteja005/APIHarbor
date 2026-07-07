@@ -783,7 +783,7 @@ export const samlConfigServiceFactory = ({
 
       await smtpService.sendMail({
         template: SmtpTemplates.EmailVerification,
-        subjectLine: `Infisical confirmation code: ${token}`,
+        subjectLine: `APIHarbor confirmation code: ${token}`,
         recipients: [user.email],
         substitutions: {
           code: token

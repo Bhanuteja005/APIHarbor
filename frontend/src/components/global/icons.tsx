@@ -4,10 +4,9 @@ export const Icons = {
     logo: (props: LucideProps) => (
         <svg {...props} width="1600" height="1600" viewBox="0 0 1600 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="1600" height="1600" rx="275" fill="url(#paint0_radial_133_317)" />
-            <g transform="translate(320 320) scale(40)" stroke="black" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="5" r="3" />
-                <path d="M12 22V8" />
-                <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
+            <g transform="translate(320 320) scale(40)" stroke="black" strokeWidth="2.25" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 12c-2-2.96-4.5-4.5-7-4.5A4.5 4.5 0 1 0 5 16.5c2.5 0 5-1.54 7-4.5Z" />
+                <path d="M12 12c2 2.96 4.5 4.5 7 4.5a4.5 4.5 0 0 0 0-9c-2.5 0-5 1.54-7 4.5Z" />
             </g>
             <defs>
                 <radialGradient id="paint0_radial_133_317" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 800) rotate(90) scale(800)">

@@ -2,7 +2,7 @@
 
 import { useSession } from "@/components/auth/use-session";
 import { useDashTheme } from "@/components/dashboard/theme";
-import { Anchor, Bell, Moon, Sun } from "lucide-react";
+import { Bell, Infinity as InfinityIcon, Moon, Sun } from "lucide-react";
 import Link from "next/link";
 
 const DashboardNavbar = () => {
@@ -16,7 +16,7 @@ const DashboardNavbar = () => {
         <header className="sticky top-0 z-30 flex h-16 items-center border-b border-border bg-card px-4 lg:px-6">
             <Link href="/dashboard" className="flex items-center gap-x-2 md:hidden">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                    <Anchor className="h-4 w-4 text-primary-foreground" />
+                    <InfinityIcon className="h-5 w-5 text-primary-foreground" strokeWidth={2.25} />
                 </div>
                 <span className="font-heading text-lg font-bold">
                     APIHarbor

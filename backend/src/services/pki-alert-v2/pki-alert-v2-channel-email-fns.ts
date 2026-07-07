@@ -50,7 +50,7 @@ export const sendEmailNotification = async (
 
   await smtpService.sendMail({
     recipients: config.recipients,
-    subjectLine: `Infisical Certificate ${eventLabel} Alert - ${alert.name}`,
+    subjectLine: `APIHarbor Certificate ${eventLabel} Alert - ${alert.name}`,
     substitutions: {
       alertName: alert.name,
       alertBeforeDays,

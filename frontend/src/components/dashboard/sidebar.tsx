@@ -4,7 +4,6 @@ import { logout } from "@/actions";
 import { useSession } from "@/components/auth/use-session";
 import { cn } from "@/utils";
 import {
-    Anchor,
     ChevronsUpDown,
     CircleUserRound,
     Headphones,
@@ -12,9 +11,11 @@ import {
     LayoutGrid,
     LineChart,
     LogOut,
+    ScrollText,
     Search,
     Settings,
     Waypoints,
+    Infinity as InfinityIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -25,6 +26,7 @@ const NAV_ITEMS = [
     { label: "API Keys", href: "/dashboard/keys", icon: KeyRound },
     { label: "Analytics", href: "/dashboard/analytics", icon: LineChart },
     { label: "Providers", href: "/dashboard/providers", icon: Waypoints },
+    { label: "Audit Logs", href: "/dashboard/audit-logs", icon: ScrollText },
     { label: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
 
@@ -45,7 +47,7 @@ const Sidebar = () => {
         <aside className="fixed inset-y-0 left-0 z-40 hidden w-[270px] flex-col border-r border-border bg-card md:flex">
             <div className="flex items-center gap-x-3 px-5 pt-6">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary">
-                    <Anchor className="h-5 w-5 text-primary-foreground" />
+                    <InfinityIcon className="h-6 w-6 text-primary-foreground" strokeWidth={2.25} />
                 </div>
                 <span className="font-heading text-2xl font-bold tracking-tight">
                     APIHarbor

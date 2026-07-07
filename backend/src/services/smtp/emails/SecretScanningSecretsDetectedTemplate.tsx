@@ -27,11 +27,11 @@ export const SecretScanningSecretsDetectedTemplate = ({
   return (
     <BaseEmailWrapper
       title="Incident Alert: Secret(s) Leaked"
-      preview="Infisical uncovered one or more leaked secrets."
+      preview="APIHarbor uncovered one or more leaked secrets."
       siteUrl={siteUrl}
     >
       <Heading className="text-black text-[18px] leading-[28px] text-center font-normal p-0 mx-0">
-        Infisical has uncovered <strong>{numberOfSecrets}</strong> secret(s)
+        APIHarbor has uncovered <strong>{numberOfSecrets}</strong> secret(s)
         {isDiffScan ? " from a recent commit to" : " in"} <strong>{resourceName}</strong>
       </Heading>
       <Section className="px-[24px] mb-[28px] mt-[36px] pt-[8px] pb-[8px] text-[14px] border border-solid border-gray-200 rounded-md bg-gray-50">
@@ -68,7 +68,7 @@ export const SecretScanningSecretsDetectedTemplate = ({
         </Text>
         <Text className="text-[14px]">
           Once you have taken action, be sure to update the finding status in the{" "}
-          <BaseLink href={url}>Infisical Dashboard</BaseLink>.
+          <BaseLink href={url}>APIHarbor Dashboard</BaseLink>.
         </Text>
       </Section>
       <Section className="text-center">
@@ -82,10 +82,10 @@ export default SecretScanningSecretsDetectedTemplate;
 
 SecretScanningSecretsDetectedTemplate.PreviewProps = {
   authorName: "Jim",
-  authorEmail: "jim@infisical.com",
+  authorEmail: "jim@apiharbor.io",
   resourceName: "my-resource",
   numberOfSecrets: 3,
-  url: "https://infisical.com",
+  url: "https://apiharbor.io",
   isDiffScan: true,
-  siteUrl: "https://infisical.com"
+  siteUrl: "https://apiharbor.io"
 } as SecretScanningSecretsDetectedTemplateProps;

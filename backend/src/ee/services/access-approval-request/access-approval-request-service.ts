@@ -858,7 +858,7 @@ export const accessApprovalRequestServiceFactory = ({
             if (recipientEmails.length > 0) {
               await smtpService.sendMail({
                 recipients: recipientEmails,
-                subjectLine: "Infisical Secret Access Policy Bypassed",
+                subjectLine: "APIHarbor Secret Access Policy Bypassed",
                 substitutions: {
                   projectName: project.name,
                   requesterFullName: `${actingUser.firstName} ${actingUser.lastName}`,

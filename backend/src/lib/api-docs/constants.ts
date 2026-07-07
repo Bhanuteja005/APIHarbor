@@ -387,7 +387,7 @@ export const ALICLOUD_AUTH = {
   },
   ATTACH: {
     identityId: "The ID of the machine identity to attach the configuration onto.",
-    allowedArns: "The comma-separated list of trusted ARNs that are allowed to authenticate with Infisical.",
+    allowedArns: "The comma-separated list of trusted ARNs that are allowed to authenticate with APIHarbor.",
     accessTokenTTL: "The lifetime for an access token in seconds.",
     accessTokenMaxTTL: "The maximum lifetime for an access token in seconds.",
     accessTokenNumUsesLimit: "The maximum number of times that an access token can be used.",
@@ -395,7 +395,7 @@ export const ALICLOUD_AUTH = {
   },
   UPDATE: {
     identityId: "The ID of the machine identity to update the auth method for.",
-    allowedArns: "The comma-separated list of trusted ARNs that are allowed to authenticate with Infisical.",
+    allowedArns: "The comma-separated list of trusted ARNs that are allowed to authenticate with APIHarbor.",
     accessTokenTTL: "The new lifetime for an access token in seconds.",
     accessTokenMaxTTL: "The new maximum lifetime for an access token in seconds.",
     accessTokenNumUsesLimit: "The new maximum number of times that an access token can be used.",
@@ -417,9 +417,9 @@ export const TLS_CERT_AUTH = {
   ATTACH: {
     identityId: "The ID of the machine identity to attach the configuration onto.",
     allowedCommonNames:
-      "The comma-separated list of trusted common names that are allowed to authenticate with Infisical.",
+      "The comma-separated list of trusted common names that are allowed to authenticate with APIHarbor.",
     allowedSubjectAltNames:
-      "The comma-separated list of trusted subject alternative names that are allowed to authenticate with Infisical. Prefix entries by type (URI:, DNS:, IP:, EMAIL:). Bare entries are treated as DNS names.",
+      "The comma-separated list of trusted subject alternative names that are allowed to authenticate with APIHarbor. Prefix entries by type (URI:, DNS:, IP:, EMAIL:). Bare entries are treated as DNS names.",
     caCertificate: "The PEM-encoded CA certificate to validate client certificates.",
     accessTokenTTL: "The lifetime for an access token in seconds.",
     accessTokenMaxTTL: "The maximum lifetime for an access token in seconds.",
@@ -429,9 +429,9 @@ export const TLS_CERT_AUTH = {
   UPDATE: {
     identityId: "The ID of the machine identity to update the auth method for.",
     allowedCommonNames:
-      "The comma-separated list of trusted common names that are allowed to authenticate with Infisical.",
+      "The comma-separated list of trusted common names that are allowed to authenticate with APIHarbor.",
     allowedSubjectAltNames:
-      "The comma-separated list of trusted subject alternative names that are allowed to authenticate with Infisical. Prefix entries by type (URI:, DNS:, IP:, EMAIL:). Bare entries are treated as DNS names.",
+      "The comma-separated list of trusted subject alternative names that are allowed to authenticate with APIHarbor. Prefix entries by type (URI:, DNS:, IP:, EMAIL:). Bare entries are treated as DNS names.",
     caCertificate: "The PEM-encoded CA certificate to validate client certificates.",
     accessTokenTTL: "The new lifetime for an access token in seconds.",
     accessTokenMaxTTL: "The new maximum lifetime for an access token in seconds.",
@@ -460,9 +460,9 @@ export const AWS_AUTH = {
   ATTACH: {
     identityId: "The ID of the machine identity to attach the configuration onto.",
     allowedPrincipalArns:
-      "The comma-separated list of trusted IAM principal ARNs that are allowed to authenticate with Infisical.",
+      "The comma-separated list of trusted IAM principal ARNs that are allowed to authenticate with APIHarbor.",
     allowedAccountIds:
-      "The comma-separated list of trusted AWS account IDs that are allowed to authenticate with Infisical.",
+      "The comma-separated list of trusted AWS account IDs that are allowed to authenticate with APIHarbor.",
     accessTokenTTL: "The lifetime for an access token in seconds.",
     accessTokenMaxTTL: "The maximum lifetime for an access token in seconds.",
     stsEndpoint: "The endpoint URL for the AWS STS API.",
@@ -472,9 +472,9 @@ export const AWS_AUTH = {
   UPDATE: {
     identityId: "The ID of the machine identity to update the auth method for.",
     allowedPrincipalArns:
-      "The new comma-separated list of trusted IAM principal ARNs that are allowed to authenticate with Infisical.",
+      "The new comma-separated list of trusted IAM principal ARNs that are allowed to authenticate with APIHarbor.",
     allowedAccountIds:
-      "The new comma-separated list of trusted AWS account IDs that are allowed to authenticate with Infisical.",
+      "The new comma-separated list of trusted AWS account IDs that are allowed to authenticate with APIHarbor.",
     accessTokenTTL: "The new lifetime for an access token in seconds.",
     accessTokenMaxTTL: "The new maximum lifetime for an access token in seconds.",
     stsEndpoint: "The new endpoint URL for the AWS STS API.",
@@ -500,7 +500,7 @@ export const OCI_AUTH = {
     identityId: "The ID of the machine identity to attach the configuration onto.",
     tenancyOcid: "The OCID of your tenancy.",
     allowedUsernames:
-      "The comma-separated list of trusted OCI account usernames that are allowed to authenticate with Infisical.",
+      "The comma-separated list of trusted OCI account usernames that are allowed to authenticate with APIHarbor.",
     accessTokenTTL: "The lifetime for an access token in seconds.",
     accessTokenMaxTTL: "The maximum lifetime for an access token in seconds.",
     accessTokenNumUsesLimit: "The maximum number of times that an access token can be used.",
@@ -510,7 +510,7 @@ export const OCI_AUTH = {
     identityId: "The ID of the machine identity to update the auth method for.",
     tenancyOcid: "The OCID of your tenancy.",
     allowedUsernames:
-      "The comma-separated list of trusted OCI account usernames that are allowed to authenticate with Infisical.",
+      "The comma-separated list of trusted OCI account usernames that are allowed to authenticate with APIHarbor.",
     accessTokenTTL: "The new lifetime for an access token in seconds.",
     accessTokenMaxTTL: "The new maximum lifetime for an access token in seconds.",
     accessTokenNumUsesLimit: "The new maximum number of times that an access token can be used.",
@@ -534,7 +534,7 @@ export const AZURE_AUTH = {
     tenantId: "The tenant ID for the Azure AD organization.",
     resource: "The resource URL for the application registered in Azure AD.",
     allowedServicePrincipalIds:
-      "The comma-separated list of Azure AD service principal IDs that are allowed to authenticate with Infisical.",
+      "The comma-separated list of Azure AD service principal IDs that are allowed to authenticate with APIHarbor.",
     accessTokenTrustedIps: "The IPs or CIDR ranges that access tokens can be used from.",
     accessTokenTTL: "The lifetime for an access token in seconds.",
     accessTokenMaxTTL: "The maximum lifetime for an access token in seconds.",
@@ -545,7 +545,7 @@ export const AZURE_AUTH = {
     tenantId: "The new tenant ID for the Azure AD organization.",
     resource: "The new resource URL for the application registered in Azure AD.",
     allowedServicePrincipalIds:
-      "The new comma-separated list of Azure AD service principal IDs that are allowed to authenticate with Infisical.",
+      "The new comma-separated list of Azure AD service principal IDs that are allowed to authenticate with APIHarbor.",
     accessTokenTrustedIps: "The new IPs or CIDR ranges that access tokens can be used from.",
     accessTokenTTL: "The new lifetime for an access token in seconds.",
     accessTokenMaxTTL: "The new maximum lifetime for an access token in seconds.",
@@ -567,11 +567,11 @@ export const GCP_AUTH = {
   ATTACH: {
     identityId: "The ID of the machine identity to attach the configuration onto.",
     allowedServiceAccounts:
-      "The comma-separated list of trusted service account emails corresponding to the GCE resource(s) allowed to authenticate with Infisical.",
+      "The comma-separated list of trusted service account emails corresponding to the GCE resource(s) allowed to authenticate with APIHarbor.",
     allowedProjects:
-      "The comma-separated list of trusted GCP projects that the GCE instance must belong to authenticate with Infisical.",
+      "The comma-separated list of trusted GCP projects that the GCE instance must belong to authenticate with APIHarbor.",
     allowedZones:
-      "The comma-separated list of trusted zones that the GCE instances must belong to authenticate with Infisical.",
+      "The comma-separated list of trusted zones that the GCE instances must belong to authenticate with APIHarbor.",
     accessTokenTrustedIps: "The IPs or CIDR ranges that access tokens can be used from.",
     accessTokenTTL: "The lifetime for an access token in seconds.",
     accessTokenMaxTTL: "The maximum lifetime for an access token in seconds.",
@@ -580,11 +580,11 @@ export const GCP_AUTH = {
   UPDATE: {
     identityId: "The ID of the machine identity to update the auth method for.",
     allowedServiceAccounts:
-      "The new comma-separated list of trusted service account emails corresponding to the GCE resource(s) allowed to authenticate with Infisical.",
+      "The new comma-separated list of trusted service account emails corresponding to the GCE resource(s) allowed to authenticate with APIHarbor.",
     allowedProjects:
-      "The new comma-separated list of trusted GCP projects that the GCE instance must belong to authenticate with Infisical.",
+      "The new comma-separated list of trusted GCP projects that the GCE instance must belong to authenticate with APIHarbor.",
     allowedZones:
-      "The new comma-separated list of trusted zones that the GCE instances must belong to authenticate with Infisical.",
+      "The new comma-separated list of trusted zones that the GCE instances must belong to authenticate with APIHarbor.",
     accessTokenTrustedIps: "The new IPs or CIDR ranges that access tokens can be used from.",
     accessTokenTTL: "The new lifetime for an access token in seconds.",
     accessTokenMaxTTL: "The new maximum lifetime for an access token in seconds.",
@@ -615,10 +615,10 @@ export const KUBERNETES_AUTH = {
     tokenReviewMode:
       "The mode to use for token review. Must be one of: 'api', 'gateway'. If gateway is selected, the gateway must be deployed in Kubernetes, and the gateway must have the system:auth-delegator ClusterRole binding.",
     allowedNamespaces:
-      "The comma-separated list of trusted namespaces that service accounts must belong to authenticate with Infisical.",
-    allowedNames: "The comma-separated list of trusted service account names that can authenticate with Infisical.",
+      "The comma-separated list of trusted namespaces that service accounts must belong to authenticate with APIHarbor.",
+    allowedNames: "The comma-separated list of trusted service account names that can authenticate with APIHarbor.",
     allowedAudience:
-      "The optional audience claim that the service account JWT token must have to authenticate with Infisical.",
+      "The optional audience claim that the service account JWT token must have to authenticate with APIHarbor.",
     gatewayId: "The ID of the gateway to use when performing kubernetes API requests.",
     accessTokenTrustedIps: "The IPs or CIDR ranges that access tokens can be used from.",
     accessTokenTTL: "The lifetime for an access token in seconds.",
@@ -637,10 +637,10 @@ export const KUBERNETES_AUTH = {
     tokenReviewMode:
       "The mode to use for token review. Must be one of: 'api', 'gateway'. If gateway is selected, the gateway must be deployed in Kubernetes, and the gateway must have the system:auth-delegator ClusterRole binding.",
     allowedNamespaces:
-      "The new comma-separated list of trusted namespaces that service accounts must belong to authenticate with Infisical.",
-    allowedNames: "The new comma-separated list of trusted service account names that can authenticate with Infisical.",
+      "The new comma-separated list of trusted namespaces that service accounts must belong to authenticate with APIHarbor.",
+    allowedNames: "The new comma-separated list of trusted service account names that can authenticate with APIHarbor.",
     allowedAudience:
-      "The new optional audience claim that the service account JWT token must have to authenticate with Infisical.",
+      "The new optional audience claim that the service account JWT token must have to authenticate with APIHarbor.",
     gatewayId: "The ID of the gateway to use when performing kubernetes API requests.",
     accessTokenTrustedIps: "The new IPs or CIDR ranges that access tokens can be used from.",
     accessTokenTTL: "The new lifetime for an acccess token in seconds.",
@@ -1552,7 +1552,7 @@ export const DYNAMIC_SECRETS = {
     path: "The path to delete the dynamic secret in.",
     name: "The name of the dynamic secret.",
     isForced:
-      "A boolean flag to delete the the dynamic secret from Infisical without trying to remove it from external provider. Used when the dynamic secret got modified externally."
+      "A boolean flag to delete the the dynamic secret from APIHarbor without trying to remove it from external provider. Used when the dynamic secret got modified externally."
   }
 } as const;
 
@@ -1583,7 +1583,7 @@ export const DYNAMIC_SECRET_LEASES = {
     path: "The path of the dynamic secret in.",
     leaseId: "The ID of the dynamic secret lease.",
     isForced:
-      "A boolean flag to delete the the dynamic secret from Infisical without trying to remove it from external provider. Used when the dynamic secret got modified externally."
+      "A boolean flag to delete the the dynamic secret from APIHarbor without trying to remove it from external provider. Used when the dynamic secret got modified externally."
   },
   KUBERNETES: {
     CREATE: {
@@ -1789,7 +1789,7 @@ export const INTEGRATION_AUTH = {
     integration: "The slug of integration for the auth object.",
     accessId: "The unique authorized access ID of the external integration provider.",
     accessToken: "The unique authorized access token of the external integration provider.",
-    awsAssumeIamRoleArn: "The AWS IAM Role to be assumed by Infisical.",
+    awsAssumeIamRoleArn: "The AWS IAM Role to be assumed by APIHarbor.",
     url: "",
     namespace: "",
     refreshToken: "The refresh token for integration authorization."
@@ -1833,8 +1833,8 @@ export const INTEGRATION = {
         "The repository IDs to sync secrets to when using the Github Integration. Only applicable when using Organization scope, and visibility is set to 'selected'.",
       kmsKeyId: "The ID of the encryption key from AWS KMS.",
       shouldDisableDelete: "The flag to disable deletion of secrets in AWS Parameter Store.",
-      shouldMaskSecrets: "Specifies if the secrets synced from Infisical to Gitlab should be marked as 'Masked'.",
-      shouldProtectSecrets: "Specifies if the secrets synced from Infisical to Gitlab should be marked as 'Protected'.",
+      shouldMaskSecrets: "Specifies if the secrets synced from APIHarbor to Gitlab should be marked as 'Masked'.",
+      shouldProtectSecrets: "Specifies if the secrets synced from APIHarbor to Gitlab should be marked as 'Protected'.",
       shouldEnableDelete: "The flag to enable deletion of secrets.",
       octopusDeployScopeValues: "Specifies the scope values to set on synced secrets to Octopus Deploy.",
       metadataSyncMode: "The mode for syncing metadata to external system"
@@ -1979,13 +1979,13 @@ export const SSH_HOST_GROUPS = {
     projectId: "The ID of the project to create the SSH host group in.",
     name: "The name of the SSH host group.",
     loginMappings:
-      "A list of default login mappings to include on each host in the SSH host group. Each login mapping contains a login user and a list of corresponding allowed principals being usernames of users in the Infisical SSH project."
+      "A list of default login mappings to include on each host in the SSH host group. Each login mapping contains a login user and a list of corresponding allowed principals being usernames of users in the APIHarbor SSH project."
   },
   UPDATE: {
     sshHostGroupId: "The ID of the SSH host group to update.",
     name: "The name of the SSH host group to update to.",
     loginMappings:
-      "A list of default login mappings to include on each host in the SSH host group. Each login mapping contains a login user and a list of corresponding allowed principals being usernames of users in the Infisical SSH project."
+      "A list of default login mappings to include on each host in the SSH host group. Each login mapping contains a login user and a list of corresponding allowed principals being usernames of users in the APIHarbor SSH project."
   },
   DELETE: {
     sshHostGroupId: "The ID of the SSH host group to delete."
@@ -2017,7 +2017,7 @@ export const SSH_HOSTS = {
     loginUser: "A login user on the remote machine (e.g. 'ec2-user', 'deploy', 'admin')",
     allowedPrincipals: "A list of allowed principals that can log in as the login user.",
     loginMappings:
-      "A list of login mappings for the SSH host. Each login mapping contains a login user and a list of corresponding allowed principals being usernames of users or groups slugs in the Infisical SSH project.",
+      "A list of login mappings for the SSH host. Each login mapping contains a login user and a list of corresponding allowed principals being usernames of users or groups slugs in the APIHarbor SSH project.",
     userSshCaId:
       "The ID of the SSH CA to use for user certificates. If not specified, the default user SSH CA will be used if it exists.",
     hostSshCaId:
@@ -2032,7 +2032,7 @@ export const SSH_HOSTS = {
     loginUser: "A login user on the remote machine (e.g. 'ec2-user', 'deploy', 'admin')",
     allowedPrincipals: "A list of allowed principals that can log in as the login user.",
     loginMappings:
-      "A list of login mappings for the SSH host. Each login mapping contains a login user and a list of corresponding allowed principals being usernames of users or groups slugs in the Infisical SSH project."
+      "A list of login mappings for the SSH host. Each login mapping contains a login user and a list of corresponding allowed principals being usernames of users or groups slugs in the APIHarbor SSH project."
   },
   DELETE: {
     sshHostId: "The ID of the SSH host to delete."
@@ -2100,7 +2100,7 @@ export const CERTIFICATE_AUTHORITIES = {
   },
   RENEW_CA_CERT: {
     caId: "The ID of the CA to renew the CA certificate for.",
-    type: "The type of behavior to use for the renewal operation. Currently Infisical is only able to renew a CA certificate with the same key pair.",
+    type: "The type of behavior to use for the renewal operation. Currently APIHarbor is only able to renew a CA certificate with the same key pair.",
     notAfter: "The expiry date and time for the renewed CA certificate in YYYY-MM-DDTHH:mm:ss.sssZ format.",
     certificate: "The renewed CA certificate body.",
     certificateChain: "The certificate chain of the CA.",
@@ -2661,15 +2661,15 @@ export const CertificateAuthorities = {
       keyAlgorithm:
         "The type of public key algorithm and size, in bits, of the key pair for the CA; when you create an intermediate CA, you must use a key algorithm supported by the parent CA.",
       keySource:
-        "Where the CA's signing key is generated and stored. 'infisical' keeps the key in Infisical's KMS; 'hsm' generates and stores the key in the HSM reached through the specified HSM Connector.",
+        "Where the CA's signing key is generated and stored. 'infisical' keeps the key in APIHarbor's KMS; 'hsm' generates and stores the key in the HSM reached through the specified HSM Connector.",
       hsmConnectorId:
         "The ID of the HSM Connector to generate and store the CA's signing key in. Required when keySource is 'hsm'.",
       hsmKeyLabel:
         "The label of the CA's signing key on the HSM. Not user-supplied: it is the HSM Connector's configured key name prefix followed by a per-CA label built from the CA name and a random 5-character suffix (ca-<name>-<slug>).",
       crlDistributionPointUrls:
-        "Additional CRL Distribution Point URLs (HTTP/HTTPS) embedded in every certificate issued by this CA. Up to 4 URLs; the Infisical-managed CRL endpoint is included by default unless disabled.",
+        "Additional CRL Distribution Point URLs (HTTP/HTTPS) embedded in every certificate issued by this CA. Up to 4 URLs; the APIHarbor-managed CRL endpoint is included by default unless disabled.",
       disableManagedCrlDistributionPointUrl:
-        "When set to true, the Infisical-managed CRL endpoint URL will not be embedded in certificates issued by this CA. Only custom CRL Distribution Point URLs (if any) will be included."
+        "When set to true, the APIHarbor-managed CRL endpoint URL will not be embedded in certificates issued by this CA. Only custom CRL Distribution Point URLs (if any) will be included."
     }
   }
 };
@@ -2693,7 +2693,7 @@ export const AppConnections = {
       credentials: `The credentials used to connect with ${appName}.`,
       method: `The method used to authenticate with ${appName}.`,
       stsEndpoint: `An optional custom endpoint URL for the AWS STS API to use when connecting with ${appName}.`,
-      isPlatformManagedCredentials: `Whether or not the ${appName} Connection credentials should be managed by Infisical. Once enabled this cannot be reversed.`,
+      isPlatformManagedCredentials: `Whether or not the ${appName} Connection credentials should be managed by APIHarbor. Once enabled this cannot be reversed.`,
       projectId: `The ID of the project to create the ${appName} Connection in.`,
       isAutoRotationEnabled: `Whether or not automatic credential rotation is enabled for the ${appName} Connection.`,
       rotation: `The credential rotation configuration for the ${appName} Connection.`
@@ -2708,7 +2708,7 @@ export const AppConnections = {
       credentials: `The credentials used to connect with ${appName}.`,
       method: `The method used to authenticate with ${appName}.`,
       stsEndpoint: `An optional custom endpoint URL for the AWS STS API to use when connecting with ${appName}.`,
-      isPlatformManagedCredentials: `Whether or not the ${appName} Connection credentials should be managed by Infisical. Once enabled this cannot be reversed.`,
+      isPlatformManagedCredentials: `Whether or not the ${appName} Connection credentials should be managed by APIHarbor. Once enabled this cannot be reversed.`,
       isAutoRotationEnabled: `Whether or not automatic credential rotation is enabled for the ${appName} Connection.`,
       rotation: `The updated credential rotation configuration for the ${appName} Connection.`
     };
@@ -3013,7 +3013,7 @@ export const SecretSyncs = {
   }),
   IMPORT_SECRETS: (destination: SecretSync) => ({
     syncId: `The ID of the ${SECRET_SYNC_NAME_MAP[destination]} Sync to trigger importing secrets for.`,
-    importBehavior: `Specify whether Infisical should prioritize secret values from Infisical or ${SECRET_SYNC_NAME_MAP[destination]}.`
+    importBehavior: `Specify whether APIHarbor should prioritize secret values from APIHarbor or ${SECRET_SYNC_NAME_MAP[destination]}.`
   }),
   REMOVE_SECRETS: (destination: SecretSync) => ({
     syncId: `The ID of the ${SECRET_SYNC_NAME_MAP[destination]} Sync to trigger removing secrets for.`
@@ -3021,28 +3021,28 @@ export const SecretSyncs = {
   SYNC_OPTIONS: (destination: SecretSync) => {
     const destinationName = SECRET_SYNC_NAME_MAP[destination];
     return {
-      initialSyncBehavior: `Specify how Infisical should resolve the initial sync to the ${destinationName} destination.`,
+      initialSyncBehavior: `Specify how APIHarbor should resolve the initial sync to the ${destinationName} destination.`,
       keySchema: `Specify the format to use for structuring secret keys in the ${destinationName} destination.`,
       disableSecretDeletion: `Enable this flag to prevent removal of secrets from the ${destinationName} destination when syncing.`
     };
   },
   ADDITIONAL_SYNC_OPTIONS: {
     AWS_PARAMETER_STORE: {
-      keyId: "The AWS KMS key ID or alias to use when encrypting parameters synced by Infisical.",
-      tags: "Optional resource tags to add to parameters synced by Infisical.",
-      syncSecretMetadataAsTags: `Whether Infisical secret metadata should be added as resource tags to parameters synced by Infisical.`
+      keyId: "The AWS KMS key ID or alias to use when encrypting parameters synced by APIHarbor.",
+      tags: "Optional resource tags to add to parameters synced by APIHarbor.",
+      syncSecretMetadataAsTags: `Whether APIHarbor secret metadata should be added as resource tags to parameters synced by APIHarbor.`
     },
     AWS_SECRETS_MANAGER: {
-      keyId: "The AWS KMS key ID or alias to use when encrypting parameters synced by Infisical.",
-      tags: "Optional tags to add to secrets synced by Infisical.",
-      syncSecretMetadataAsTags: `Whether Infisical secret metadata should be added as tags to secrets synced by Infisical.`
+      keyId: "The AWS KMS key ID or alias to use when encrypting parameters synced by APIHarbor.",
+      tags: "Optional tags to add to secrets synced by APIHarbor.",
+      syncSecretMetadataAsTags: `Whether APIHarbor secret metadata should be added as tags to secrets synced by APIHarbor.`
     },
     RENDER: {
       autoRedeployServices:
-        "Whether Infisical should automatically redeploy the configured Render service upon secret changes."
+        "Whether APIHarbor should automatically redeploy the configured Render service upon secret changes."
     },
     FLYIO: {
-      autoRedeploy: "Whether Infisical should automatically redeploy the configured Fly.io app upon secret changes."
+      autoRedeploy: "Whether APIHarbor should automatically redeploy the configured Fly.io app upon secret changes."
     },
     TRIGGER_DEV: {
       markAsSecret:
@@ -3050,7 +3050,7 @@ export const SecretSyncs = {
     },
     AZURE_KEY_VAULT: {
       disableCertificateImport:
-        "Whether Infisical should skip importing certificate objects from Azure Key Vault when syncing secrets."
+        "Whether APIHarbor should skip importing certificate objects from Azure Key Vault when syncing secrets."
     }
   },
   DESTINATION_CONFIG: {
@@ -3060,7 +3060,7 @@ export const SecretSyncs = {
     },
     AWS_SECRETS_MANAGER: {
       region: "The AWS region to sync secrets to.",
-      mappingBehavior: "How secrets from Infisical should be mapped to AWS Secrets Manager; one-to-one or many-to-one.",
+      mappingBehavior: "How secrets from APIHarbor should be mapped to AWS Secrets Manager; one-to-one or many-to-one.",
       secretName: "The secret name in AWS Secrets Manager to sync to when using mapping behavior many-to-one."
     },
     GITHUB: {
@@ -3286,9 +3286,9 @@ export const SecretSyncs = {
       projectName: "The CircleCI project name to sync secrets to."
     },
     EXTERNAL_INFISICAL: {
-      projectId: "The ID of the project on the external Infisical instance to sync secrets to.",
-      environment: "The environment slug on the external Infisical instance to sync secrets to.",
-      secretPath: "The secret path on the external Infisical instance to sync secrets to."
+      projectId: "The ID of the project on the external APIHarbor instance to sync secrets to.",
+      environment: "The environment slug on the external APIHarbor instance to sync secrets to.",
+      secretPath: "The secret path on the external APIHarbor instance to sync secrets to."
     },
     TRAVIS_CI: {
       repositoryId: "The ID of the Travis CI repository to sync secrets to.",
@@ -3696,7 +3696,7 @@ export const SamlSso = {
     issuer: "The SAML provider issuer URL or entity ID.",
     cert: "The certificate to use for SAML authentication.",
     enableGroupSync:
-      "Whether to enable automatic synchronization of group memberships from the SAML provider to Infisical groups."
+      "Whether to enable automatic synchronization of group memberships from the SAML provider to APIHarbor groups."
   },
   CREATE_CONFIG: {
     organizationId: "The ID of the organization to create the SAML config for.",
@@ -3707,7 +3707,7 @@ export const SamlSso = {
     issuer: "The SAML provider issuer URL or entity ID.",
     cert: "The certificate to use for SAML authentication.",
     enableGroupSync:
-      "Whether to enable automatic synchronization of group memberships from the SAML provider to Infisical groups."
+      "Whether to enable automatic synchronization of group memberships from the SAML provider to APIHarbor groups."
   }
 };
 
@@ -3800,7 +3800,7 @@ export const SECRET_SHARING = {
     authorizedEmails:
       "An optional array of email addresses to share the secret with. Maximum 100 emails. Organization members in the list get direct access. When allowExternalEmails is enabled, non-member emails are also accepted and recipients will receive the secret link via email, but must use the password to access it.",
     allowExternalEmails:
-      "When true, allows sharing with email addresses that do not belong to Infisical. A password is required when this option is enabled. External recipients will receive the secret link via email and must enter the password to access it."
+      "When true, allows sharing with email addresses that do not belong to APIHarbor. A password is required when this option is enabled. External recipients will receive the secret link via email and must enter the password to access it."
   },
   DELETE: {
     id: "The ID of the shared secret to delete."
@@ -3820,9 +3820,9 @@ export const GATEWAYS = {
   AUTH_METHOD: {
     stsEndpoint: "The endpoint URL for the AWS STS API.",
     allowedPrincipalArns:
-      "The comma-separated list of trusted IAM principal ARNs that are allowed to authenticate with Infisical.",
+      "The comma-separated list of trusted IAM principal ARNs that are allowed to authenticate with APIHarbor.",
     allowedAccountIds:
-      "The comma-separated list of trusted AWS account IDs that are allowed to authenticate with Infisical."
+      "The comma-separated list of trusted AWS account IDs that are allowed to authenticate with APIHarbor."
   },
   LOGIN: {
     gatewayId: "The ID of the gateway logging in (AWS method only).",

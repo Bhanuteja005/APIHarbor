@@ -88,3 +88,48 @@ export interface TUser {
     lastName?: string | null;
     username?: string;
 }
+
+export interface THealthCheck {
+    id: string;
+    apiKeyId: string;
+    status: string;
+    httpStatus?: number | null;
+    latencyMs?: number | null;
+    message?: string | null;
+    checkedAt: string;
+}
+
+export interface TKeyUsage {
+    usageDate: string;
+    requests: number;
+    tokens?: number | null;
+    costCents: number;
+}
+
+export interface TAuditLog {
+    id: string;
+    ipAddress?: string | null;
+    userAgent?: string | null;
+    userAgentType?: string | null;
+    createdAt: string;
+    event: { type: string; metadata?: unknown };
+    actor: { type: string; metadata?: { email?: string; userId?: string; name?: string } & Record<string, unknown> };
+}
+
+export interface TSession {
+    id: string;
+    ip: string;
+    userAgent?: string | null;
+    lastUsed: string;
+    createdAt: string;
+}
+
+export interface TAccount {
+    id: string;
+    email?: string | null;
+    username: string;
+    firstName?: string | null;
+    lastName?: string | null;
+    isMfaEnabled?: boolean | null;
+    selectedMfaMethod?: string | null;
+}

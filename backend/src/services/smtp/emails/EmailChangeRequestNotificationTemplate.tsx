@@ -21,15 +21,15 @@ export const EmailChangeRequestNotificationTemplate = ({
 }: EmailChangeRequestNotificationTemplateProps) => {
   return (
     <BaseEmailWrapper
-      title="Confirm your Infisical email change"
-      preview="Confirm the email change requested on your Infisical account."
+      title="Confirm your APIHarbor email change"
+      preview="Confirm the email change requested on your APIHarbor account."
       siteUrl={siteUrl}
     >
       <Heading className="text-black text-[18px] leading-[28px] text-center font-normal p-0 mx-0">
         <strong>Confirm your email change</strong>
       </Heading>
       <Section className="px-[24px] mt-[36px] pt-[12px] pb-[8px] text-[14px] border border-solid border-gray-200 rounded-md bg-gray-50">
-        <Text className="text-[14px]">A request was made to change the email on your Infisical account.</Text>
+        <Text className="text-[14px]">A request was made to change the email on your APIHarbor account.</Text>
         <strong>Current email</strong>
         <Text className="text-[14px] mt-[4px]">{currentEmail}</Text>
         <strong>Requested new email</strong>
@@ -46,7 +46,7 @@ export const EmailChangeRequestNotificationTemplate = ({
         <Text className="mb-[0px]">
           <strong>If this wasn&apos;t you</strong>, do not enter the code and contact{" "}
           {isCloud ? (
-            <BaseLink href="mailto:support@infisical.com">support@infisical.com</BaseLink>
+            <BaseLink href="mailto:support@apiharbor.io">support@apiharbor.io</BaseLink>
           ) : (
             "your administrator"
           )}{" "}
@@ -60,9 +60,9 @@ export const EmailChangeRequestNotificationTemplate = ({
 export default EmailChangeRequestNotificationTemplate;
 
 EmailChangeRequestNotificationTemplate.PreviewProps = {
-  currentEmail: "old@infisical.com",
-  requestedEmail: "new@infisical.com",
+  currentEmail: "old@apiharbor.io",
+  requestedEmail: "new@apiharbor.io",
   code: "124356",
   isCloud: true,
-  siteUrl: "https://infisical.com"
+  siteUrl: "https://apiharbor.io"
 } as EmailChangeRequestNotificationTemplateProps;

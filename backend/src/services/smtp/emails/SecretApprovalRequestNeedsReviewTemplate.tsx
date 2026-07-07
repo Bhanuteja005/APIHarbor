@@ -47,7 +47,7 @@ export default SecretApprovalRequestNeedsReviewTemplate;
 SecretApprovalRequestNeedsReviewTemplate.PreviewProps = {
   firstName: "Gordon",
   organizationName: "Example Org",
-  siteUrl: "https://infisical.com",
-  approvalUrl: "https://infisical.com",
+  siteUrl: "https://apiharbor.io",
+  approvalUrl: "https://apiharbor.io",
   projectName: "Example Project"
 } as SecretApprovalRequestNeedsReviewTemplateProps;

@@ -59,10 +59,10 @@ export default DynamicSecretLeaseRevocationFailedTemplate;
 
 DynamicSecretLeaseRevocationFailedTemplate.PreviewProps = {
   errorMessage: 'REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM "[REDACTED]" - tuple concurrently updated.',
-  dynamicSecretLeaseUrl: "https://infisical.com/test",
+  dynamicSecretLeaseUrl: "https://apiharbor.io/test",
   leaseId: "717d5013-7194-49d9-b6ac-6192328c2914",
   dynamicSecretName: "postgres-prod-db",
   projectName: "Development Team",
   environmentSlug: "dev",
-  siteUrl: "https://infisical.com"
+  siteUrl: "https://apiharbor.io"
 } as DynamicSecretLeaseRevocationFailedTemplateProps;

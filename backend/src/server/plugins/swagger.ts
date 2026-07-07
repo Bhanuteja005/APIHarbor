@@ -9,7 +9,7 @@ export const fastifySwagger = fp(async (fastify) => {
     transform: jsonSchemaTransform,
     openapi: {
       info: {
-        title: "Infisical API",
+        title: "APIHarbor API",
         description: "List of all available APIs that can be consumed",
         version: "0.0.1"
       },
@@ -33,7 +33,7 @@ export const fastifySwagger = fp(async (fastify) => {
             type: "http",
             scheme: "bearer",
             bearerFormat: "JWT",
-            description: "An access token in Infisical"
+            description: "An access token in APIHarbor"
           }
         }
       }

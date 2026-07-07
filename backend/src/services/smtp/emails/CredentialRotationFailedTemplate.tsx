@@ -41,7 +41,7 @@ export const CredentialRotationFailedTemplate = ({
         <Text className="text-[14px] text-red-600 mt-[4px]">{content}</Text>
       </Section>
       <Section className="text-center">
-        <BaseButton href={rotationUrl}>View in Infisical</BaseButton>
+        <BaseButton href={rotationUrl}>View in APIHarbor</BaseButton>
       </Section>
     </BaseEmailWrapper>
   );
@@ -52,8 +52,8 @@ export default CredentialRotationFailedTemplate;
 CredentialRotationFailedTemplate.PreviewProps = {
   rotationType: "Azure Client Secret",
   connectionName: "my-azure-connection",
-  rotationUrl: "https://infisical.com",
+  rotationUrl: "https://apiharbor.io",
   content: "See Rotation status for details",
   projectName: "Example Project",
-  siteUrl: "https://infisical.com"
+  siteUrl: "https://apiharbor.io"
 } as CredentialRotationFailedTemplateProps;

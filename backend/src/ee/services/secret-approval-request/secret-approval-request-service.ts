@@ -1256,7 +1256,7 @@ export const secretApprovalRequestServiceFactory = ({
       if (recipients?.length) {
         await smtpService.sendMail({
           recipients,
-          subjectLine: "Infisical Secret Change Policy Bypassed",
+          subjectLine: "APIHarbor Secret Change Policy Bypassed",
 
           substitutions: {
             projectName: project.name,

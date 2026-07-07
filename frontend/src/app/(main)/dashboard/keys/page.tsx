@@ -1,6 +1,7 @@
 "use client";
 
 import { CardSkeleton, ErrorCard } from "@/components/dashboard/data-states";
+import KeyDetailsSheet from "@/components/dashboard/key-details-sheet";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -39,6 +40,7 @@ import {
     useApiKeys,
     useCreateApiKey,
     useDeleteApiKey,
+    useRecordUsage,
     useRevealApiKey,
     useSpendSummary,
     useUpdateApiKey,
@@ -114,6 +116,84 @@ const ApiKeysPage = () => {
     const [revealed, setRevealed] = useState<Record<string, string>>({});
     const [budgetTarget, setBudgetTarget] = useState<TApiKey | null>(null);
     const [budgetValue, setBudgetValue] = useState("");
+    const [detailsTarget, setDetailsTarget] = useState<TApiKey | null>(null);
+    const [editTarget, setEditTarget] = useState<TApiKey | null>(null);
+    const [editForm, setEditForm] = useState({ name: "", description: "", secret: "" });
+    const [usageTarget, setUsageTarget] = useState<TApiKey | null>(null);
+    const [usageForm, setUsageForm] = useState({ requests: "", costUsd: "" });
+    const recordUsage = useRecordUsage();
+
+    const handleRecordUsage = async () => {
+        if (!usageTarget) return;
+        const requests = usageForm.requests.trim() === "" ? 0 : Number(usageForm.requests);
+        const costUsd = usageForm.costUsd.trim() === "" ? 0 : Number(usageForm.costUsd);
+        if (Number.isNaN(requests) || Number.isNaN(costUsd) || requests < 0 || costUsd < 0) {
+            toast.error("Enter valid usage numbers.");
+            return;
+        }
+        if (requests === 0 && costUsd === 0) {
+            toast.error("Enter requests, spend, or both.");
+            return;
+        }
+        try {
+            await recordUsage.mutateAsync({
+                apiKeyId: usageTarget.id,
+                requests: requests || undefined,
+                costUsd: costUsd || undefined,
+            });
+            toast.success(`Usage recorded for ${usageTarget.name}.`);
+            setUsageTarget(null);
+            setUsageForm({ requests: "", costUsd: "" });
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Couldn't record usage.");
+        }
+    };
+
+    const openEdit = (row: TApiKey) => {
+        setEditTarget(row);
+        setEditForm({ name: row.name, description: row.description ?? "", secret: "" });
+    };
+
+    const handleSaveEdit = async () => {
+        if (!editTarget) return;
+        const name = editForm.name.trim();
+        if (!name) {
+            toast.error("Name is required.");
+            return;
+        }
+        try {
+            await updateKey.mutateAsync({
+                apiKeyId: editTarget.id,
+                name,
+                description: editForm.description.trim() || undefined,
+                ...(editForm.secret.trim() ? { apiKey: editForm.secret.trim() } : {}),
+            });
+            toast.success(
+                editForm.secret.trim()
+                    ? `${name} was updated and the new secret was validated.`
+                    : `${name} was updated.`
+            );
+            setEditTarget(null);
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Couldn't update this key.");
+        }
+    };
+
+    const handleToggleMonitoring = async (row: TApiKey) => {
+        try {
+            await updateKey.mutateAsync({
+                apiKeyId: row.id,
+                monitoringEnabled: !row.monitoringEnabled,
+            });
+            toast.success(
+                row.monitoringEnabled
+                    ? `Automatic health checks paused for ${row.name}.`
+                    : `Automatic health checks resumed for ${row.name}.`
+            );
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : "Couldn't update monitoring.");
+        }
+    };
 
     const toggleReveal = async (row: TApiKey) => {
         if (revealed[row.id]) {
@@ -409,11 +489,18 @@ const ApiKeysPage = () => {
                                                     </button>
                                                 </DropdownMenuTrigger>
                                                 <DropdownMenuContent align="end">
+                                                    <DropdownMenuItem onClick={() => setDetailsTarget(row)}>
+                                                        View history
+                                                    </DropdownMenuItem>
                                                     <DropdownMenuItem onClick={() => handleValidate(row)}>
                                                         Validate now
                                                     </DropdownMenuItem>
                                                     <DropdownMenuItem onClick={() => toggleReveal(row)}>
                                                         {isRevealed ? "Hide key" : "Reveal key"}
+                                                    </DropdownMenuItem>
+                                                    <DropdownMenuSeparator />
+                                                    <DropdownMenuItem onClick={() => openEdit(row)}>
+                                                        Edit key
                                                     </DropdownMenuItem>
                                                     <DropdownMenuItem
                                                         onClick={() => {
@@ -422,6 +509,12 @@ const ApiKeysPage = () => {
                                                         }}
                                                     >
                                                         Set budget
+                                                    </DropdownMenuItem>
+                                                    <DropdownMenuItem onClick={() => handleToggleMonitoring(row)}>
+                                                        {row.monitoringEnabled ? "Pause monitoring" : "Resume monitoring"}
+                                                    </DropdownMenuItem>
+                                                    <DropdownMenuItem onClick={() => setUsageTarget(row)}>
+                                                        Record usage
                                                     </DropdownMenuItem>
                                                     <DropdownMenuSeparator />
                                                     <DropdownMenuItem
@@ -544,6 +637,98 @@ const ApiKeysPage = () => {
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
+
+            <Dialog open={!!editTarget} onOpenChange={(open) => !open && setEditTarget(null)}>
+                <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                        <DialogTitle>Edit API Key</DialogTitle>
+                        <DialogDescription>
+                            Update the key&apos;s details, or paste a new secret to rotate it.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-2">
+                            <Label htmlFor="edit-key-name">Name</Label>
+                            <Input
+                                id="edit-key-name"
+                                value={editForm.name}
+                                onChange={(e) => setEditForm((f) => ({ ...f, name: e.target.value }))}
+                            />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <Label htmlFor="edit-key-description">
+                                Description <span className="text-muted-foreground">(optional)</span>
+                            </Label>
+                            <Textarea
+                                id="edit-key-description"
+                                value={editForm.description}
+                                onChange={(e) => setEditForm((f) => ({ ...f, description: e.target.value }))}
+                                rows={2}
+                            />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <Label htmlFor="edit-key-secret">
+                                New secret <span className="text-muted-foreground">(leave empty to keep the current one)</span>
+                            </Label>
+                            <Input
+                                id="edit-key-secret"
+                                type="password"
+                                value={editForm.secret}
+                                onChange={(e) => setEditForm((f) => ({ ...f, secret: e.target.value }))}
+                                placeholder="sk-..."
+                            />
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button onClick={handleSaveEdit} disabled={updateKey.isPending}>
+                            {updateKey.isPending ? "Saving..." : "Save changes"}
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+
+            <Dialog open={!!usageTarget} onOpenChange={(open) => !open && setUsageTarget(null)}>
+                <DialogContent className="sm:max-w-sm">
+                    <DialogHeader>
+                        <DialogTitle>Record usage</DialogTitle>
+                        <DialogDescription>
+                            {usageTarget ? `Log today's requests and spend for ${usageTarget.name}. Amounts add to today's totals.` : ""}
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-2">
+                            <Label htmlFor="usage-requests">Requests</Label>
+                            <Input
+                                id="usage-requests"
+                                type="number"
+                                min="0"
+                                value={usageForm.requests}
+                                onChange={(e) => setUsageForm((f) => ({ ...f, requests: e.target.value }))}
+                                placeholder="1000"
+                            />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <Label htmlFor="usage-cost">Spend (USD)</Label>
+                            <Input
+                                id="usage-cost"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                value={usageForm.costUsd}
+                                onChange={(e) => setUsageForm((f) => ({ ...f, costUsd: e.target.value }))}
+                                placeholder="12.50"
+                            />
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button onClick={handleRecordUsage} disabled={recordUsage.isPending}>
+                            {recordUsage.isPending ? "Recording..." : "Record usage"}
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+
+            <KeyDetailsSheet apiKey={detailsTarget} onClose={() => setDetailsTarget(null)} />
         </div>
     );
 };

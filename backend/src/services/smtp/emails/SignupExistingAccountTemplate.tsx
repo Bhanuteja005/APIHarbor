@@ -22,7 +22,7 @@ export const SignupExistingAccountTemplate = ({
   return (
     <BaseEmailWrapper
       title="Sign-up Request Received"
-      preview="You already have an Infisical account."
+      preview="You already have an APIHarbor account."
       siteUrl={siteUrl}
     >
       <Heading className="text-black text-[18px] leading-[28px] text-center font-normal p-0 mx-0">
@@ -30,7 +30,7 @@ export const SignupExistingAccountTemplate = ({
       </Heading>
       <Section className="px-[24px] mb-[28px] mt-[36px] pt-[12px] pb-[8px] border border-solid border-gray-200 rounded-md bg-gray-50">
         <Text className="text-[14px]">
-          We received a sign-up request for your Infisical account (<strong>{email}</strong>).
+          We received a sign-up request for your APIHarbor account (<strong>{email}</strong>).
         </Text>
         <Text className="text-[14px]">
           Since you already have an account, you can sign in or reset your password using the options below:
@@ -50,7 +50,7 @@ export const SignupExistingAccountTemplate = ({
           <strong>Need help?</strong>{" "}
           {isCloud ? (
             <>
-              Contact us at <BaseLink href="mailto:support@infisical.com">support@infisical.com</BaseLink>
+              Contact us at <BaseLink href="mailto:support@apiharbor.io">support@apiharbor.io</BaseLink>
             </>
           ) : (
             "Contact your administrator"
@@ -66,8 +66,8 @@ export default SignupExistingAccountTemplate;
 
 SignupExistingAccountTemplate.PreviewProps = {
   email: "user@example.com",
-  loginUrl: "https://app.infisical.com/login",
-  resetPasswordUrl: "https://app.infisical.com/forgot-password",
+  loginUrl: "https://app.apiharbor.io/login",
+  resetPasswordUrl: "https://app.apiharbor.io/forgot-password",
   isCloud: true,
-  siteUrl: "https://infisical.com"
+  siteUrl: "https://apiharbor.io"
 } as SignupExistingAccountTemplateProps;

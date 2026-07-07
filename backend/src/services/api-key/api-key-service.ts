@@ -365,7 +365,8 @@ export const apiKeyServiceFactory = ({ apiKeyDAL, permissionService, kmsService 
     });
     return {
       usage: {
-        usageDate: row.usageDate,
+        usageDate:
+          typeof row.usageDate === "string" ? row.usageDate : new Date(row.usageDate).toISOString().slice(0, 10),
         requests: row.requests,
         tokens: row.tokens ?? null,
         costCents: row.costCents

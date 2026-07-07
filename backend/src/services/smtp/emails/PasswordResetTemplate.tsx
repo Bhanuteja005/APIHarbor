@@ -51,14 +51,14 @@ export const PasswordResetTemplate = ({
   return (
     <BaseEmailWrapper
       title="Account Recovery"
-      preview="A request was made to recover access to your Infisical account."
+      preview="A request was made to recover access to your APIHarbor account."
       siteUrl={siteUrl}
     >
       <Heading className="text-black text-[18px] leading-[28px] text-center font-normal p-0 mx-0">
         <strong>Account Recovery</strong>
       </Heading>
       <Section className="px-[24px] mb-[28px] mt-[36px] pt-[12px] pb-[8px] border border-solid border-gray-200 rounded-md bg-gray-50">
-        <Text className="text-[14px]">A request was made to recover access to your Infisical account.</Text>
+        <Text className="text-[14px]">A request was made to recover access to your APIHarbor account.</Text>
         {authMethodMessage && <Text className="text-[14px]">{authMethodMessage}</Text>}
         <Text className="text-[14px]">
           If you didn’t initiate this request, no further action is needed. Your password won’t change unless you create
@@ -75,11 +75,11 @@ export const PasswordResetTemplate = ({
 export default PasswordResetTemplate;
 
 PasswordResetTemplate.PreviewProps = {
-  email: "kevin@infisical.com",
-  callback_url: "https://app.infisical.com",
+  email: "kevin@apiharbor.io",
+  callback_url: "https://app.apiharbor.io",
   isCloud: true,
   token: "preview-token",
-  siteUrl: "https://infisical.com",
+  siteUrl: "https://apiharbor.io",
   lastLoginMethod: "",
   hasEmailAuth: true
 } as PasswordResetTemplateProps;

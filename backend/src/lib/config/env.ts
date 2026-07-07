@@ -209,7 +209,7 @@ const envSchema = z
     SMTP_USERNAME: zpStr(z.string().optional()),
     SMTP_PASSWORD: zpStr(z.string().optional()),
     SMTP_FROM_ADDRESS: zpStr(z.string().optional()),
-    SMTP_FROM_NAME: zpStr(z.string().optional().default("Infisical")),
+    SMTP_FROM_NAME: zpStr(z.string().optional().default("APIHarbor")),
     SMTP_HELO_HOST: zpStr(
       z
         .string()

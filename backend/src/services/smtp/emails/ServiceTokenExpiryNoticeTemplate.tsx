@@ -43,7 +43,7 @@ export default ServiceTokenExpiryNoticeTemplate;
 
 ServiceTokenExpiryNoticeTemplate.PreviewProps = {
   projectName: "Example Project",
-  siteUrl: "https://infisical.com",
-  url: "https://infisical.com",
+  siteUrl: "https://apiharbor.io",
+  url: "https://apiharbor.io",
   tokenName: "Example Token"
 } as ServiceTokenExpiryNoticeTemplateProps;

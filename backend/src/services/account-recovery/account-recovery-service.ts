@@ -72,7 +72,7 @@ export const accountRecoveryServiceFactory = ({
         await smtpService.sendMail({
           template: SmtpTemplates.ResetPassword,
           recipients: [email],
-          subjectLine: "Infisical account recovery",
+          subjectLine: "APIHarbor account recovery",
           substitutions
         });
       }

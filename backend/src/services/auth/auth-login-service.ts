@@ -153,7 +153,7 @@ export const authLoginServiceFactory = ({
     await smtpService
       .sendMail({
         template: SmtpTemplates.EmailMfa,
-        subjectLine: "Infisical MFA code",
+        subjectLine: "APIHarbor MFA code",
         recipients: [email],
         substitutions: {
           code
@@ -762,7 +762,7 @@ export const authLoginServiceFactory = ({
 
               await smtpService.sendMail({
                 template: SmtpTemplates.UnlockAccount,
-                subjectLine: "Unlock your Infisical account",
+                subjectLine: "Unlock your APIHarbor account",
                 recipients: [updatedUser.email],
                 substitutions: {
                   token: unlockToken,
@@ -1061,7 +1061,7 @@ export const authLoginServiceFactory = ({
         if (conflictingUser && conflictingUser.id !== user.id) {
           throw new BadRequestError({
             message:
-              "Unable to complete login: the email associated with your SSO account is already in use by another Infisical user.",
+              "Unable to complete login: the email associated with your SSO account is already in use by another APIHarbor user.",
             name: "Oauth 2 login"
           });
         }
@@ -1170,7 +1170,7 @@ export const authLoginServiceFactory = ({
 
       await smtpService.sendMail({
         template: SmtpTemplates.EmailVerification,
-        subjectLine: `Infisical confirmation code: ${verificationCode}`,
+        subjectLine: `APIHarbor confirmation code: ${verificationCode}`,
         recipients: [user.email],
         substitutions: {
           code: verificationCode

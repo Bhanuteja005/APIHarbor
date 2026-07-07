@@ -28,7 +28,7 @@ export const ProjectAccessRequestTemplate = ({
   const title = productLabel ? `${productLabel} Access Request` : "Project Access Request";
   const preview = productLabel
     ? `A user has requested access to ${productLabel}.`
-    : "A user has requested access to an Infisical project.";
+    : "A user has requested access to an APIHarbor project.";
   return (
     <BaseEmailWrapper title={title} preview={preview} siteUrl={siteUrl}>
       <Heading className="text-black text-[18px] leading-[28px] text-center font-normal p-0 mx-0">
@@ -70,10 +70,10 @@ export default ProjectAccessRequestTemplate;
 
 ProjectAccessRequestTemplate.PreviewProps = {
   requesterName: "Abigail Williams",
-  requesterEmail: "abigail@infisical.com",
+  requesterEmail: "abigail@apiharbor.io",
   orgName: "Example Org",
-  siteUrl: "https://infisical.com",
+  siteUrl: "https://apiharbor.io",
   projectName: "Example Project",
   note: "I need access to the project for the new initiative for HR.",
-  callback_url: "https://infisical.com"
+  callback_url: "https://apiharbor.io"
 } as ProjectAccessRequestTemplateProps;

@@ -77,11 +77,11 @@ export default AccessApprovalRequestTemplate;
 
 AccessApprovalRequestTemplate.PreviewProps = {
   requesterFullName: "Abigail Williams",
-  requesterEmail: "abigail@infisical.com",
+  requesterEmail: "abigail@apiharbor.io",
   isTemporary: true,
   secretPath: "/api/secrets",
   environment: "Production",
-  siteUrl: "https://infisical.com",
+  siteUrl: "https://apiharbor.io",
   projectName: "Example Project",
   expiresIn: "1 day",
   permissions: ["Secrets (Read, Create, Edit, Delete)", "Dynamic Secrets (Lease, Read Root Credential)"],

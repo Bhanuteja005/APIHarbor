@@ -66,6 +66,6 @@ HoneyTokenTriggeredTemplate.PreviewProps = {
   eventTime: "2026-04-28T12:00:00Z",
   sourceIp: "203.0.113.42",
   awsRegion: "us-east-1",
-  honeyTokenUrl: "https://app.infisical.com/project/123",
-  siteUrl: "https://infisical.com"
+  honeyTokenUrl: "https://app.apiharbor.io/project/123",
+  siteUrl: "https://apiharbor.io"
 } as HoneyTokenTriggeredTemplateProps;
