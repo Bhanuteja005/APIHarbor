@@ -1,23 +1,12 @@
-# APIHarbor — single-image production build.
-# Builds the React SPA and the Fastify API, then serves BOTH from one container
-# (the backend serves the UI in STANDALONE_MODE). This is the image Railway builds.
+# APIHarbor — backend production build (the image Railway builds).
+# The frontend is a Next.js app (./frontend) deployed separately on Vercel;
+# it talks to this API server-side, so no SPA is bundled here and no CORS
+# configuration is required for it.
 #
 # Build context must be the repo root:  docker build -t apiharbor .
 
 ##############################################################################
-# 1) Frontend build — produces the static SPA (frontend/dist)
-##############################################################################
-FROM node:22.22.0-trixie-slim AS frontend-build
-WORKDIR /fe
-# tsc + vite need more than the default ~2GB heap on this codebase
-ENV NODE_OPTIONS=--max-old-space-size=4096
-COPY frontend/package*.json ./
-RUN npm ci
-COPY frontend/ ./
-RUN npm run build
-
-##############################################################################
-# 2) Backend build — compiles the Fastify server (backend/dist)
+# 1) Backend build — compiles the Fastify server (backend/dist)
 ##############################################################################
 FROM node:22.22.0-trixie-slim AS backend-build
 WORKDIR /app
@@ -32,7 +21,7 @@ COPY backend/ ./
 RUN npm run build
 
 ##############################################################################
-# 3) Oracle Instant Client (native driver, downloaded in parallel)
+# 2) Oracle Instant Client (native driver, downloaded in parallel)
 ##############################################################################
 FROM debian:trixie-slim AS oracle
 RUN apt-get update && apt-get install -y unzip wget ca-certificates \
@@ -53,7 +42,7 @@ RUN ARCH=$(dpkg --print-architecture) && \
     rm "$ORACLE_ZIP"
 
 ##############################################################################
-# 4) Production node_modules (backend, no dev deps)
+# 3) Production node_modules (backend, no dev deps)
 ##############################################################################
 FROM node:22.22.0-trixie-slim AS prod-deps
 WORKDIR /app
@@ -64,7 +53,7 @@ COPY backend/package*.json ./
 RUN npm ci --omit=dev
 
 ##############################################################################
-# 5) Runtime image
+# 4) Runtime image
 ##############################################################################
 FROM node:22.22.0-trixie-slim
 WORKDIR /app
@@ -96,14 +85,9 @@ COPY --from=backend-build /app .
 RUN rm -rf ./node_modules ./bdd ./e2e-test
 COPY --from=prod-deps /app/node_modules ./node_modules
 
-# Static SPA — served by the backend in STANDALONE_MODE from dist/frontend-build
-COPY --from=frontend-build /fe/dist ./dist/frontend-build
-
 ENV HOST=0.0.0.0
 ENV PORT=4000
 ENV NODE_ENV=production
-# Serve the bundled SPA from the API server (single origin, no CORS)
-ENV STANDALONE_MODE=true
 
 HEALTHCHECK --interval=15s --timeout=3s --start-period=30s \
     CMD node healthcheck.js

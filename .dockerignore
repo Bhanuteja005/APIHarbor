@@ -1,10 +1,9 @@
-# Reference-only design sources — not part of the deployed app
-linkify-main/
+# Not part of the backend image (frontend deploys on Vercel)
+frontend/
 dashboard-ui/
 
 # Dependencies & build output (reinstalled/rebuilt inside the image)
 **/node_modules/
-frontend/dist/
 backend/dist/
 backend/frontend-build/
 

@@ -1,50 +1,58 @@
-# React + TypeScript + Vite
+# ⚓ APIHarbor - The API Key Health Platform for Businesses
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🌟 Introduction
+APIHarbor is the API key health platform that helps you track every API key across providers — OpenAI, Anthropic, Stripe, GitHub, AWS, Twilio, and any HTTP API — in one dashboard. Monitor key health and validity in real time, track usage and spend, and get alerts before keys expire or fail, all with encrypted storage and team collaboration built in.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **API Key Tracking:** Manage every key across all your providers in one place.
+- **Health Monitoring:** Check key validity and health status in real time.
+- **Usage Analytics:** Track usage, quota, and spend across providers.
+- **Expiry Alerts:** Get notified before keys expire or fail, and rotate on time.
 
-## Expanding the ESLint configuration
+## 💻 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+* Next.js
+* Tailwind CSS
+* Shadcn UI
+* Magic UI
+* Aceternity UI
+* Prisma
+* MongoDB
+* React Hook Form
 
-- Configure the top-level `parserOptions` property like this:
+## 🛠️ Installation
+To run APIHarbor locally, follow these steps:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-org/apiharbor.git
+    ```
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+3. Set up environment variables in a `.env` file:
+    ```
+   # app
+    NEXT_PUBLIC_APP_DOMAIN=
+    NEXT_PUBLIC_APP_NAME=
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+    # database
+    DATABASE_URL=
+    ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+4. Run the development server:
+    ```bash
+    npm run dev
+    ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 📜 License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## 💬 Contact
+If you have any questions or feedback, feel free to reach out at [support@apiharbor.io](mailto:support@apiharbor.io).
+
+---
+
+Built with ❤️ by the APIHarbor Team
